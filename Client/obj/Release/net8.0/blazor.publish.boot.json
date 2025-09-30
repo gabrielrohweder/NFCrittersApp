@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AnimalCollector.Client",
   "resources": {
-    "hash": "sha256-RcONhdIRrq3DAOt8xElT73xwj4qvnfbRvxSEi1ADF/k=",
+    "hash": "sha256-B+ugghNqcauU3Ts4Qn+vZEGH9M+R00kTpnKlAOFVZxM=",
     "jsModuleNative": {
       "dotnet.native.8.0.5.k8qrcc28q0.js": "sha256-boyHe+0RMZDkzBKGhsrnXPhPg3oZ6UqJnTUzngJPjNY="
     },
@@ -17,8 +17,8 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "AnimalCollector.Client.wasm": "sha256-HCy2UGBPaaTtvcTlHAMW7rAQ23ybyKu+/S7INXslpo8=",
-      "AnimalCollector.Shared.wasm": "sha256-hLfRrIeYU9Tz6PvqlJE+i6nxYFOoIdj9gzQz1unrWCA=",
+      "AnimalCollector.Client.wasm": "sha256-TwME8Mixv8T88kzMBZrIm6bnHG0K084ZdnMLrqSJMXk=",
+      "AnimalCollector.Shared.wasm": "sha256-qOboG0f1H5JNISaqSBhjaZBfAaVtI8MEZkmEGEoe34A=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-JrtTlhIpTDuzskLmZV08x62RT+3AFQ5tU/H3JwWcIGI=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-rUZ/9oHE+ux3dA0f/jbXRzMcAiXFAqlXSLukP1yZ4mU=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-9pa4TX6FPCR8IZ3hObhj8D/J0Rp+4PZ1bfCK0WQAIZ8=",
