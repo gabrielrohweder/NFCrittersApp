@@ -1665,6 +1665,558 @@
       "PackagePath": "staticwebassets/web.config"
     },
     {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/AnimalCollector.Client.styles.css",
+      "PackagePath": "staticwebassets/wwwroot/AnimalCollector.Client.styles.css"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Client.pdb.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Client.pdb.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Client.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Client.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Client.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Client.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Client.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Client.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Shared.pdb.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Shared.pdb.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Shared.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Shared.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Shared.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Shared.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/AnimalCollector.Shared.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/AnimalCollector.Shared.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.Web.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.Web.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.Web.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.Web.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.Web.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.Web.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.AspNetCore.Components.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.AspNetCore.Components.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.Json.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.Json.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.Json.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.Json.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.Json.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.Json.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Logging.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Logging.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Logging.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Logging.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Logging.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Logging.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Options.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Options.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Options.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Options.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Options.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Options.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Primitives.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Primitives.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Primitives.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Primitives.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.Extensions.Primitives.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.Extensions.Primitives.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.JSInterop.WebAssembly.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.JSInterop.WebAssembly.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.JSInterop.WebAssembly.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.JSInterop.WebAssembly.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.JSInterop.WebAssembly.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.JSInterop.WebAssembly.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.JSInterop.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.JSInterop.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.JSInterop.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.JSInterop.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/Microsoft.JSInterop.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/Microsoft.JSInterop.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Collections.Concurrent.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Collections.Concurrent.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Collections.Concurrent.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Collections.Concurrent.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Collections.Concurrent.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Collections.Concurrent.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Collections.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Collections.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Collections.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Collections.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Collections.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Collections.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.ComponentModel.Annotations.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.ComponentModel.Annotations.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.ComponentModel.Annotations.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.ComponentModel.Annotations.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.ComponentModel.Annotations.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.ComponentModel.Annotations.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.ComponentModel.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.ComponentModel.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.ComponentModel.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.ComponentModel.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.ComponentModel.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.ComponentModel.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Console.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Console.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Console.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Console.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Console.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Console.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Linq.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Linq.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Linq.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Linq.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Linq.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Linq.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Memory.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Memory.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Memory.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Memory.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Memory.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Memory.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Http.Json.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Http.Json.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Http.Json.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Http.Json.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Http.Json.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Http.Json.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Http.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Http.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Http.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Http.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Http.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Http.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Primitives.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Primitives.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Primitives.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Primitives.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Net.Primitives.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Net.Primitives.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Private.CoreLib.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Private.CoreLib.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Private.CoreLib.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Private.CoreLib.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Private.CoreLib.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Private.CoreLib.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Private.Uri.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Private.Uri.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Private.Uri.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Private.Uri.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Private.Uri.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Private.Uri.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Runtime.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Runtime.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Runtime.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Runtime.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Runtime.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Runtime.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.Encodings.Web.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.Encodings.Web.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.Encodings.Web.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.Encodings.Web.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.Encodings.Web.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.Encodings.Web.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.Json.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.Json.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.Json.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.Json.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.Json.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.Json.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.RegularExpressions.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.RegularExpressions.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.RegularExpressions.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.RegularExpressions.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Text.RegularExpressions.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Text.RegularExpressions.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Threading.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Threading.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Threading.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Threading.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/System.Threading.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/System.Threading.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/blazor.boot.json",
+      "PackagePath": "staticwebassets/wwwroot/_framework/blazor.boot.json"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/blazor.boot.json.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/blazor.boot.json.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/blazor.boot.json.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/blazor.boot.json.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/blazor.webassembly.js",
+      "PackagePath": "staticwebassets/wwwroot/_framework/blazor.webassembly.js"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/blazor.webassembly.js.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/blazor.webassembly.js.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/blazor.webassembly.js.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.js",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.js"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.js.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.js.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.js.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.js.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.native.wasm",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.native.wasm"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.native.wasm.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.native.wasm.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.native.wasm.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.native.wasm.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_CJK.dat",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_CJK.dat"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_CJK.dat.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_CJK.dat.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_CJK.dat.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_CJK.dat.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_EFIGS.dat",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_EFIGS.dat"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_EFIGS.dat.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_EFIGS.dat.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_EFIGS.dat.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_EFIGS.dat.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_no_CJK.dat",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_no_CJK.dat"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_no_CJK.dat.br",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_no_CJK.dat.br"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/_framework/icudt_no_CJK.dat.gz",
+      "PackagePath": "staticwebassets/wwwroot/_framework/icudt_no_CJK.dat.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/wwwroot/css/app.css"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/index.html",
+      "PackagePath": "staticwebassets/wwwroot/index.html"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/wwwroot/sample-data/weather.json",
+      "PackagePath": "staticwebassets/wwwroot/sample-data/weather.json"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.AnimalCollector.Server.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
