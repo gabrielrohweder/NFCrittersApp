@@ -545,6 +545,30 @@
       "PackagePath": "staticwebassets/css/app.css"
     },
     {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/dolphin.jpg",
+      "PackagePath": "staticwebassets/images/dolphin.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/elephant.jpg",
+      "PackagePath": "staticwebassets/images/elephant.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
+      "PackagePath": "staticwebassets/images/lion.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/owl.jpg",
+      "PackagePath": "staticwebassets/images/owl.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/panda.jpg",
+      "PackagePath": "staticwebassets/images/panda.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/penguin.jpg",
+      "PackagePath": "staticwebassets/images/penguin.jpg"
+    },
+    {
       "Id": "/home/runner/workspace/Server/wwwroot/index.html",
       "PackagePath": "staticwebassets/index.html"
     },
