@@ -39,7 +39,19 @@ else
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+    {
+        npgsqlOptions.CommandTimeout(30);
+        npgsqlOptions.EnableRetryOnFailure(maxRetryCount: 3, maxRetryDelay: TimeSpan.FromSeconds(5), errorCodesToAdd: null);
+    }));
+
+// Add health checks for Cloud Run with database connectivity check
+builder.Services.AddHealthChecks()
+    .AddNpgSql(
+        connectionString: connectionString,
+        name: "database",
+        timeout: TimeSpan.FromSeconds(5),
+        tags: new[] { "ready" });
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -66,20 +78,23 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Apply migrations and seed data automatically
-using (var scope = app.Services.CreateScope())
+// Initialize database asynchronously in background to not block startup
+_ = Task.Run(async () =>
 {
-    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    try
+    using (var scope = app.Services.CreateScope())
     {
-        db.Database.EnsureCreated();
-        Console.WriteLine("Database initialized successfully");
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        try
+        {
+            await db.Database.EnsureCreatedAsync();
+            Console.WriteLine("Database initialized successfully");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database initialization error: {ex.Message}");
+        }
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Database initialization error: {ex.Message}");
-    }
-}
+});
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -106,6 +121,17 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseRouting();
 app.UseCors();
 app.UseSession();
+
+// Add health check endpoints for Cloud Run
+app.MapHealthChecks("/health/ready", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    Predicate = check => check.Tags.Contains("ready")
+});
+
+app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    Predicate = _ => false
+});
 
 app.MapControllers();
 app.MapFallbackToFile("index.html");

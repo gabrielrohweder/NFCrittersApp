@@ -147,3 +147,4 @@
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.genruntimeconfig.cache
 /home/runner/workspace/Server/obj/Debug/net8.0/ref/AnimalCollector.Server.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.staticwebassets.runtime.json
+/home/runner/workspace/Server/bin/Debug/net8.0/HealthChecks.NpgSql.dll
