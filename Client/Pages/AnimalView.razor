@@ -49,6 +49,9 @@
                         <div class="collected-status">
                             <p>✅ Already in your collection!</p>
                         </div>
+                        <button class="btn-secondary" @onclick="GoToCollection" data-testid="button-view-collection">
+                            View Collection
+                        </button>
                     }
                     else
                     {
@@ -251,5 +254,10 @@
     private void GoHome()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    private void GoToCollection()
+    {
+        NavigationManager.NavigateTo("/collection");
     }
 }

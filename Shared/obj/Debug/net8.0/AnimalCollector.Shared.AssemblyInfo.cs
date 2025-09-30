@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnimalCollector.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58da76c527a56a995272397e37fd3c7c307f5bee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a53251741bded3278ce28195d93fdb6d9fb97e66")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnimalCollector.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnimalCollector.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
