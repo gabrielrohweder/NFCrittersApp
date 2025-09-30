@@ -41,6 +41,7 @@
         <div class="modal-overlay" @onclick="CloseModal">
             <div class="modal-content" @onclick:stopPropagation="true">
                 <button class="modal-close" @onclick="CloseModal">×</button>
+                <img src="@scannedAnimal.ImageUrl" alt="@scannedAnimal.Name" class="animal-image" />
                 <h2>@scannedAnimal.Name</h2>
                 <p class="species">@scannedAnimal.Species</p>
                 <p class="habitat">🌍 @scannedAnimal.Habitat</p>

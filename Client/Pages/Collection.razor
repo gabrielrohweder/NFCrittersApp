@@ -36,6 +36,7 @@
                              data-testid="card-animal-@animal.Id">
                             @if (animal.Collected)
                             {
+                                <img src="@animal.ImageUrl" alt="@animal.Name" class="animal-card-image" />
                                 <div class="rarity-badge rarity-@animal.Rarity">@animal.Rarity</div>
                                 <h3>@animal.Name</h3>
                                 <p>@animal.Species</p>
@@ -64,6 +65,7 @@
         <div class="modal-overlay" @onclick="CloseModal">
             <div class="modal-content" @onclick:stopPropagation="true">
                 <button class="modal-close" @onclick="CloseModal">×</button>
+                <img src="@selectedAnimal.ImageUrl" alt="@selectedAnimal.Name" class="animal-image" />
                 <h2>@selectedAnimal.Name</h2>
                 <p class="species">@selectedAnimal.Species</p>
                 <p class="habitat">🌍 @selectedAnimal.Habitat</p>
