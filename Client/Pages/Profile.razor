@@ -1,0 +1,278 @@
+@page "/profile"
+@inject HttpClient Http
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<PageTitle>Profile - Animal Collector</PageTitle>
+
+<div class="page-container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="auth-required">
+            <div class="lock-icon">👤</div>
+            <h2>Join the Adventure!</h2>
+            <p>Create an account to track your progress and unlock achievements</p>
+            <button class="btn-primary" @onclick="ShowAuth" data-testid="button-create-profile">
+                Create Account
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="profile-content">
+            <div class="profile-header">
+                <div class="avatar" data-testid="avatar-profile">
+                    @GetInitials()
+                </div>
+                <h1 data-testid="text-username">@AuthService.CurrentUser?.Username</h1>
+                <p class="join-date" data-testid="text-join-date">Animal collector since @DateTime.Now.ToString("MMMM yyyy")</p>
+            </div>
+
+            @if (isLoading)
+            {
+                <div class="loading">Loading stats...</div>
+            }
+            else
+            {
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" data-testid="text-collected-count">@collectedCount</div>
+                        <div class="stat-label">Collected</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" data-testid="text-completion-rate">@completionRate%</div>
+                        <div class="stat-label">Complete</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" data-testid="text-rare-count">@rareCount</div>
+                        <div class="stat-label">Rare</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" data-testid="text-legendary-count">@legendaryCount</div>
+                        <div class="stat-label">Legendary</div>
+                    </div>
+                </div>
+
+                <div class="achievements">
+                    <h2>🏆 Achievements</h2>
+                    <div class="achievement-list">
+                        <div class="achievement @(collectedCount > 0 ? "earned" : "")" data-testid="achievement-1">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-info">
+                                <h3>First Discovery</h3>
+                                <p>Found your first animal</p>
+                            </div>
+                            @if (collectedCount > 0)
+                            {
+                                <span class="badge">Earned</span>
+                            }
+                        </div>
+                        <div class="achievement @(collectedCount >= 5 ? "earned" : "")" data-testid="achievement-2">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-info">
+                                <h3>Collector</h3>
+                                <p>Collected 5 animals</p>
+                            </div>
+                            @if (collectedCount >= 5)
+                            {
+                                <span class="badge">Earned</span>
+                            }
+                        </div>
+                        <div class="achievement @(legendaryCount > 0 ? "earned" : "")" data-testid="achievement-3">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-info">
+                                <h3>Legendary Hunter</h3>
+                                <p>Found a legendary animal</p>
+                            </div>
+                            @if (legendaryCount > 0)
+                            {
+                                <span class="badge">Earned</span>
+                            }
+                        </div>
+                        <div class="achievement @(completionRate == 100 ? "earned" : "")" data-testid="achievement-4">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-info">
+                                <h3>Explorer</h3>
+                                <p>Discovered all species</p>
+                            </div>
+                            @if (completionRate == 100)
+                            {
+                                <span class="badge">Earned</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn-secondary" @onclick="HandleSettings" data-testid="button-settings">
+                        ⚙️ Settings
+                    </button>
+                    <button class="btn-danger" @onclick="HandleLogout" data-testid="button-logout">
+                        🚪 Logout
+                    </button>
+                </div>
+            }
+        </div>
+    }
+
+    @if (showAuthModal)
+    {
+        <div class="modal-overlay" @onclick="CloseAuthModal">
+            <div class="modal-content auth-modal" @onclick:stopPropagation="true">
+                <button class="modal-close" @onclick="CloseAuthModal">×</button>
+                <h2>@(isLogin ? "Login" : "Sign Up")</h2>
+                
+                <div class="auth-form">
+                    <input type="text" placeholder="Username" @bind="username" data-testid="input-username" />
+                    <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
+                    
+                    @if (!string.IsNullOrEmpty(authError))
+                    {
+                        <p class="error">@authError</p>
+                    }
+
+                    <button class="btn-primary" @onclick="HandleAuth" data-testid="button-submit-auth">
+                        @(isLogin ? "Login" : "Sign Up")
+                    </button>
+                    
+                    <button class="btn-text" @onclick="ToggleAuthMode">
+                        @(isLogin ? "Need an account? Sign up" : "Have an account? Login")
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool isLoading = true;
+    private bool showAuthModal = false;
+    private int collectedCount = 0;
+    private int totalCount = 6;
+    private int rareCount = 0;
+    private int legendaryCount = 0;
+    private int completionRate = 0;
+    private bool isLogin = true;
+    private string username = "";
+    private string password = "";
+    private string authError = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.OnAuthStateChanged += OnAuthChanged;
+        await LoadStats();
+    }
+
+    private async Task LoadStats()
+    {
+        if (!AuthService.IsAuthenticated)
+        {
+            isLoading = false;
+            return;
+        }
+
+        try
+        {
+            var animals = await Http.GetFromJsonAsync<List<AnimalDTO>>("api/animals");
+            if (animals != null)
+            {
+                collectedCount = animals.Count(a => a.Collected);
+                totalCount = animals.Count;
+                rareCount = animals.Count(a => a.Collected && a.Rarity == "rare");
+                legendaryCount = animals.Count(a => a.Collected && a.Rarity == "legendary");
+                completionRate = totalCount > 0 ? (int)((collectedCount / (double)totalCount) * 100) : 0;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading stats: {ex.Message}");
+        }
+        
+        isLoading = false;
+    }
+
+    private async void OnAuthChanged()
+    {
+        await LoadStats();
+        StateHasChanged();
+    }
+
+    private string GetInitials()
+    {
+        if (AuthService.CurrentUser?.Username == null) return "??";
+        var parts = AuthService.CurrentUser.Username.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length > 1)
+        {
+            return $"{parts[0][0]}{parts[1][0]}".ToUpper();
+        }
+        return AuthService.CurrentUser.Username.Substring(0, Math.Min(2, AuthService.CurrentUser.Username.Length)).ToUpper();
+    }
+
+    private void ShowAuth()
+    {
+        showAuthModal = true;
+    }
+
+    private void CloseAuthModal()
+    {
+        showAuthModal = false;
+        authError = "";
+    }
+
+    private void ToggleAuthMode()
+    {
+        isLogin = !isLogin;
+        authError = "";
+    }
+
+    private async Task HandleAuth()
+    {
+        authError = "";
+        
+        try
+        {
+            AuthResponse result;
+            if (isLogin)
+            {
+                result = await AuthService.LoginAsync(username, password);
+            }
+            else
+            {
+                result = await AuthService.RegisterAsync(username, password);
+            }
+
+            if (result.Success)
+            {
+                CloseAuthModal();
+                username = "";
+                password = "";
+                await LoadStats();
+            }
+            else
+            {
+                authError = result.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+            authError = "An error occurred. Please try again.";
+            Console.WriteLine($"Auth error: {ex.Message}");
+        }
+    }
+
+    private void HandleSettings()
+    {
+        Console.WriteLine("Settings clicked");
+    }
+
+    private async Task HandleLogout()
+    {
+        await AuthService.LogoutAsync();
+        Navigation.NavigateTo("/");
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= OnAuthChanged;
+    }
+}

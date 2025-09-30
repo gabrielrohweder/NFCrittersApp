@@ -1,15 +1,41 @@
 using Microsoft.EntityFrameworkCore;
 using AnimalCollector.Server.Data;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
-// Configure database
-var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL") 
-    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+// Configure database - convert DATABASE_URL to Npgsql connection string
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+string connectionString;
+
+if (!string.IsNullOrEmpty(databaseUrl))
+{
+    // Parse DATABASE_URL (postgresql://user:password@host:port/database?options)
+    var databaseUri = new Uri(databaseUrl);
+    var userInfo = databaseUri.UserInfo.Split(':');
+    
+    var connStrBuilder = new NpgsqlConnectionStringBuilder
+    {
+        Host = databaseUri.Host,
+        Port = databaseUri.Port > 0 ? databaseUri.Port : 5432,
+        Database = databaseUri.AbsolutePath.TrimStart('/'),
+        Username = userInfo[0],
+        Password = userInfo.Length > 1 ? userInfo[1] : "",
+        SslMode = SslMode.Require,
+        TrustServerCertificate = true
+    };
+    
+    connectionString = connStrBuilder.ToString();
+}
+else
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+        ?? "Host=localhost;Database=animalcollector;Username=postgres;Password=postgres";
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -45,37 +71,32 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     try
     {
-        db.Database.Migrate();
+        db.Database.EnsureCreated();
+        Console.WriteLine("Database initialized successfully");
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Migration error: {ex.Message}");
+        Console.WriteLine($"Database initialization error: {ex.Message}");
     }
 }
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.UseWebAssemblyDebugging();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else
-{
-    app.UseExceptionHandler("/Error");
-}
 
-app.UseBlazorFrameworkFiles();
+// Serve Blazor WASM files
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseCors();
 app.UseSession();
 
-app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 // Configure to listen on all interfaces on port 5000
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+Console.WriteLine($"Starting server on port {port}");
 app.Run($"http://0.0.0.0:{port}");

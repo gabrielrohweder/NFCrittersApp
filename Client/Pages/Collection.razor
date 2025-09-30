@@ -1,0 +1,226 @@
+@page "/collection"
+@inject HttpClient Http
+@inject AuthService AuthService
+
+<PageTitle>Collection - Animal Collector</PageTitle>
+
+<div class="page-container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="auth-required">
+            <div class="lock-icon">🔒</div>
+            <h2>Collection Locked</h2>
+            <p>Create an account to start building your animal collection!</p>
+            <button class="btn-primary" @onclick="ShowAuth" data-testid="button-login-to-view">
+                Login to View Collection
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="collection-content">
+            <h1>My Collection</h1>
+            <p class="subtitle">Your discovered animals and progress</p>
+
+            @if (isLoading)
+            {
+                <div class="loading">Loading your collection...</div>
+            }
+            else if (animals != null && animals.Any())
+            {
+                <div class="animals-grid">
+                    @foreach (var animal in animals)
+                    {
+                        <div class="animal-card @(animal.Collected ? "collected" : "locked")" 
+                             @onclick="() => SelectAnimal(animal)"
+                             data-testid="card-animal-@animal.Id">
+                            @if (animal.Collected)
+                            {
+                                <div class="rarity-badge rarity-@animal.Rarity">@animal.Rarity</div>
+                                <h3>@animal.Name</h3>
+                                <p>@animal.Species</p>
+                            }
+                            else
+                            {
+                                <div class="locked-overlay">🔒</div>
+                                <h3>???</h3>
+                                <p>Not yet discovered</p>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <p>Your collection is empty. Start scanning to discover animals!</p>
+                </div>
+            }
+        </div>
+    }
+
+    @if (showAnimalModal && selectedAnimal != null)
+    {
+        <div class="modal-overlay" @onclick="CloseModal">
+            <div class="modal-content" @onclick:stopPropagation="true">
+                <button class="modal-close" @onclick="CloseModal">×</button>
+                <h2>@selectedAnimal.Name</h2>
+                <p class="species">@selectedAnimal.Species</p>
+                <p class="habitat">🌍 @selectedAnimal.Habitat</p>
+                <div class="rarity-badge rarity-@selectedAnimal.Rarity">@selectedAnimal.Rarity</div>
+                
+                <div class="facts">
+                    <h3>Fun Facts:</h3>
+                    @foreach (var fact in selectedAnimal.Facts)
+                    {
+                        <p>• @fact</p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (showAuthModal)
+    {
+        <div class="modal-overlay" @onclick="CloseAuthModal">
+            <div class="modal-content auth-modal" @onclick:stopPropagation="true">
+                <button class="modal-close" @onclick="CloseAuthModal">×</button>
+                <h2>@(isLogin ? "Login" : "Sign Up")</h2>
+                
+                <div class="auth-form">
+                    <input type="text" placeholder="Username" @bind="username" data-testid="input-username" />
+                    <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
+                    
+                    @if (!string.IsNullOrEmpty(authError))
+                    {
+                        <p class="error">@authError</p>
+                    }
+
+                    <button class="btn-primary" @onclick="HandleAuth" data-testid="button-submit-auth">
+                        @(isLogin ? "Login" : "Sign Up")
+                    </button>
+                    
+                    <button class="btn-text" @onclick="ToggleAuthMode">
+                        @(isLogin ? "Need an account? Sign up" : "Have an account? Login")
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private List<AnimalDTO>? animals;
+    private bool isLoading = true;
+    private bool showAnimalModal = false;
+    private bool showAuthModal = false;
+    private AnimalDTO? selectedAnimal;
+    private bool isLogin = true;
+    private string username = "";
+    private string password = "";
+    private string authError = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.OnAuthStateChanged += OnAuthChanged;
+        await LoadAnimals();
+    }
+
+    private async Task LoadAnimals()
+    {
+        if (!AuthService.IsAuthenticated)
+        {
+            isLoading = false;
+            return;
+        }
+
+        try
+        {
+            animals = await Http.GetFromJsonAsync<List<AnimalDTO>>("api/animals");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading animals: {ex.Message}");
+        }
+        
+        isLoading = false;
+    }
+
+    private async void OnAuthChanged()
+    {
+        await LoadAnimals();
+        StateHasChanged();
+    }
+
+    private void SelectAnimal(AnimalDTO animal)
+    {
+        if (animal.Collected)
+        {
+            selectedAnimal = animal;
+            showAnimalModal = true;
+        }
+    }
+
+    private void CloseModal()
+    {
+        showAnimalModal = false;
+        selectedAnimal = null;
+    }
+
+    private void ShowAuth()
+    {
+        showAuthModal = true;
+    }
+
+    private void CloseAuthModal()
+    {
+        showAuthModal = false;
+        authError = "";
+    }
+
+    private void ToggleAuthMode()
+    {
+        isLogin = !isLogin;
+        authError = "";
+    }
+
+    private async Task HandleAuth()
+    {
+        authError = "";
+        
+        try
+        {
+            AuthResponse result;
+            if (isLogin)
+            {
+                result = await AuthService.LoginAsync(username, password);
+            }
+            else
+            {
+                result = await AuthService.RegisterAsync(username, password);
+            }
+
+            if (result.Success)
+            {
+                CloseAuthModal();
+                username = "";
+                password = "";
+                await LoadAnimals();
+            }
+            else
+            {
+                authError = result.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+            authError = "An error occurred. Please try again.";
+            Console.WriteLine($"Auth error: {ex.Message}");
+        }
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= OnAuthChanged;
+    }
+}

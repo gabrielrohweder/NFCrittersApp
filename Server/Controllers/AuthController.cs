@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AnimalCollector.Server.Data;
+using AnimalCollector.Server.Helpers;
 using AnimalCollector.Shared.Models;
 using AnimalCollector.Shared.DTOs;
 
@@ -21,9 +22,9 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginRequest request)
     {
         var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == request.Username && u.Password == request.Password);
+            .FirstOrDefaultAsync(u => u.Username == request.Username);
 
-        if (user == null)
+        if (user == null || !PasswordHelper.VerifyPassword(request.Password, user.Password))
         {
             return Ok(new AuthResponse 
             { 
@@ -62,7 +63,7 @@ public class AuthController : ControllerBase
         {
             Id = Guid.NewGuid().ToString(),
             Username = request.Username,
-            Password = request.Password // In production, hash this!
+            Password = PasswordHelper.HashPassword(request.Password)
         };
 
         _context.Users.Add(user);

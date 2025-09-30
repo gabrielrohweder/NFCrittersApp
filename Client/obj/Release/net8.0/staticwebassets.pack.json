@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "/home/runner/workspace/Client/bin/Release/net8.0/wwwroot/_framework/blazor.webassembly.js",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/obj/Release/net8.0/compressed/id0hqtl1cm.gz",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/obj/Release/net8.0/scopedcss/bundle/AnimalCollector.Client.styles.css",
+      "PackagePath": "staticwebassets/AnimalCollector.Client.styles.css"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/sample-data/weather.json",
+      "PackagePath": "staticwebassets/sample-data/weather.json"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.AnimalCollector.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.build.AnimalCollector.Client.props",
+      "PackagePath": "build\\AnimalCollector.Client.props"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.buildMultiTargeting.AnimalCollector.Client.props",
+      "PackagePath": "buildMultiTargeting\\AnimalCollector.Client.props"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.buildTransitive.AnimalCollector.Client.props",
+      "PackagePath": "buildTransitive\\AnimalCollector.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

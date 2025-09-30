@@ -1,0 +1,219 @@
+@page "/"
+@inject HttpClient Http
+@inject AuthService AuthService
+
+<PageTitle>Scan - Animal Collector</PageTitle>
+
+<div class="page-container">
+    <div class="scan-content">
+        <h1 class="app-title" data-testid="text-app-title">Animal Collector</h1>
+        <p class="app-subtitle">Discover amazing 3D printed animals by scanning NFC tags!</p>
+
+        <div class="scan-button-container">
+            <button class="scan-button @(isScanning ? "scanning" : "")" 
+                    @onclick="HandleScan" 
+                    disabled="@isScanning"
+                    data-testid="button-scan">
+                @if (isScanning)
+                {
+                    <span class="spinner"></span>
+                    <span>Scanning...</span>
+                }
+                else
+                {
+                    <span>⚡</span>
+                    <span>Tap to Scan NFC</span>
+                }
+            </button>
+        </div>
+
+        <div class="scan-instructions">
+            <p>Hold your phone near any NFC-enabled animal figure</p>
+            @if (!AuthService.IsAuthenticated)
+            {
+                <p class="login-prompt">Login to save animals to your collection!</p>
+            }
+        </div>
+    </div>
+
+    @if (showAnimalModal && scannedAnimal != null)
+    {
+        <div class="modal-overlay" @onclick="CloseModal">
+            <div class="modal-content" @onclick:stopPropagation="true">
+                <button class="modal-close" @onclick="CloseModal">×</button>
+                <h2>@scannedAnimal.Name</h2>
+                <p class="species">@scannedAnimal.Species</p>
+                <p class="habitat">🌍 @scannedAnimal.Habitat</p>
+                <div class="rarity-badge rarity-@scannedAnimal.Rarity">@scannedAnimal.Rarity</div>
+                
+                <div class="facts">
+                    <h3>Fun Facts:</h3>
+                    @foreach (var fact in scannedAnimal.Facts)
+                    {
+                        <p>• @fact</p>
+                    }
+                </div>
+
+                @if (AuthService.IsAuthenticated)
+                {
+                    <button class="btn-primary" @onclick="AddToCollection" data-testid="button-add-to-collection">
+                        Add to Collection
+                    </button>
+                }
+                else
+                {
+                    <button class="btn-primary" @onclick="ShowAuthRequired" data-testid="button-login-required">
+                        Login to Collect
+                    </button>
+                }
+            </div>
+        </div>
+    }
+
+    @if (showAuthModal)
+    {
+        <div class="modal-overlay" @onclick="CloseAuthModal">
+            <div class="modal-content auth-modal" @onclick:stopPropagation="true">
+                <button class="modal-close" @onclick="CloseAuthModal">×</button>
+                <h2>@(isLogin ? "Login" : "Sign Up")</h2>
+                
+                <div class="auth-form">
+                    <input type="text" placeholder="Username" @bind="username" data-testid="input-username" />
+                    <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
+                    
+                    @if (!string.IsNullOrEmpty(authError))
+                    {
+                        <p class="error">@authError</p>
+                    }
+
+                    <button class="btn-primary" @onclick="HandleAuth" data-testid="button-submit-auth">
+                        @(isLogin ? "Login" : "Sign Up")
+                    </button>
+                    
+                    <button class="btn-text" @onclick="ToggleAuthMode">
+                        @(isLogin ? "Need an account? Sign up" : "Have an account? Login")
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool isScanning = false;
+    private bool showAnimalModal = false;
+    private bool showAuthModal = false;
+    private AnimalDTO? scannedAnimal;
+    private bool isLogin = true;
+    private string username = "";
+    private string password = "";
+    private string authError = "";
+
+    private string[] availableAnimalIds = new[] { "lion-001", "elephant-002", "penguin-003", "panda-004", "owl-005", "dolphin-006" };
+
+    protected override void OnInitialized()
+    {
+        AuthService.OnAuthStateChanged += StateHasChanged;
+    }
+
+    private async Task HandleScan()
+    {
+        isScanning = true;
+        
+        // Simulate NFC scan - randomly select an animal
+        var random = new Random();
+        var animalId = availableAnimalIds[random.Next(availableAnimalIds.Length)];
+        
+        await Task.Delay(1500); // Simulate scan time
+        
+        try
+        {
+            scannedAnimal = await Http.GetFromJsonAsync<AnimalDTO>($"api/animals/{animalId}");
+            showAnimalModal = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching animal: {ex.Message}");
+        }
+        
+        isScanning = false;
+    }
+
+    private void CloseModal()
+    {
+        showAnimalModal = false;
+        scannedAnimal = null;
+    }
+
+    private async Task AddToCollection()
+    {
+        if (scannedAnimal == null) return;
+        
+        try
+        {
+            await Http.PostAsync($"api/animals/{scannedAnimal.Id}/collect", null);
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error collecting animal: {ex.Message}");
+        }
+    }
+
+    private void ShowAuthRequired()
+    {
+        showAnimalModal = false;
+        showAuthModal = true;
+    }
+
+    private void CloseAuthModal()
+    {
+        showAuthModal = false;
+        authError = "";
+    }
+
+    private void ToggleAuthMode()
+    {
+        isLogin = !isLogin;
+        authError = "";
+    }
+
+    private async Task HandleAuth()
+    {
+        authError = "";
+        
+        try
+        {
+            AuthResponse result;
+            if (isLogin)
+            {
+                result = await AuthService.LoginAsync(username, password);
+            }
+            else
+            {
+                result = await AuthService.RegisterAsync(username, password);
+            }
+
+            if (result.Success)
+            {
+                CloseAuthModal();
+                username = "";
+                password = "";
+            }
+            else
+            {
+                authError = result.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+            authError = "An error occurred. Please try again.";
+            Console.WriteLine($"Auth error: {ex.Message}");
+        }
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= StateHasChanged;
+    }
+}

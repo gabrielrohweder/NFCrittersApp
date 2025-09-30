@@ -1,0 +1,29 @@
+@inject NavigationManager Navigation
+
+<nav class="bottom-nav">
+    <a href="/" class="nav-item @GetActiveClass("/")" data-testid="nav-scan">
+        <span class="nav-icon">⚡</span>
+        <span class="nav-label">Scan</span>
+    </a>
+    <a href="/collection" class="nav-item @GetActiveClass("/collection")" data-testid="nav-collection">
+        <span class="nav-icon">📦</span>
+        <span class="nav-label">Collection</span>
+    </a>
+    <a href="/profile" class="nav-item @GetActiveClass("/profile")" data-testid="nav-profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label">Profile</span>
+    </a>
+</nav>
+
+@code {
+    private string GetActiveClass(string path)
+    {
+        var currentPath = new Uri(Navigation.Uri).AbsolutePath;
+        return currentPath == path ? "active" : "";
+    }
+
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += (s, e) => StateHasChanged();
+    }
+}
