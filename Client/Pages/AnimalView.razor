@@ -173,11 +173,7 @@
             
             if (response.IsSuccessStatusCode)
             {
-                animal.Collected = true;
-                StateHasChanged();
-                
-                // Navigate to collection page after adding to collection
-                await Task.Delay(500); // Brief delay to show success state
+                // Navigate immediately to collection page
                 NavigationManager.NavigateTo("/collection");
             }
         }
