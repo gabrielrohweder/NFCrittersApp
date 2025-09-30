@@ -30,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L0JvdHRvbU5hdi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/runner/workspace/Client/Pages/AnimalView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQW5pbWFsVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/runner/workspace/Client/Pages/Collection.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29sbGVjdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

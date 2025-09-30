@@ -3,7 +3,7 @@
 @using System.Net.Http.Json
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
-@inject IAuthService AuthService
+@inject AuthService AuthService
 
 <div class="page-container">
     <div class="page-header">
@@ -216,23 +216,25 @@
 
         try
         {
-            var endpoint = isLogin ? "login" : "register";
-            var response = await Http.PostAsJsonAsync($"api/auth/{endpoint}", new { username, password });
-
-            if (response.IsSuccessStatusCode)
+            AnimalCollector.Shared.DTOs.AuthResponse result;
+            
+            if (isLogin)
             {
-                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
-                if (result != null)
-                {
-                    AuthService.SetAuthenticated(true, result.Username);
-                    CloseAuthModal();
-                    await LoadAnimal();
-                }
+                result = await AuthService.LoginAsync(username, password);
             }
             else
             {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                authError = isLogin ? "Invalid username or password" : "Username already exists";
+                result = await AuthService.RegisterAsync(username, password);
+            }
+
+            if (result.Success)
+            {
+                CloseAuthModal();
+                await LoadAnimal();
+            }
+            else
+            {
+                authError = result.Message;
             }
         }
         catch (Exception ex)
@@ -245,10 +247,5 @@
     private void GoHome()
     {
         NavigationManager.NavigateTo("/");
-    }
-
-    private class AuthResponse
-    {
-        public string Username { get; set; } = string.Empty;
     }
 }
