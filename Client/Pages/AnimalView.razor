@@ -172,6 +172,10 @@
             {
                 animal.Collected = true;
                 StateHasChanged();
+                
+                // Navigate to collection page after adding to collection
+                await Task.Delay(500); // Brief delay to show success state
+                NavigationManager.NavigateTo("/collection");
             }
         }
         catch (Exception ex)
