@@ -1,0 +1,117 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using AnimalCollector.Server.Data;
+using AnimalCollector.Shared.Models;
+using AnimalCollector.Shared.DTOs;
+
+namespace AnimalCollector.Server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AuthController : ControllerBase
+{
+    private readonly ApplicationDbContext _context;
+
+    public AuthController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginRequest request)
+    {
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Username == request.Username && u.Password == request.Password);
+
+        if (user == null)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Invalid username or password" 
+            });
+        }
+
+        HttpContext.Session.SetString("UserId", user.Id);
+
+        return Ok(new AuthResponse
+        {
+            Success = true,
+            Message = "Login successful",
+            User = new UserDTO
+            {
+                Id = user.Id,
+                Username = user.Username
+            }
+        });
+    }
+
+    [HttpPost("register")]
+    public async Task<ActionResult<AuthResponse>> Register([FromBody] RegisterRequest request)
+    {
+        if (await _context.Users.AnyAsync(u => u.Username == request.Username))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Username already exists" 
+            });
+        }
+
+        var user = new User
+        {
+            Id = Guid.NewGuid().ToString(),
+            Username = request.Username,
+            Password = request.Password // In production, hash this!
+        };
+
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+
+        HttpContext.Session.SetString("UserId", user.Id);
+
+        return Ok(new AuthResponse
+        {
+            Success = true,
+            Message = "Registration successful",
+            User = new UserDTO
+            {
+                Id = user.Id,
+                Username = user.Username
+            }
+        });
+    }
+
+    [HttpPost("logout")]
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear();
+        return Ok(new AuthResponse 
+        { 
+            Success = true, 
+            Message = "Logged out successfully" 
+        });
+    }
+
+    [HttpGet("me")]
+    public async Task<ActionResult<UserDTO?>> GetCurrentUser()
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Ok(null);
+        }
+
+        var user = await _context.Users.FindAsync(userId);
+        if (user == null)
+        {
+            return Ok(null);
+        }
+
+        return Ok(new UserDTO
+        {
+            Id = user.Id,
+            Username = user.Username
+        });
+    }
+}

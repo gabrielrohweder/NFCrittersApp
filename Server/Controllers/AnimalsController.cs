@@ -1,0 +1,154 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using AnimalCollector.Server.Data;
+using AnimalCollector.Shared.DTOs;
+using AnimalCollector.Shared.Models;
+using System.Text.Json;
+
+namespace AnimalCollector.Server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AnimalsController : ControllerBase
+{
+    private readonly ApplicationDbContext _context;
+
+    public AnimalsController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<AnimalDTO>>> GetAnimals()
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        var animals = await _context.Animals.ToListAsync();
+
+        List<string> collectedAnimalIds = new();
+        if (!string.IsNullOrEmpty(userId))
+        {
+            collectedAnimalIds = await _context.UserAnimals
+                .Where(ua => ua.UserId == userId)
+                .Select(ua => ua.AnimalId)
+                .ToListAsync();
+        }
+
+        var animalDTOs = animals.Select(a => new AnimalDTO
+        {
+            Id = a.Id,
+            Name = a.Name,
+            Species = a.Species,
+            Habitat = a.Habitat,
+            Rarity = a.Rarity,
+            ImageUrl = a.ImageUrl,
+            Facts = string.IsNullOrEmpty(a.Facts) 
+                ? new List<string>() 
+                : JsonSerializer.Deserialize<List<string>>(a.Facts) ?? new List<string>(),
+            Collected = collectedAnimalIds.Contains(a.Id)
+        }).ToList();
+
+        return Ok(animalDTOs);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<AnimalDTO>> GetAnimal(string id)
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        var animal = await _context.Animals.FindAsync(id);
+
+        if (animal == null)
+        {
+            return NotFound();
+        }
+
+        bool isCollected = false;
+        if (!string.IsNullOrEmpty(userId))
+        {
+            isCollected = await _context.UserAnimals
+                .AnyAsync(ua => ua.UserId == userId && ua.AnimalId == id);
+        }
+
+        var animalDTO = new AnimalDTO
+        {
+            Id = animal.Id,
+            Name = animal.Name,
+            Species = animal.Species,
+            Habitat = animal.Habitat,
+            Rarity = animal.Rarity,
+            ImageUrl = animal.ImageUrl,
+            Facts = string.IsNullOrEmpty(animal.Facts)
+                ? new List<string>()
+                : JsonSerializer.Deserialize<List<string>>(animal.Facts) ?? new List<string>(),
+            Collected = isCollected
+        };
+
+        return Ok(animalDTO);
+    }
+
+    [HttpPost("{id}/collect")]
+    public async Task<IActionResult> CollectAnimal(string id)
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized(new { message = "You must be logged in to collect animals" });
+        }
+
+        var animal = await _context.Animals.FindAsync(id);
+        if (animal == null)
+        {
+            return NotFound();
+        }
+
+        var exists = await _context.UserAnimals
+            .AnyAsync(ua => ua.UserId == userId && ua.AnimalId == id);
+
+        if (exists)
+        {
+            return Ok(new { message = "Animal already collected" });
+        }
+
+        var userAnimal = new UserAnimal
+        {
+            UserId = userId,
+            AnimalId = id,
+            CollectedAt = DateTime.UtcNow
+        };
+
+        _context.UserAnimals.Add(userAnimal);
+        await _context.SaveChangesAsync();
+
+        return Ok(new { message = "Animal collected successfully" });
+    }
+
+    [HttpGet("collection")]
+    public async Task<ActionResult<List<AnimalDTO>>> GetUserCollection()
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized();
+        }
+
+        var userAnimals = await _context.UserAnimals
+            .Where(ua => ua.UserId == userId)
+            .Include(ua => ua.Animal)
+            .ToListAsync();
+
+        var animalDTOs = userAnimals.Select(ua => new AnimalDTO
+        {
+            Id = ua.Animal.Id,
+            Name = ua.Animal.Name,
+            Species = ua.Animal.Species,
+            Habitat = ua.Animal.Habitat,
+            Rarity = ua.Animal.Rarity,
+            ImageUrl = ua.Animal.ImageUrl,
+            Facts = string.IsNullOrEmpty(ua.Animal.Facts)
+                ? new List<string>()
+                : JsonSerializer.Deserialize<List<string>>(ua.Animal.Facts) ?? new List<string>(),
+            Collected = true
+        }).ToList();
+
+        return Ok(animalDTOs);
+    }
+}
