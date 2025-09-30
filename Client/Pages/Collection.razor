@@ -29,7 +29,7 @@
             else if (animals != null && animals.Any())
             {
                 <div class="animals-grid">
-                    @foreach (var animal in animals)
+                    @foreach (var animal in animals.OrderByDescending(a => a.Collected))
                     {
                         <div class="animal-card @(animal.Collected ? "collected" : "locked")" 
                              @onclick="() => SelectAnimal(animal)"
