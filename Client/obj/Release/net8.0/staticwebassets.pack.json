@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/css/app.css"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/sample-data/weather.json",
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },

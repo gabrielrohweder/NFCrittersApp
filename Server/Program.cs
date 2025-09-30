@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using AnimalCollector.Server.Data;
 using Npgsql;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +27,7 @@ if (!string.IsNullOrEmpty(databaseUrl))
         Database = databaseUri.AbsolutePath.TrimStart('/'),
         Username = userInfo[0],
         Password = userInfo.Length > 1 ? userInfo[1] : "",
-        SslMode = SslMode.Require,
-        TrustServerCertificate = true
+        SslMode = SslMode.Require
     };
     
     connectionString = connStrBuilder.ToString();
@@ -87,8 +88,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Serve Blazor WASM files
-app.UseStaticFiles();
+// Configure static file options to serve all Blazor WASM files
+var provider = new FileExtensionContentTypeProvider();
+provider.Mappings[".dat"] = "application/octet-stream";
+provider.Mappings[".blat"] = "application/octet-stream";
+provider.Mappings[".wasm"] = "application/wasm";
+provider.Mappings[".dll"] = "application/octet-stream";
+provider.Mappings[".pdb"] = "application/octet-stream";
+provider.Mappings[".br"] = "application/octet-stream";
+provider.Mappings[".json"] = "application/json";
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = provider
+});
+
 app.UseRouting();
 app.UseCors();
 app.UseSession();
