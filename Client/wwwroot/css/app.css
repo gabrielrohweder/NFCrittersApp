@@ -65,6 +65,29 @@ html, body {
     line-height: 1.6;
 }
 
+.qr-code-container {
+    margin: 32px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--card);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.qr-link {
+    font-size: 18px;
+    margin-top: 24px;
+}
+
+.qr-link strong {
+    color: var(--primary);
+}
+
 /* Show warning on screens wider than 1024px (desktops only) */
 @media (min-width: 1024px) {
     .mobile-only-warning {
