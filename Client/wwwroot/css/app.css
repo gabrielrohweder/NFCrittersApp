@@ -65,8 +65,8 @@ html, body {
     line-height: 1.6;
 }
 
-/* Show warning on screens wider than 768px (tablets and desktops) */
-@media (min-width: 768px) {
+/* Show warning on screens wider than 1024px (desktops only) */
+@media (min-width: 1024px) {
     .mobile-only-warning {
         display: flex;
     }
