@@ -32,6 +32,50 @@ html, body {
     color: var(--foreground);
 }
 
+/* Mobile Only Warning - Show on desktop/tablet, hide on mobile */
+.mobile-only-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.warning-content {
+    text-align: center;
+    max-width: 500px;
+}
+
+.warning-content h1 {
+    font-size: 48px;
+    margin-bottom: 24px;
+    color: var(--foreground);
+}
+
+.warning-content p {
+    font-size: 20px;
+    color: var(--muted-foreground);
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+/* Show warning on screens wider than 768px (tablets and desktops) */
+@media (min-width: 768px) {
+    .mobile-only-warning {
+        display: flex;
+    }
+    
+    #app {
+        display: none;
+    }
+}
+
 .app-container {
     min-height: 100vh;
     display: flex;
@@ -710,4 +754,3 @@ html, body {
 code {
     color: #c02d76;
 }
-/* Cache buster: 1759267215 */
