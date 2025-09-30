@@ -1,6 +1,7 @@
 @page "/"
 @inject HttpClient Http
 @inject AuthService AuthService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Scan - Critter Wrangler</PageTitle>
 
@@ -121,21 +122,15 @@
     {
         isScanning = true;
         
-        // Simulate NFC scan - randomly select an animal
+        // Simulate NFC scan - randomly select an animal token
+        var animalTokens = new[] { "LN001", "EL002", "PG003", "PD004", "OW005", "DL006" };
         var random = new Random();
-        var animalId = availableAnimalIds[random.Next(availableAnimalIds.Length)];
+        var token = animalTokens[random.Next(animalTokens.Length)];
         
         await Task.Delay(1500); // Simulate scan time
         
-        try
-        {
-            scannedAnimal = await Http.GetFromJsonAsync<AnimalDTO>($"api/animals/{animalId}");
-            showAnimalModal = true;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error fetching animal: {ex.Message}");
-        }
+        // Navigate to the animal view page with the token
+        NavigationManager.NavigateTo($"/animal/{token}");
         
         isScanning = false;
     }

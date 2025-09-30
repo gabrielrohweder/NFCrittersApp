@@ -1,0 +1,254 @@
+@page "/animal/{Token}"
+@using AnimalCollector.Shared.DTOs
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject IAuthService AuthService
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">Critter Found!</h1>
+    </div>
+
+    <div class="page-content">
+        @if (isLoading)
+        {
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading animal...</p>
+            </div>
+        }
+        else if (errorMessage != null)
+        {
+            <div class="error-container">
+                <p class="error">@errorMessage</p>
+                <button class="btn-primary" @onclick="GoHome" data-testid="button-go-home">Go Home</button>
+            </div>
+        }
+        else if (animal != null)
+        {
+            <div class="animal-detail">
+                <img src="@animal.ImageUrl" alt="@animal.Name" class="animal-detail-image" />
+                <h2>@animal.Name</h2>
+                <p class="species">@animal.Species</p>
+                <p class="habitat">🌍 @animal.Habitat</p>
+                <div class="rarity-badge rarity-@animal.Rarity">@animal.Rarity</div>
+                
+                <div class="facts">
+                    <h3>Fun Facts:</h3>
+                    @foreach (var fact in animal.Facts)
+                    {
+                        <p>• @fact</p>
+                    }
+                </div>
+
+                @if (AuthService.IsAuthenticated)
+                {
+                    @if (animal.Collected)
+                    {
+                        <div class="collected-status">
+                            <p>✅ Already in your collection!</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <button class="btn-primary" @onclick="AddToCollection" disabled="@isCollecting" data-testid="button-add-to-collection">
+                            @if (isCollecting)
+                            {
+                                <span>Adding...</span>
+                            }
+                            else
+                            {
+                                <span>Add to My Collection</span>
+                            }
+                        </button>
+                    }
+                }
+                else
+                {
+                    <div class="auth-prompt">
+                        <p>Sign in to add this critter to your collection!</p>
+                        <button class="btn-primary" @onclick="ShowAuthModal" data-testid="button-show-auth">Sign In</button>
+                    </div>
+                }
+
+                <button class="btn-secondary" @onclick="GoHome" data-testid="button-back">Back to Home</button>
+            </div>
+        }
+    </div>
+</div>
+
+@if (showAuthModal)
+{
+    <div class="modal-overlay" @onclick="CloseAuthModal">
+        <div class="modal-content auth-modal" @onclick:stopPropagation="true">
+            <button class="modal-close" @onclick="CloseAuthModal">×</button>
+            <h2>@(isLogin ? "Welcome Back!" : "Join Critter Wrangler")</h2>
+            
+            <form class="auth-form" @onsubmit="HandleAuth">
+                <input type="text" 
+                       placeholder="Username" 
+                       @bind="username"
+                       data-testid="input-username" />
+                <input type="password" 
+                       placeholder="Password" 
+                       @bind="password"
+                       data-testid="input-password" />
+                
+                @if (authError != null)
+                {
+                    <p class="error">@authError</p>
+                }
+
+                <button type="submit" class="btn-primary" data-testid="button-auth-submit">
+                    @(isLogin ? "Sign In" : "Sign Up")
+                </button>
+            </form>
+
+            <button class="btn-text" @onclick="ToggleAuthMode" data-testid="button-toggle-auth">
+                @(isLogin ? "Need an account? Sign up" : "Already have an account? Sign in")
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Token { get; set; } = string.Empty;
+
+    private AnimalDTO? animal;
+    private bool isLoading = true;
+    private bool isCollecting = false;
+    private string? errorMessage;
+    private bool showAuthModal = false;
+    private bool isLogin = true;
+    private string username = "";
+    private string password = "";
+    private string? authError;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAnimal();
+    }
+
+    private async Task LoadAnimal()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+
+            var response = await Http.GetAsync($"api/animals/token/{Token}");
+            if (response.IsSuccessStatusCode)
+            {
+                animal = await response.Content.ReadFromJsonAsync<AnimalDTO>();
+            }
+            else
+            {
+                errorMessage = "Animal not found. Please check the token and try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load animal. Please try again.";
+            Console.WriteLine($"Error loading animal: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task AddToCollection()
+    {
+        if (animal == null) return;
+
+        try
+        {
+            isCollecting = true;
+            var response = await Http.PostAsync($"api/animals/{animal.Id}/collect", null);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                animal.Collected = true;
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error collecting animal: {ex.Message}");
+        }
+        finally
+        {
+            isCollecting = false;
+        }
+    }
+
+    private void ShowAuthModal()
+    {
+        showAuthModal = true;
+        isLogin = true;
+        username = "";
+        password = "";
+        authError = null;
+    }
+
+    private void CloseAuthModal()
+    {
+        showAuthModal = false;
+    }
+
+    private void ToggleAuthMode()
+    {
+        isLogin = !isLogin;
+        authError = null;
+    }
+
+    private async Task HandleAuth()
+    {
+        authError = null;
+
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        {
+            authError = "Please enter both username and password";
+            return;
+        }
+
+        try
+        {
+            var endpoint = isLogin ? "login" : "register";
+            var response = await Http.PostAsJsonAsync($"api/auth/{endpoint}", new { username, password });
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
+                if (result != null)
+                {
+                    AuthService.SetAuthenticated(true, result.Username);
+                    CloseAuthModal();
+                    await LoadAnimal();
+                }
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                authError = isLogin ? "Invalid username or password" : "Username already exists";
+            }
+        }
+        catch (Exception ex)
+        {
+            authError = "An error occurred. Please try again.";
+            Console.WriteLine($"Auth error: {ex.Message}");
+        }
+    }
+
+    private void GoHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    private class AuthResponse
+    {
+        public string Username { get; set; } = string.Empty;
+    }
+}
