@@ -85,6 +85,41 @@ public class AnimalsController : ControllerBase
         return Ok(animalDTO);
     }
 
+    [HttpGet("token/{token}")]
+    public async Task<ActionResult<AnimalDTO>> GetAnimalByToken(string token)
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        var animal = await _context.Animals.FirstOrDefaultAsync(a => a.Token == token);
+
+        if (animal == null)
+        {
+            return NotFound(new { message = "Animal not found" });
+        }
+
+        bool isCollected = false;
+        if (!string.IsNullOrEmpty(userId))
+        {
+            isCollected = await _context.UserAnimals
+                .AnyAsync(ua => ua.UserId == userId && ua.AnimalId == animal.Id);
+        }
+
+        var animalDTO = new AnimalDTO
+        {
+            Id = animal.Id,
+            Name = animal.Name,
+            Species = animal.Species,
+            Habitat = animal.Habitat,
+            Rarity = animal.Rarity,
+            ImageUrl = animal.ImageUrl,
+            Facts = string.IsNullOrEmpty(animal.Facts)
+                ? new List<string>()
+                : JsonSerializer.Deserialize<List<string>>(animal.Facts) ?? new List<string>(),
+            Collected = isCollected
+        };
+
+        return Ok(animalDTO);
+    }
+
     [HttpPost("{id}/collect")]
     public async Task<IActionResult> CollectAnimal(string id)
     {

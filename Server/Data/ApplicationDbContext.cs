@@ -41,6 +41,8 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.Rarity).HasColumnName("rarity");
             entity.Property(e => e.ImageUrl).HasColumnName("image_url");
             entity.Property(e => e.Facts).HasColumnName("facts");
+            entity.Property(e => e.Token).HasColumnName("token");
+            entity.HasIndex(e => e.Token).IsUnique();
         });
 
         // Configure UserAnimal entity
@@ -74,7 +76,8 @@ public class ApplicationDbContext : DbContext
                 Habitat = "African Grasslands",
                 Rarity = "rare",
                 ImageUrl = "/images/lion.png",
-                Facts = "[\"Lions are the only cats that live in groups called prides\",\"A lion's roar can be heard up to 5 miles away\",\"Lions sleep 16-20 hours per day\",\"Male lions can weigh up to 420 pounds\"]"
+                Facts = "[\"Lions are the only cats that live in groups called prides\",\"A lion's roar can be heard up to 5 miles away\",\"Lions sleep 16-20 hours per day\",\"Male lions can weigh up to 420 pounds\"]",
+                Token = "LN001"
             },
             new Animal
             {
@@ -84,7 +87,8 @@ public class ApplicationDbContext : DbContext
                 Habitat = "African Savannas and Forests",
                 Rarity = "legendary",
                 ImageUrl = "/images/elephant.png",
-                Facts = "[\"Elephants can weigh up to 13,000 pounds\",\"They have excellent memories and can remember other elephants for decades\",\"Elephants use their trunks like we use our hands\",\"Baby elephants are called calves and stay close to their mothers\"]"
+                Facts = "[\"Elephants can weigh up to 13,000 pounds\",\"They have excellent memories and can remember other elephants for decades\",\"Elephants use their trunks like we use our hands\",\"Baby elephants are called calves and stay close to their mothers\"]",
+                Token = "EL002"
             },
             new Animal
             {
@@ -94,7 +98,8 @@ public class ApplicationDbContext : DbContext
                 Habitat = "Antarctic Ice Sheets",
                 Rarity = "common",
                 ImageUrl = "/images/penguin.png",
-                Facts = "[\"Emperor penguins can dive up to 500 meters deep\",\"Males incubate eggs on their feet for 64 days\",\"They can hold their breath for up to 22 minutes\",\"Penguins huddle together to stay warm in temperatures below -40°C\"]"
+                Facts = "[\"Emperor penguins can dive up to 500 meters deep\",\"Males incubate eggs on their feet for 64 days\",\"They can hold their breath for up to 22 minutes\",\"Penguins huddle together to stay warm in temperatures below -40°C\"]",
+                Token = "PG003"
             },
             new Animal
             {
@@ -104,7 +109,8 @@ public class ApplicationDbContext : DbContext
                 Habitat = "Himalayan Mountain Forests",
                 Rarity = "rare",
                 ImageUrl = "/images/panda.png",
-                Facts = "[\"Red pandas are also called firefox\",\"They are excellent climbers and spend most of their time in trees\",\"Red pandas have a false thumb to help them grasp bamboo\",\"They use their bushy tails as blankets in cold weather\"]"
+                Facts = "[\"Red pandas are also called firefox\",\"They are excellent climbers and spend most of their time in trees\",\"Red pandas have a false thumb to help them grasp bamboo\",\"They use their bushy tails as blankets in cold weather\"]",
+                Token = "PD004"
             },
             new Animal
             {
@@ -114,7 +120,8 @@ public class ApplicationDbContext : DbContext
                 Habitat = "North American Forests",
                 Rarity = "common",
                 ImageUrl = "/images/owl.png",
-                Facts = "[\"Great horned owls can rotate their heads 270 degrees\",\"They have excellent night vision and hearing\",\"Their feathers allow them to fly completely silently\",\"They are fierce hunters and can catch prey much larger than themselves\"]"
+                Facts = "[\"Great horned owls can rotate their heads 270 degrees\",\"They have excellent night vision and hearing\",\"Their feathers allow them to fly completely silently\",\"They are fierce hunters and can catch prey much larger than themselves\"]",
+                Token = "OW005"
             },
             new Animal
             {
@@ -124,7 +131,8 @@ public class ApplicationDbContext : DbContext
                 Habitat = "Ocean Waters Worldwide",
                 Rarity = "rare",
                 ImageUrl = "/images/dolphin.png",
-                Facts = "[\"Dolphins are highly intelligent and can recognize themselves in mirrors\",\"They communicate using clicks, whistles, and body language\",\"Dolphins can jump up to 20 feet out of the water\",\"They live in groups called pods and work together to hunt\"]"
+                Facts = "[\"Dolphins are highly intelligent and can recognize themselves in mirrors\",\"They communicate using clicks, whistles, and body language\",\"Dolphins can jump up to 20 feet out of the water\",\"They live in groups called pods and work together to hunt\"]",
+                Token = "DL006"
             }
         );
     }
