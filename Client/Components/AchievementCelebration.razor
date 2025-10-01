@@ -1,0 +1,31 @@
+@if (IsVisible && Achievement != null)
+{
+    <div class="achievement-celebration-overlay" @onclick="Close" data-testid="achievement-celebration">
+        <div class="achievement-celebration-modal" @onclick:stopPropagation="true">
+            <div class="celebration-sparkles">✨</div>
+            <div class="achievement-icon-large">@Achievement.Icon</div>
+            <h2 class="celebration-title">Achievement Unlocked!</h2>
+            <h3 class="achievement-name" data-testid="achievement-name">@Achievement.Name</h3>
+            <p class="achievement-description" data-testid="achievement-description">@Achievement.Description</p>
+            <button class="btn-primary celebration-button" @onclick="Close" data-testid="button-close-celebration">
+                Continue Adventure!
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool IsVisible { get; set; }
+
+    [Parameter]
+    public Achievement? Achievement { get; set; }
+
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
+    private async Task Close()
+    {
+        await OnClose.InvokeAsync();
+    }
+}
