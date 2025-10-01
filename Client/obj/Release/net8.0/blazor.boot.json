@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AnimalCollector.Client",
   "resources": {
-    "hash": "sha256-WbpkbgkNwPxTJe1BkXlTpxsazOvIoPzctVQ8XjLqh+k=",
+    "hash": "sha256-7nW3OjsQOnRw0berZiWJ2tzzfVPEUgg7JzTzRhUCGbE=",
     "jsModuleNative": {
       "dotnet.native.8.0.5.k8qrcc28q0.js": "sha256-boyHe+0RMZDkzBKGhsrnXPhPg3oZ6UqJnTUzngJPjNY="
     },
@@ -208,12 +208,12 @@
       "mscorlib.wasm": "sha256-XvLAB5IyfVSmj5aaGnPwgVFaaZz8jXmbN8WmeopiPBM=",
       "netstandard.wasm": "sha256-TbMssdnuTiKq1gjTPkpgROAuWN0uhvPnagvWR+wAgNs=",
       "System.Private.CoreLib.wasm": "sha256-sscg+Efk8ROPq+q4IVmhShzITuoOYvB8Bsc+Mp9vcSM=",
-      "AnimalCollector.Shared.wasm": "sha256-XVDwQNwUSWVl3ctz4dRwZFklM2H3+naxtP0IZk6Zin4=",
-      "AnimalCollector.Client.wasm": "sha256-3EL2z/sSoo2s6a/us5JTt3vIReYh0jgXiR4irrkpKsU="
+      "AnimalCollector.Shared.wasm": "sha256-F2gx3gB8trGOTFWErxQlQOIDEzAjBi5VctU+aW6/B6Q=",
+      "AnimalCollector.Client.wasm": "sha256-XZg1HH55+qP/Sexx92SIDqv4shP0xGtQX9S3DQIH5mQ="
     },
     "pdb": {
-      "AnimalCollector.Shared.pdb": "sha256-Nj0ldLO8kDcFX7ibBb1cfzkQS4Xtpu3L0ejzPMTwLIQ=",
-      "AnimalCollector.Client.pdb": "sha256-EzhaHnrck6rxM7pYafWARzXx1Cq1NiBDRMauE/hPvxQ="
+      "AnimalCollector.Shared.pdb": "sha256-paH64Y7OBJSZiexYS4MnEITwTUT3CrY6d/vrNNFPwbQ=",
+      "AnimalCollector.Client.pdb": "sha256-seS7YC3y91S99dyLSd3UOFZctVkXk1x93QSMSLmL1hg="
     }
   },
   "cacheBootResources": true,

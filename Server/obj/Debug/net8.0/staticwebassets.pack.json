@@ -1661,6 +1661,10 @@
       "PackagePath": "staticwebassets/images/elephant.jpg"
     },
     {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer.png",
+      "PackagePath": "staticwebassets/images/explorer.png"
+    },
+    {
       "Id": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
       "PackagePath": "staticwebassets/images/lion.jpg"
     },
