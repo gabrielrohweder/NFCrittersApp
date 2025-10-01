@@ -186,16 +186,21 @@ body {
 
 .app-title {
     font-family: var(--font-display);
-    font-size: 100px;
-    font-weight: 700;    
+    font-weight: 700;
+    font-size: clamp(40px, 14vw, 100px);
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0;
+    display: block;
+    width: 100%;
+    align-self: stretch;
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, rgba(245, 158, 11, 0.8) 100%);
+    background-size: 100% 100%;
+    background-position: center;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: center;
-    margin: 0;
-    width: 100%;
-    align-self: stretch;
 }
 
 .app-subtitle {
@@ -827,10 +832,6 @@ body {
 @media (max-width: 640px) {
     .animals-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .app-title {
-        font-size: 28px;
     }
 }
 
