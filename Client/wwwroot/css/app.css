@@ -195,6 +195,7 @@ body {
     text-align: center;
     margin: 0;
     width: 100%;
+    align-self: stretch;
 }
 
 .app-subtitle {
