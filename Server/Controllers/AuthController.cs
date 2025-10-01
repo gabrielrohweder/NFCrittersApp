@@ -21,8 +21,9 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginRequest request)
     {
+        var normalizedUsername = request.Username.ToLower();
         var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == request.Username);
+            .FirstOrDefaultAsync(u => u.Username.ToLower() == normalizedUsername);
 
         if (user == null || !PasswordHelper.VerifyPassword(request.Password, user.Password))
         {
@@ -50,7 +51,9 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<ActionResult<AuthResponse>> Register([FromBody] RegisterRequest request)
     {
-        if (await _context.Users.AnyAsync(u => u.Username == request.Username))
+        var normalizedUsername = request.Username.ToLower();
+        
+        if (await _context.Users.AnyAsync(u => u.Username.ToLower() == normalizedUsername))
         {
             return Ok(new AuthResponse 
             { 
@@ -62,7 +65,7 @@ public class AuthController : ControllerBase
         var user = new User
         {
             Id = Guid.NewGuid().ToString(),
-            Username = request.Username,
+            Username = normalizedUsername,
             Password = PasswordHelper.HashPassword(request.Password)
         };
 
