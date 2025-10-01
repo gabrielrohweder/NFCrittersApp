@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
 :root {
-    --primary: #5D688A;
+    --primary: #7c3aed;
     --secondary: #06b6d4;
     --accent: #f59e0b;
     --background: #FFDBB6;
     --foreground: #1f2937;
-    --muted: #FFF2EF;
+    --muted: #f3f4f6;
     --muted-foreground: #6b7280;
     --card: #FFDBB6;
     --card-border: #e5e7eb;
@@ -273,6 +273,17 @@ body {
 
 .login-prompt {
     color: var(--accent) !important;
+}
+
+/* Page Header & Title */
+.page-header {
+    text-align: center;
+    padding: 16px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 0;
 }
 
 /* Collection & Profile Pages */
@@ -587,6 +598,11 @@ body {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 6px;
+}
+
+.animal-card-image.locked-image {
+    filter: grayscale(100%) brightness(0.7);
+    opacity: 0.5;
 }
 
 .animal-detail-image {
