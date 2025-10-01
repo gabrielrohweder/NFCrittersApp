@@ -34,16 +34,15 @@
                         <div class="animal-card @(animal.Collected ? "collected" : "locked")" 
                              @onclick="() => SelectAnimal(animal)"
                              data-testid="card-animal-@animal.Id">
+                            <img src="@animal.ImageUrl" alt="@animal.Name" class="animal-card-image @(animal.Collected ? "" : "locked-image")" />
                             @if (animal.Collected)
                             {
-                                <img src="@animal.ImageUrl" alt="@animal.Name" class="animal-card-image" />
                                 <div class="rarity-badge rarity-@animal.Rarity">@animal.Rarity</div>
                                 <h3>@animal.Name</h3>
                                 <p>@animal.Species</p>
                             }
                             else
                             {
-                                <div class="locked-overlay">🔒</div>
                                 <h3>???</h3>
                                 <p>Not yet discovered</p>
                             }

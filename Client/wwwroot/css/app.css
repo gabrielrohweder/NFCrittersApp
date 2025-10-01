@@ -590,6 +590,11 @@ body {
     margin-bottom: 6px;
 }
 
+.animal-card-image.locked-image {
+    filter: grayscale(100%) brightness(0.7);
+    opacity: 0.5;
+}
+
 .animal-detail-image {
     width: 100%;
     max-height: 300px;
