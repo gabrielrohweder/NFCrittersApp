@@ -48,4 +48,14 @@ public static class ContentFilter
             return false;
         }
     }
+
+    public static bool IsValidNickname(string nickname)
+    {
+        if (string.IsNullOrWhiteSpace(nickname))
+            return false;
+
+        // Nickname must be 3-20 characters, alphanumeric, spaces, underscores, and hyphens only
+        var nicknamePattern = @"^[a-zA-Z0-9_\- ]{3,20}$";
+        return Regex.IsMatch(nickname, nicknamePattern);
+    }
 }

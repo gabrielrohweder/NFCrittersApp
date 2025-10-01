@@ -26,6 +26,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Username).HasColumnName("username");
             entity.Property(e => e.Password).HasColumnName("password");
+            entity.Property(e => e.Nickname).HasColumnName("nickname");
             entity.HasIndex(e => e.Username).IsUnique();
         });
 
