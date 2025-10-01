@@ -7,7 +7,8 @@ public static class ContentFilter
     private static readonly string[] BadWords = new[]
     {
         "damn", "hell", "crap", "stupid", "dumb", "idiot", "hate", "kill",
-        "ugly", "fat", "loser", "suck", "shut", "butt", "poop", "fart",
+        "ugly", "fat", "loser", "suck", "shut", "butt", "poop", "fart","nigger", "nazi", "fuck",
+        "asshole", "bitch", "shit", "damn", ""
         // Add more as needed - keeping it child-appropriate
     };
 
