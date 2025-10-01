@@ -276,6 +276,11 @@ body {
     color: var(--accent) !important;
 }
 
+/* Page Title */
+.page-title {
+    text-align: center;
+}
+
 /* Collection & Profile Pages */
 .auth-required {
     flex: 1;
