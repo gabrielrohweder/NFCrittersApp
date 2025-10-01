@@ -12,9 +12,18 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (October 1, 2025)
 
-### Child Safety Features (Latest)
+### Nickname Privacy System (Latest)
+- **Privacy Protection**: Users now have unique nicknames for public display (3-20 chars, alphanumeric/spaces/underscores/hyphens)
+- **Email Privacy**: All public-facing displays (Profile header, leaderboards, achievements) show nicknames instead of email addresses
+- **Nickname Validation**: Comprehensive validation with profanity filtering, whitespace normalization, and case-insensitive uniqueness enforcement
+- **Race Condition Handling**: DbUpdateException catching prevents duplicate nicknames under concurrent registration
+- **UI Updates**: All auth forms (Scan, Profile, Collection, AnimalView) include nickname input field
+- **Database**: Added nullable nickname column with unique constraint; existing users default to "Explorer" in leaderboard
+- **Architect-Approved**: Production-ready implementation with recommendations for future enhancements (DB functional indexes, enhanced profanity detection)
+
+### Child Safety Features
 - **Email-Only Usernames**: Registration now requires valid email addresses as usernames
-- **Profanity Filtering**: ContentFilter service blocks inappropriate words in usernames
+- **Profanity Filtering**: ContentFilter service blocks inappropriate words in usernames and nicknames
 - All auth forms updated to use email input type with "Email Address" placeholder
 - Validation messages tailored for children ("Please use a valid email address")
 
