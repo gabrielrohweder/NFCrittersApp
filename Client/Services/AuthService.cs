@@ -46,9 +46,9 @@ public class AuthService
         return result ?? new AuthResponse { Success = false, Message = "Login failed" };
     }
 
-    public async Task<AuthResponse> RegisterAsync(string username, string password)
+    public async Task<AuthResponse> RegisterAsync(string username, string password, string nickname)
     {
-        var request = new RegisterRequest { Username = username, Password = password };
+        var request = new RegisterRequest { Username = username, Password = password, Nickname = nickname };
         var response = await _httpClient.PostAsJsonAsync("api/auth/register", request);
         var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
 

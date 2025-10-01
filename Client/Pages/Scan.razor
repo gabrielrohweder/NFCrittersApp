@@ -97,6 +97,10 @@
                 <div class="auth-form">
                     <input type="email" placeholder="Email Address" @bind="username" data-testid="input-username" />
                     <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
+                    @if (!isLogin)
+                    {
+                        <input type="text" placeholder="Nickname (3-20 characters)" @bind="nickname" data-testid="input-nickname" />
+                    }
                     
                     @if (!string.IsNullOrEmpty(authError))
                     {
@@ -125,6 +129,7 @@
     private bool isLogin = true;
     private string username = "";
     private string password = "";
+    private string nickname = "";
     private string authError = "";
 
     private string[] availableAnimalIds = new[] { "lion-001", "elephant-002", "penguin-003", "panda-004", "owl-005", "dolphin-006" };
@@ -218,7 +223,7 @@
             }
             else
             {
-                result = await AuthService.RegisterAsync(username, password);
+                result = await AuthService.RegisterAsync(username, password, nickname);
             }
 
             if (result.Success)
@@ -226,6 +231,7 @@
                 CloseAuthModal();
                 username = "";
                 password = "";
+                nickname = "";
             }
             else
             {

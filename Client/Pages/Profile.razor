@@ -66,7 +66,7 @@
                             {
                                 var explorer = topExplorers[i];
                                 var rank = i + 1;
-                                var isCurrentUser = explorer.Username.Equals(AuthService.CurrentUser?.Username, StringComparison.OrdinalIgnoreCase);
+                                var isCurrentUser = explorer.Nickname.Equals(AuthService.CurrentUser?.Nickname, StringComparison.OrdinalIgnoreCase);
                                 <div class="leaderboard-entry @(isCurrentUser ? "current-user" : "")" data-testid="leaderboard-entry-@rank">
                                     <div class="rank" data-testid="text-rank-@rank">
                                         @if (rank == 1) { <span>🥇</span> }
@@ -75,7 +75,7 @@
                                         else { <span>@rank</span> }
                                     </div>
                                     <div class="explorer-info">
-                                        <div class="explorer-name" data-testid="text-explorer-name-@rank">@explorer.Username</div>
+                                        <div class="explorer-name" data-testid="text-explorer-name-@rank">@explorer.Nickname</div>
                                         <div class="explorer-count" data-testid="text-explorer-count-@rank">@explorer.CollectionCount critters</div>
                                     </div>
                                 </div>
@@ -182,6 +182,10 @@
                 <div class="auth-form">
                     <input type="email" placeholder="Email Address" @bind="username" data-testid="input-username" />
                     <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
+                    @if (!isLogin)
+                    {
+                        <input type="text" placeholder="Nickname (3-20 characters)" @bind="nickname" data-testid="input-nickname" />
+                    }
                     
                     @if (!string.IsNullOrEmpty(authError))
                     {
@@ -214,6 +218,7 @@
     private bool isLogin = true;
     private string username = "";
     private string password = "";
+    private string nickname = "";
     private string authError = "";
     private List<LeaderboardEntryDTO> topExplorers = new();
 
@@ -319,7 +324,7 @@
             }
             else
             {
-                result = await AuthService.RegisterAsync(username, password);
+                result = await AuthService.RegisterAsync(username, password, nickname);
             }
 
             if (result.Success)
@@ -327,6 +332,7 @@
                 CloseAuthModal();
                 username = "";
                 password = "";
+                nickname = "";
                 await LoadStats();
             }
             else

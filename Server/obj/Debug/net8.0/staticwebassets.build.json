@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PIEb6XRzEXjL8qeKH0dVTp2F/m7cu+1aHheZYUePtOk=",
+  "Hash": "2gUWl2qI+s1cnk4OoOEbhIjPPbuU+de2yRKTEvisNTY=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -7976,6 +7976,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/explorer5.png"
+    },
+    {
+      "Identity": "/home/runner/workspace/Server/wwwroot/images/explorer6.png",
+      "SourceId": "AnimalCollector.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
+      "BasePath": "_content/AnimalCollector.Server",
+      "RelativePath": "images/explorer6.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/explorer6.png"
     },
     {
       "Identity": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
