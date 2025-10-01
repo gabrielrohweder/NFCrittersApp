@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bzEI/OXyDVK+TmBNyReA2xK35Sk5aXuuI1wJziLCoD8=",
+  "Hash": "z44gzyPOTABnNGac1aRqtVDlWnXl86noxcgjfoQgf4c=",
   "Source": "AnimalCollector.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -7900,6 +7900,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/app.css"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/images/explorer.png",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/explorer.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/explorer.png"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/index.html",

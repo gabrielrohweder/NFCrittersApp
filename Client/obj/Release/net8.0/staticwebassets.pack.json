@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/css/app.css"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/explorer.png",
+      "PackagePath": "staticwebassets/images/explorer.png"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/index.html",
       "PackagePath": "staticwebassets/index.html"
     },

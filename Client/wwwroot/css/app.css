@@ -12,7 +12,7 @@
     --card-border: #e5e7eb;
     --border: #e5e7eb;
     --destructive: #ef4444;
-    --font-display: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Comic Sans', cursive;
+    --font-display: 'Andika', 'ABeeZee', 'Chalkboard SE', 'Comic Sans', sans-serif;
     --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -173,18 +173,22 @@ body {
     gap: 32px;
 }
 
+.exlprer-images {
+    display: inline-block;
+}
+
 .explorer-image {
-    width: 100px;
+    width: 200px;
     height: auto;
-    max-width: 50%;
+    max-width: 80%;
     border-radius: 12px;
 }
 
 .app-title {
     font-family: var(--font-display);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--foreground);
+    font-size: 100px;
+    font-weight: 700;    
+    color: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, rgba(245, 158, 11, 0.1) 100%);
     text-align: center;
     margin: 0;
 }
