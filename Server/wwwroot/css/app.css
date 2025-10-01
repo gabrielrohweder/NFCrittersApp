@@ -173,6 +173,13 @@ body {
     gap: 32px;
 }
 
+.explorer-image {
+    width: 200px;
+    height: auto;
+    max-width: 80%;
+    border-radius: 12px;
+}
+
 .app-title {
     font-family: var(--font-display);
     font-size: 36px;
