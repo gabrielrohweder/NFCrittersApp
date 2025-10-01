@@ -1,6 +1,7 @@
 @page "/animal/{Token}"
 @page "/{Token}"
 @using AnimalCollector.Shared.DTOs
+@using AnimalCollector.Client.Models
 @using System.Net.Http.Json
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
@@ -123,6 +124,11 @@
     </div>
 }
 
+<AchievementCelebration 
+    IsVisible="@showCelebration" 
+    Achievement="@unlockedAchievement" 
+    OnClose="@OnCelebrationClose" />
+
 @code {
     [Parameter]
     public string Token { get; set; } = string.Empty;
@@ -137,6 +143,8 @@
     private string password = "";
     private string nickname = "";
     private string? authError;
+    private bool showCelebration = false;
+    private Achievement? unlockedAchievement = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -178,12 +186,32 @@
         try
         {
             isCollecting = true;
+            
+            // Get stats before collection
+            var statsBefore = await GetStats();
+            
+            // Collect the animal
             var response = await Http.PostAsync($"api/animals/{animal.Id}/collect", null);
             
             if (response.IsSuccessStatusCode)
             {
-                // Navigate immediately to collection page
-                NavigationManager.NavigateTo("/collection");
+                // Get stats after collection
+                var statsAfter = await GetStats();
+                
+                // Check for newly unlocked achievements
+                var newAchievement = CheckNewAchievement(statsBefore, statsAfter);
+                
+                if (newAchievement != null)
+                {
+                    // Show celebration
+                    unlockedAchievement = newAchievement;
+                    showCelebration = true;
+                }
+                else
+                {
+                    // No new achievement, navigate immediately
+                    NavigationManager.NavigateTo("/collection");
+                }
             }
         }
         catch (Exception ex)
@@ -194,6 +222,53 @@
         {
             isCollecting = false;
         }
+    }
+
+    private async Task<StatsDTO?> GetStats()
+    {
+        try
+        {
+            return await Http.GetFromJsonAsync<StatsDTO>("api/animals/stats");
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private Achievement? CheckNewAchievement(StatsDTO? before, StatsDTO? after)
+    {
+        if (before == null || after == null) return null;
+
+        foreach (var achievement in Achievements.All)
+        {
+            var wasUnlocked = achievement.Condition(
+                before.CollectedCount,
+                before.LegendaryCount,
+                before.TotalLegendaryCount,
+                before.CompletionRate
+            );
+
+            var isNowUnlocked = achievement.Condition(
+                after.CollectedCount,
+                after.LegendaryCount,
+                after.TotalLegendaryCount,
+                after.CompletionRate
+            );
+
+            if (!wasUnlocked && isNowUnlocked)
+            {
+                return achievement;
+            }
+        }
+
+        return null;
+    }
+
+    private void OnCelebrationClose()
+    {
+        showCelebration = false;
+        NavigationManager.NavigateTo("/collection");
     }
 
     private void ShowAuthModal()

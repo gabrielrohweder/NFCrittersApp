@@ -212,4 +212,35 @@ public class AnimalsController : ControllerBase
 
         return Ok(leaderboard);
     }
+
+    [HttpGet("stats")]
+    public async Task<ActionResult<StatsDTO>> GetStats()
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized();
+        }
+
+        var collectedAnimals = await _context.UserAnimals
+            .Where(ua => ua.UserId == userId)
+            .Join(_context.Animals,
+                ua => ua.AnimalId,
+                a => a.Id,
+                (ua, a) => a)
+            .ToListAsync();
+
+        var totalAnimals = await _context.Animals.CountAsync();
+        var totalLegendary = await _context.Animals.CountAsync(a => a.Rarity == "Legendary");
+
+        var stats = new StatsDTO
+        {
+            CollectedCount = collectedAnimals.Count,
+            LegendaryCount = collectedAnimals.Count(a => a.Rarity == "Legendary"),
+            TotalLegendaryCount = totalLegendary,
+            CompletionRate = totalAnimals > 0 ? (int)((double)collectedAnimals.Count / totalAnimals * 100) : 0
+        };
+
+        return Ok(stats);
+    }
 }
