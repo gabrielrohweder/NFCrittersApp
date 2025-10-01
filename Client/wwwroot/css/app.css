@@ -194,6 +194,7 @@ body {
     -webkit-text-fill-color: transparent;
     text-align: center;
     margin: 0;
+    width: 100%;
 }
 
 .app-subtitle {
