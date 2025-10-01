@@ -1,4 +1,5 @@
 @page "/animal/{Token}"
+@page "/{Token}"
 @using AnimalCollector.Shared.DTOs
 @using System.Net.Http.Json
 @inject HttpClient Http
@@ -145,13 +146,6 @@
             if (response.IsSuccessStatusCode)
             {
                 animal = await response.Content.ReadFromJsonAsync<AnimalDTO>();
-                
-                // If already collected and user is authenticated, navigate to collection after a brief delay
-                if (animal?.Collected == true && AuthService.IsAuthenticated)
-                {
-                    await Task.Delay(1500); // Show the "already collected" message briefly
-                    NavigationManager.NavigateTo("/collection");
-                }
             }
             else
             {
