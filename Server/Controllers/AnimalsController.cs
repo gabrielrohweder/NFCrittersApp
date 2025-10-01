@@ -205,7 +205,7 @@ public class AnimalsController : ControllerBase
                 u => u.Id,
                 (ua, u) => new LeaderboardEntryDTO
                 {
-                    Username = u.Username,
+                    Nickname = u.Nickname ?? "Explorer",
                     CollectionCount = ua.Count
                 })
             .ToListAsync();

@@ -44,7 +44,8 @@ public class AuthController : ControllerBase
             User = new UserDTO
             {
                 Id = user.Id,
-                Username = user.Username
+                Username = user.Username,
+                Nickname = user.Nickname ?? string.Empty
             }
         });
     }
@@ -62,7 +63,7 @@ public class AuthController : ControllerBase
             });
         }
 
-        // Check for inappropriate content
+        // Check for inappropriate content in email
         if (ContentFilter.ContainsBadWords(request.Username))
         {
             return Ok(new AuthResponse 
@@ -72,14 +73,45 @@ public class AuthController : ControllerBase
             });
         }
 
+        // Validate nickname format
+        if (!ContentFilter.IsValidNickname(request.Nickname))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Nickname must be 3-20 characters and can only contain letters, numbers, spaces, underscores, and hyphens" 
+            });
+        }
+
+        // Check for inappropriate content in nickname
+        if (ContentFilter.ContainsBadWords(request.Nickname))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Please choose an appropriate nickname" 
+            });
+        }
+
         var normalizedUsername = request.Username.ToLower();
+        var normalizedNickname = request.Nickname.ToLower();
         
         if (await _context.Users.AnyAsync(u => u.Username.ToLower() == normalizedUsername))
         {
             return Ok(new AuthResponse 
             { 
                 Success = false, 
-                Message = "Username already exists" 
+                Message = "Email already exists" 
+            });
+        }
+
+        // Check for unique nickname (case-insensitive)
+        if (await _context.Users.AnyAsync(u => u.Nickname != null && u.Nickname.ToLower() == normalizedNickname))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Nickname already taken" 
             });
         }
 
@@ -87,7 +119,8 @@ public class AuthController : ControllerBase
         {
             Id = Guid.NewGuid().ToString(),
             Username = normalizedUsername,
-            Password = PasswordHelper.HashPassword(request.Password)
+            Password = PasswordHelper.HashPassword(request.Password),
+            Nickname = request.Nickname
         };
 
         _context.Users.Add(user);
@@ -102,7 +135,8 @@ public class AuthController : ControllerBase
             User = new UserDTO
             {
                 Id = user.Id,
-                Username = user.Username
+                Username = user.Username,
+                Nickname = user.Nickname ?? string.Empty
             }
         });
     }
@@ -136,7 +170,8 @@ public class AuthController : ControllerBase
         return Ok(new UserDTO
         {
             Id = user.Id,
-            Username = user.Username
+            Username = user.Username,
+            Nickname = user.Nickname ?? string.Empty
         });
     }
 }
