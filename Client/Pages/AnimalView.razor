@@ -90,8 +90,8 @@
             <h2>@(isLogin ? "Welcome Back!" : "Join Critter Wrangler")</h2>
             
             <form class="auth-form" @onsubmit="HandleAuth">
-                <input type="text" 
-                       placeholder="Username" 
+                <input type="email" 
+                       placeholder="Email Address" 
                        @bind="username"
                        data-testid="input-username" />
                 <input type="password" 

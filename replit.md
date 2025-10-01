@@ -10,7 +10,19 @@ The application is a collection-based game focused on discovering and collecting
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (September 30, 2025)
+## Recent Changes (October 1, 2025)
+
+### Child Safety Features (Latest)
+- **Email-Only Usernames**: Registration now requires valid email addresses as usernames
+- **Profanity Filtering**: ContentFilter service blocks inappropriate words in usernames
+- All auth forms updated to use email input type with "Email Address" placeholder
+- Validation messages tailored for children ("Please use a valid email address")
+
+### Leaderboard System
+- Added "Top Explorers" leaderboard on Profile page
+- Shows top 5 users by collection count with rank medals (🥇🥈🥉)
+- Current user's entry highlighted with purple border
+- New API endpoint: GET /api/animals/leaderboard
 
 ### Token-Based Animal Discovery System
 - Added unique token system for NFC-enabled animal discovery
@@ -126,6 +138,42 @@ Preferred communication style: Simple, everyday language.
 - **Stateless Design**: Likely token-based given the WebAssembly architecture
 
 **Note**: Specific authentication mechanism (JWT, OAuth, etc.) not evident from provided files.
+
+### Child Safety Architecture
+
+**Problem Addressed**: Need to ensure appropriate usernames and prevent inappropriate language in a children's app.
+
+**Solution**: ContentFilter service with email validation and profanity filtering.
+
+**Key Design Decisions**:
+- **Email-Only Registration**: Only valid email addresses accepted as usernames
+  - Provides accountability and reduces anonymous inappropriate usernames
+  - Uses regex validation for email format
+- **Profanity Filter**: Maintains a list of inappropriate words
+  - Case-insensitive matching
+  - Checks entire username string for bad word patterns
+  - Returns friendly error messages appropriate for children
+- **Validation Order**: Email format → Profanity check → Duplicate check
+  - Ensures all safety checks happen before database operations
+
+**Implementation**:
+- `Server/Services/ContentFilter.cs`: Static class with `IsValidEmail()` and `ContainsBadWords()` methods
+- `AuthController.cs`: Validates on registration (login doesn't need revalidation)
+- All auth forms use `type="email"` inputs for browser-level validation too
+
+**Pros**:
+- Simple, maintainable solution
+- No external API dependencies
+- Fast server-side validation
+- Browser-level email validation as first line of defense
+
+**Cons**:
+- Static word list requires manual updates
+- Simple pattern matching (could be more sophisticated)
+
+**Future Enhancements**:
+- Could integrate external content moderation API for more robust filtering
+- Could add username change audit logging
 
 ### Build and Deployment Strategy
 

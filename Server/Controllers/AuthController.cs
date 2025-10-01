@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AnimalCollector.Server.Data;
 using AnimalCollector.Server.Helpers;
+using AnimalCollector.Server.Services;
 using AnimalCollector.Shared.Models;
 using AnimalCollector.Shared.DTOs;
 
@@ -51,6 +52,26 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<ActionResult<AuthResponse>> Register([FromBody] RegisterRequest request)
     {
+        // Validate email format
+        if (!ContentFilter.IsValidEmail(request.Username))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Please use a valid email address as your username" 
+            });
+        }
+
+        // Check for inappropriate content
+        if (ContentFilter.ContainsBadWords(request.Username))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Please choose an appropriate username" 
+            });
+        }
+
         var normalizedUsername = request.Username.ToLower();
         
         if (await _context.Users.AnyAsync(u => u.Username.ToLower() == normalizedUsername))

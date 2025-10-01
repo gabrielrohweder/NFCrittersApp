@@ -180,7 +180,7 @@
                 <h2>@(isLogin ? "Login" : "Sign Up")</h2>
                 
                 <div class="auth-form">
-                    <input type="text" placeholder="Username" @bind="username" data-testid="input-username" />
+                    <input type="email" placeholder="Email Address" @bind="username" data-testid="input-username" />
                     <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
                     
                     @if (!string.IsNullOrEmpty(authError))
