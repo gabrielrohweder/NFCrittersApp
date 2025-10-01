@@ -4,12 +4,12 @@
     --primary: #7c3aed;
     --secondary: #06b6d4;
     --accent: #f59e0b;
-    --background: #ffffff;
+    --background: #FFDBB6;
     --foreground: #1f2937;
     --muted: #f3f4f6;
     --muted-foreground: #6b7280;
-    --card: #000000;
-    --card-border: #000000;
+    --card: #FFDBB6;
+    --card-border: #e5e7eb;
     --border: #e5e7eb;
     --destructive: #ef4444;
     --font-display: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Comic Sans', cursive;
@@ -115,7 +115,6 @@ body {
     min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 242, 239, 1);
 }
 
 /* Bottom Navigation */
@@ -276,9 +275,15 @@ body {
     color: var(--accent) !important;
 }
 
-/* Page Title */
+/* Page Header & Title */
+.page-header {
+    text-align: center;
+    padding: 16px;
+}
+
 .page-title {
     text-align: center;
+    margin: 0;
 }
 
 /* Collection & Profile Pages */
