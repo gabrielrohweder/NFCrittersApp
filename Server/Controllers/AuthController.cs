@@ -52,33 +52,25 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<ActionResult<AuthResponse>> Register([FromBody] RegisterRequest request)
     {
-        Console.WriteLine($"[DEBUG] Registration attempt with username: {request.Username}");
-        
         // Validate email format
         if (!ContentFilter.IsValidEmail(request.Username))
         {
-            Console.WriteLine($"[DEBUG] Email validation FAILED for: {request.Username}");
             return Ok(new AuthResponse 
             { 
                 Success = false, 
                 Message = "Please use a valid email address as your username" 
             });
         }
-        
-        Console.WriteLine($"[DEBUG] Email validation PASSED for: {request.Username}");
 
         // Check for inappropriate content
         if (ContentFilter.ContainsBadWords(request.Username))
         {
-            Console.WriteLine($"[DEBUG] Profanity filter BLOCKED: {request.Username}");
             return Ok(new AuthResponse 
             { 
                 Success = false, 
                 Message = "Please choose an appropriate username" 
             });
         }
-        
-        Console.WriteLine($"[DEBUG] Profanity filter PASSED for: {request.Username}");
 
         var normalizedUsername = request.Username.ToLower();
         
