@@ -78,6 +78,17 @@
                                 <span class="badge">Earned</span>
                             }
                         </div>
+                        <div class="achievement @(collectedCount >= 25 ? "earned" : "")" data-testid="achievement-2">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-info">
+                                <h3>Hunter</h3>
+                                <p>Collected 25 animals</p>
+                            </div>
+                            @if (collectedCount >= 25)
+                            {
+                                <span class="badge">Earned</span>
+                            }
+                        </div>
                         <div class="achievement @(legendaryCount > 0 ? "earned" : "")" data-testid="achievement-3">
                             <span class="achievement-icon">⭐</span>
                             <div class="achievement-info">
@@ -85,6 +96,17 @@
                                 <p>Found a legendary animal</p>
                             </div>
                             @if (legendaryCount > 0)
+                            {
+                                <span class="badge">Earned</span>
+                            }
+                        </div>
+                        <div class="achievement @(legendaryCount == totalLegendaryCount ? "earned" : "")" data-testid="achievement-3">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-info">
+                                <h3>Cryptozoologist</h3>
+                                <p>Discovered all legendary animals</p>
+                            </div>
+                            @if (legendaryCount == totalLegendaryCount)
                             {
                                 <span class="badge">Earned</span>
                             }
@@ -151,6 +173,7 @@
     private int totalCount = 6;
     private int rareCount = 0;
     private int legendaryCount = 0;
+    private int totalLegendaryCount = 0;
     private int completionRate = 0;
     private bool isLogin = true;
     private string username = "";
@@ -180,6 +203,7 @@
                 totalCount = animals.Count;
                 rareCount = animals.Count(a => a.Collected && a.Rarity == "rare");
                 legendaryCount = animals.Count(a => a.Collected && a.Rarity == "legendary");
+                totalLegendaryCount = animals.Count(a => a.Rarity == "legendary");
                 completionRate = totalCount > 0 ? (int)((collectedCount / (double)totalCount) * 100) : 0;
             }
         }
