@@ -186,4 +186,30 @@ public class AnimalsController : ControllerBase
 
         return Ok(animalDTOs);
     }
+
+    [HttpGet("leaderboard")]
+    public async Task<ActionResult<List<LeaderboardEntryDTO>>> GetLeaderboard()
+    {
+        var leaderboard = await _context.UserAnimals
+            .GroupBy(ua => ua.UserId)
+            .Select(g => new
+            {
+                UserId = g.Key,
+                Count = g.Count()
+            })
+            .OrderByDescending(x => x.Count)
+            .Take(5)
+            .Join(
+                _context.Users,
+                ua => ua.UserId,
+                u => u.Id,
+                (ua, u) => new LeaderboardEntryDTO
+                {
+                    Username = u.Username,
+                    CollectionCount = ua.Count
+                })
+            .ToListAsync();
+
+        return Ok(leaderboard);
+    }
 }
