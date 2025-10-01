@@ -26,6 +26,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/runner/workspace/Client/Components/AchievementCelebration.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BY2hpZXZlbWVudENlbGVicmF0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/runner/workspace/Client/Layout/BottomNav.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L0JvdHRvbU5hdi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

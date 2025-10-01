@@ -231,12 +231,12 @@ public class AnimalsController : ControllerBase
             .ToListAsync();
 
         var totalAnimals = await _context.Animals.CountAsync();
-        var totalLegendary = await _context.Animals.CountAsync(a => a.Rarity == "Legendary");
+        var totalLegendary = await _context.Animals.CountAsync(a => a.Rarity.ToLower() == "legendary");
 
         var stats = new StatsDTO
         {
             CollectedCount = collectedAnimals.Count,
-            LegendaryCount = collectedAnimals.Count(a => a.Rarity == "Legendary"),
+            LegendaryCount = collectedAnimals.Count(a => a.Rarity.ToLower() == "legendary"),
             TotalLegendaryCount = totalLegendary,
             CompletionRate = totalAnimals > 0 ? (int)((double)collectedAnimals.Count / totalAnimals * 100) : 0
         };
