@@ -94,7 +94,7 @@ public class AuthController : ControllerBase
         }
 
         var normalizedUsername = request.Username.ToLower();
-        var normalizedNickname = request.Nickname.ToLower();
+        var normalizedNickname = ContentFilter.NormalizeNickname(request.Nickname);
         
         if (await _context.Users.AnyAsync(u => u.Username.ToLower() == normalizedUsername))
         {
@@ -106,7 +106,7 @@ public class AuthController : ControllerBase
         }
 
         // Check for unique nickname (case-insensitive)
-        if (await _context.Users.AnyAsync(u => u.Nickname != null && u.Nickname.ToLower() == normalizedNickname))
+        if (await _context.Users.AnyAsync(u => u.Nickname != null && u.Nickname.ToLower() == normalizedNickname.ToLower()))
         {
             return Ok(new AuthResponse 
             { 
@@ -120,11 +120,24 @@ public class AuthController : ControllerBase
             Id = Guid.NewGuid().ToString(),
             Username = normalizedUsername,
             Password = PasswordHelper.HashPassword(request.Password),
-            Nickname = request.Nickname
+            Nickname = normalizedNickname
         };
 
         _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException)
+        {
+            // Handle race condition where nickname was taken between check and insert
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Nickname already taken. Please try a different one." 
+            });
+        }
 
         HttpContext.Session.SetString("UserId", user.Id);
 

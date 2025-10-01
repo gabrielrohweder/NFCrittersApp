@@ -24,7 +24,7 @@
                 <div class="avatar" data-testid="avatar-profile">
                     @GetInitials()
                 </div>
-                <h1 data-testid="text-username">@AuthService.CurrentUser?.Username</h1>
+                <h1 data-testid="text-username">@(AuthService.CurrentUser?.Nickname ?? "Explorer")</h1>
                 <p class="join-date" data-testid="text-join-date">Critter wrangler since @DateTime.Now.ToString("MMMM yyyy")</p>
             </div>
 
@@ -285,13 +285,13 @@
 
     private string GetInitials()
     {
-        if (AuthService.CurrentUser?.Username == null) return "??";
-        var parts = AuthService.CurrentUser.Username.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var displayName = AuthService.CurrentUser?.Nickname ?? "Explorer";
+        var parts = displayName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length > 1)
         {
             return $"{parts[0][0]}{parts[1][0]}".ToUpper();
         }
-        return AuthService.CurrentUser.Username.Substring(0, Math.Min(2, AuthService.CurrentUser.Username.Length)).ToUpper();
+        return displayName.Substring(0, Math.Min(2, displayName.Length)).ToUpper();
     }
 
     private void ShowAuth()

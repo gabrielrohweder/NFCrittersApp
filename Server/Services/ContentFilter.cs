@@ -54,8 +54,24 @@ public static class ContentFilter
         if (string.IsNullOrWhiteSpace(nickname))
             return false;
 
+        // Trim and normalize whitespace
+        nickname = nickname.Trim();
+        nickname = Regex.Replace(nickname, @"\s+", " "); // Replace multiple spaces with single space
+
         // Nickname must be 3-20 characters, alphanumeric, spaces, underscores, and hyphens only
         var nicknamePattern = @"^[a-zA-Z0-9_\- ]{3,20}$";
         return Regex.IsMatch(nickname, nicknamePattern);
+    }
+    
+    public static string NormalizeNickname(string nickname)
+    {
+        if (string.IsNullOrWhiteSpace(nickname))
+            return string.Empty;
+            
+        // Trim and normalize whitespace
+        nickname = nickname.Trim();
+        nickname = Regex.Replace(nickname, @"\s+", " "); // Replace multiple spaces with single space
+        
+        return nickname;
     }
 }
