@@ -12,7 +12,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (October 1, 2025)
 
-### Nickname Privacy System (Latest)
+### Achievement Celebration System (Latest)
+- **Modal Celebration Popups**: Child-friendly achievement unlocks with animations and confetti effects
+- **Six Achievement Types**: First Discovery (1 collected), Collector (5), Hunter (25), Legendary Hunter (1 legendary), Cryptozoologist (all legendary), Explorer (100% completion)
+- **Stats API Endpoint**: GET /api/animals/stats returns user progress (collectedCount, legendaryCount, totalLegendaryCount, completionRate)
+- **Smart Detection**: Compares pre/post collection stats to identify newly unlocked achievements
+- **CSS Animations**: Bounce, fade, scale, and sparkle effects for exciting celebrations
+- **Case-Insensitive Rarity**: Fixed legendary achievement triggers with normalized rarity comparisons
+- **Non-Intrusive Flow**: Users click "Continue Adventure!" to proceed after celebration
+- **Architect-Approved**: Production-ready with recommendations for future enhancements (write-time normalization, automated regression tests)
+
+### Nickname Privacy System
 - **Privacy Protection**: Users now have unique nicknames for public display (3-20 chars, alphanumeric/spaces/underscores/hyphens)
 - **Email Privacy**: All public-facing displays (Profile header, leaderboards, achievements) show nicknames instead of email addresses
 - **Nickname Validation**: Comprehensive validation with profanity filtering, whitespace normalization, and case-insensitive uniqueness enforcement
