@@ -15,5 +15,7 @@ public class User
     [Required]
     public string Password { get; set; } = string.Empty;
 
+    public string? Nickname { get; set; }
+
     public virtual ICollection<UserAnimal> UserAnimals { get; set; } = new List<UserAnimal>();
 }
