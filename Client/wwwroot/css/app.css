@@ -174,9 +174,9 @@ body {
 }
 
 .explorer-image {
-    width: 200px;
+    width: 100px;
     height: auto;
-    max-width: 80%;
+    max-width: 50%;
     border-radius: 12px;
 }
 
