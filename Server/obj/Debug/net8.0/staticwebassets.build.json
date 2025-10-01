@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k6YZZM8KoanW5BdIuXecWJ7hWpwKHttGE2q0AfJW0IY=",
+  "Hash": "PIEb6XRzEXjL8qeKH0dVTp2F/m7cu+1aHheZYUePtOk=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -7959,6 +7959,25 @@
       "OriginalItemSpec": "wwwroot/images/explorer3.png"
     },
     {
+      "Identity": "/home/runner/workspace/Server/wwwroot/images/explorer5.png",
+      "SourceId": "AnimalCollector.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
+      "BasePath": "_content/AnimalCollector.Server",
+      "RelativePath": "images/explorer5.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/explorer5.png"
+    },
+    {
       "Identity": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
       "SourceId": "AnimalCollector.Server",
       "SourceType": "Discovered",
@@ -7976,6 +7995,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/lion.jpg"
+    },
+    {
+      "Identity": "/home/runner/workspace/Server/wwwroot/images/nfcritters_text.png",
+      "SourceId": "AnimalCollector.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
+      "BasePath": "_content/AnimalCollector.Server",
+      "RelativePath": "images/nfcritters_text.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/nfcritters_text.png"
     },
     {
       "Identity": "/home/runner/workspace/Server/wwwroot/images/owl.jpg",

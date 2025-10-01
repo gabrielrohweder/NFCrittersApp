@@ -1673,8 +1673,16 @@
       "PackagePath": "staticwebassets/images/explorer3.png"
     },
     {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer5.png",
+      "PackagePath": "staticwebassets/images/explorer5.png"
+    },
+    {
       "Id": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
       "PackagePath": "staticwebassets/images/lion.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/nfcritters_text.png",
+      "PackagePath": "staticwebassets/images/nfcritters_text.png"
     },
     {
       "Id": "/home/runner/workspace/Server/wwwroot/images/owl.jpg",
