@@ -1653,66 +1653,6 @@
       "PackagePath": "staticwebassets/css/app.css"
     },
     {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/dolphin.jpg",
-      "PackagePath": "staticwebassets/images/dolphin.jpg"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/elephant.jpg",
-      "PackagePath": "staticwebassets/images/elephant.jpg"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer.png",
-      "PackagePath": "staticwebassets/images/explorer.png"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer2.png",
-      "PackagePath": "staticwebassets/images/explorer2.png"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer3.png",
-      "PackagePath": "staticwebassets/images/explorer3.png"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer5.png",
-      "PackagePath": "staticwebassets/images/explorer5.png"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer6.png",
-      "PackagePath": "staticwebassets/images/explorer6.png"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
-      "PackagePath": "staticwebassets/images/lion.jpg"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/nfcritters_text.png",
-      "PackagePath": "staticwebassets/images/nfcritters_text.png"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/owl.jpg",
-      "PackagePath": "staticwebassets/images/owl.jpg"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/panda.jpg",
-      "PackagePath": "staticwebassets/images/panda.jpg"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/images/penguin.jpg",
-      "PackagePath": "staticwebassets/images/penguin.jpg"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/index.html",
-      "PackagePath": "staticwebassets/index.html"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/sample-data/weather.json",
-      "PackagePath": "staticwebassets/sample-data/weather.json"
-    },
-    {
-      "Id": "/home/runner/workspace/Server/wwwroot/web.config",
-      "PackagePath": "staticwebassets/web.config"
-    },
-    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.AnimalCollector.Server.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

@@ -1681,6 +1681,10 @@
       "PackagePath": "staticwebassets/images/explorer6.png"
     },
     {
+      "Id": "/home/runner/workspace/Server/wwwroot/images/explorer7.png",
+      "PackagePath": "staticwebassets/images/explorer7.png"
+    },
+    {
       "Id": "/home/runner/workspace/Server/wwwroot/images/lion.jpg",
       "PackagePath": "staticwebassets/images/lion.jpg"
     },
