@@ -170,6 +170,29 @@ provider.Mappings[".pdb"] = "application/octet-stream";
 provider.Mappings[".br"] = "application/octet-stream";
 provider.Mappings[".json"] = "application/json";
 
+// Serve the Client's wwwroot files
+var clientWwwroot = Path.Combine(Directory.GetCurrentDirectory(), "..", "Client", "wwwroot");
+if (Directory.Exists(clientWwwroot))
+{
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(clientWwwroot),
+        ContentTypeProvider = provider
+    });
+}
+
+// Serve the Client's build output (_framework folder)
+var clientBuildOutput = Path.Combine(Directory.GetCurrentDirectory(), "..", "Client", "bin", "Debug", "net8.0", "wwwroot");
+if (Directory.Exists(clientBuildOutput))
+{
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(clientBuildOutput),
+        ContentTypeProvider = provider
+    });
+}
+
+// Fallback to default wwwroot if it exists
 app.UseStaticFiles(new StaticFileOptions
 {
     ContentTypeProvider = provider
