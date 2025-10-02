@@ -196,20 +196,29 @@
                         @(isLogin ? "Login" : "Sign Up")
                     </button>
                     
-                    <div class="auth-divider">
-                        <span>or continue with</span>
-                    </div>
+                    @if (availableProviders.Any())
+                    {
+                        <div class="auth-divider">
+                            <span>or continue with</span>
+                        </div>
 
-                    <div class="external-auth-buttons">
-                        <a href="/api/auth/external-login?provider=Google&returnUrl=/profile" class="btn-external-auth btn-google" data-testid="button-google-signin">
-                            <img src="https://www.google.com/favicon.ico" alt="Google" />
-                            <span>Google</span>
-                        </a>
-                        <a href="/api/auth/external-login?provider=Apple&returnUrl=/profile" class="btn-external-auth btn-apple" data-testid="button-apple-signin">
-                            <img src="https://www.apple.com/favicon.ico" alt="Apple" />
-                            <span>Apple</span>
-                        </a>
-                    </div>
+                        <div class="external-auth-buttons">
+                            @if (availableProviders.Contains("Google"))
+                            {
+                                <a href="/api/auth/external-login?provider=Google&returnUrl=/profile" class="btn-external-auth btn-google" data-testid="button-google-signin">
+                                    <img src="https://www.google.com/favicon.ico" alt="Google" />
+                                    <span>Google</span>
+                                </a>
+                            }
+                            @if (availableProviders.Contains("Apple"))
+                            {
+                                <a href="/api/auth/external-login?provider=Apple&returnUrl=/profile" class="btn-external-auth btn-apple" data-testid="button-apple-signin">
+                                    <img src="https://www.apple.com/favicon.ico" alt="Apple" />
+                                    <span>Apple</span>
+                                </a>
+                            }
+                        </div>
+                    }
                     
                     <button class="btn-text" @onclick="ToggleAuthMode">
                         @(isLogin ? "Need an account? Sign up" : "Have an account? Login")
@@ -236,12 +245,26 @@
     private string nickname = "";
     private string authError = "";
     private List<LeaderboardEntryDTO> topExplorers = new();
+    private List<string> availableProviders = new();
 
     protected override async Task OnInitializedAsync()
     {
         AuthService.OnAuthStateChanged += OnAuthChanged;
         await LoadStats();
         await LoadLeaderboard();
+        await LoadAvailableProviders();
+    }
+
+    private async Task LoadAvailableProviders()
+    {
+        try
+        {
+            availableProviders = await Http.GetFromJsonAsync<List<string>>("/api/auth/providers") ?? new();
+        }
+        catch
+        {
+            availableProviders = new();
+        }
     }
 
     private async Task LoadStats()
