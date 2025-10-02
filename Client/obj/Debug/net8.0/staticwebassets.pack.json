@@ -21,6 +21,30 @@
       "PackagePath": "staticwebassets/images/explorer.png"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/explorer2.png",
+      "PackagePath": "staticwebassets/images/explorer2.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/explorer3.png",
+      "PackagePath": "staticwebassets/images/explorer3.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/explorer5.png",
+      "PackagePath": "staticwebassets/images/explorer5.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/explorer6.png",
+      "PackagePath": "staticwebassets/images/explorer6.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/explorer7.png",
+      "PackagePath": "staticwebassets/images/explorer7.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/nfcritters_text.png",
+      "PackagePath": "staticwebassets/images/nfcritters_text.png"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/index.html",
       "PackagePath": "staticwebassets/index.html"
     },
