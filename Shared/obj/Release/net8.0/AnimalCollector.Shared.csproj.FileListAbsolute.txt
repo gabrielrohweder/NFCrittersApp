@@ -9,3 +9,4 @@
 /home/runner/workspace/Shared/obj/Release/net8.0/refint/AnimalCollector.Shared.dll
 /home/runner/workspace/Shared/obj/Release/net8.0/AnimalCollector.Shared.pdb
 /home/runner/workspace/Shared/obj/Release/net8.0/ref/AnimalCollector.Shared.dll
+/home/runner/workspace/Shared/obj/Release/net8.0/AnimalCollector.Shared.sourcelink.json

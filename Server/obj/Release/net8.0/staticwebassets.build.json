@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tvHwDsQPF8L4x85z7V/q2pewS3NBph5a89Tt/MmfeDc=",
+  "Hash": "5iNATOfyBH/vDPY0oXpsZebJ0y8fhqHR6T3KXW+lsfo=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -8035,25 +8035,6 @@
       "OriginalItemSpec": "wwwroot/images/lion.jpg"
     },
     {
-      "Identity": "/home/runner/workspace/Server/wwwroot/images/nfcritters_text.png",
-      "SourceId": "AnimalCollector.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
-      "BasePath": "_content/AnimalCollector.Server",
-      "RelativePath": "images/nfcritters_text.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/images/nfcritters_text.png"
-    },
-    {
       "Identity": "/home/runner/workspace/Server/wwwroot/images/owl.jpg",
       "SourceId": "AnimalCollector.Server",
       "SourceType": "Discovered",
@@ -8128,44 +8109,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
-    },
-    {
-      "Identity": "/home/runner/workspace/Server/wwwroot/sample-data/weather.json",
-      "SourceId": "AnimalCollector.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
-      "BasePath": "_content/AnimalCollector.Server",
-      "RelativePath": "sample-data/weather.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/sample-data/weather.json"
-    },
-    {
-      "Identity": "/home/runner/workspace/Server/wwwroot/web.config",
-      "SourceId": "AnimalCollector.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
-      "BasePath": "_content/AnimalCollector.Server",
-      "RelativePath": "web.config",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/web.config"
     }
   ]
 }
