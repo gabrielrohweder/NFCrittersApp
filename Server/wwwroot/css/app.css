@@ -907,6 +907,79 @@ body {
     text-align: center;
 }
 
+/* Auth Divider */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 8px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+}
+
+.auth-divider span {
+    padding: 0 12px;
+    color: var(--muted-foreground);
+    font-size: 14px;
+}
+
+/* External Auth Buttons */
+.external-auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-external-auth {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    color: var(--foreground);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-external-auth:hover {
+    background: var(--muted);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-external-auth img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-google {
+    border-color: #4285f4;
+}
+
+.btn-google:hover {
+    border-color: #357ae8;
+    background: #f1f5ff;
+}
+
+.btn-apple {
+    border-color: #000;
+    color: #000;
+}
+
+.btn-apple:hover {
+    background: #f5f5f5;
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     .animals-grid {

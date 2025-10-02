@@ -115,6 +115,21 @@
                 <button type="submit" class="btn-primary" data-testid="button-auth-submit">
                     @(isLogin ? "Sign In" : "Sign Up")
                 </button>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <div class="external-auth-buttons">
+                    <a href="/api/auth/external-login?provider=Google&returnUrl=/animal/@Token" class="btn-external-auth btn-google" data-testid="button-google-signin">
+                        <img src="https://www.google.com/favicon.ico" alt="Google" />
+                        <span>Google</span>
+                    </a>
+                    <a href="/api/auth/external-login?provider=Apple&returnUrl=/animal/@Token" class="btn-external-auth btn-apple" data-testid="button-apple-signin">
+                        <img src="https://www.apple.com/favicon.ico" alt="Apple" />
+                        <span>Apple</span>
+                    </a>
+                </div>
             </form>
 
             <button class="btn-text" @onclick="ToggleAuthMode" data-testid="button-toggle-auth">
