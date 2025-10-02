@@ -61,11 +61,15 @@
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: 48px;
+    font-size: clamp(40px, 14vw, 100px);
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 16px;
     text-shadow: 2px 2px 0 rgba(124, 58, 237, 0.1);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, rgba(245, 158, 11, 0.8) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
@@ -82,8 +86,8 @@
 }
 
 .hero-image {
-    width: 200px;
-    height: 200px;
+    width: 600px;
+    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 8px 16px rgba(124, 58, 237, 0.2));
 }
