@@ -5,6 +5,8 @@ using AnimalCollector.Server.Helpers;
 using AnimalCollector.Server.Services;
 using AnimalCollector.Shared.Models;
 using AnimalCollector.Shared.DTOs;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace AnimalCollector.Server.Controllers;
 
@@ -186,5 +188,101 @@ public class AuthController : ControllerBase
             Username = user.Username,
             Nickname = user.Nickname ?? string.Empty
         });
+    }
+
+    [HttpGet("external-login")]
+    public IActionResult ExternalLogin([FromQuery] string provider, [FromQuery] string? returnUrl = null)
+    {
+        var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Auth", new { returnUrl });
+        var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+        return Challenge(properties, provider);
+    }
+
+    [HttpGet("external-login-callback")]
+    public async Task<IActionResult> ExternalLoginCallback([FromQuery] string? returnUrl = null)
+    {
+        var result = await HttpContext.AuthenticateAsync("Cookies");
+        if (!result.Succeeded)
+        {
+            return Redirect($"/#/auth?error=external_auth_failed");
+        }
+
+        var claims = result.Principal?.Claims;
+        var nameIdentifier = claims?.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var name = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+        var provider = result.Properties?.Items[".AuthScheme"] ?? "Unknown";
+
+        if (string.IsNullOrEmpty(nameIdentifier) || string.IsNullOrEmpty(email))
+        {
+            return Redirect($"/#/auth?error=missing_claims");
+        }
+
+        // Check if user exists with this external provider
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.AuthProvider == provider && u.ExternalId == nameIdentifier);
+
+        if (user == null)
+        {
+            // Check if user exists with same email
+            var normalizedEmail = email.ToLower();
+            user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Username.ToLower() == normalizedEmail);
+
+            if (user != null)
+            {
+                // Link existing account to external provider
+                user.AuthProvider = provider;
+                user.ExternalId = nameIdentifier;
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                // Create new user
+                var nickname = name?.Split(' ').FirstOrDefault() ?? email.Split('@').FirstOrDefault() ?? "Explorer";
+                
+                // Ensure nickname is unique
+                var baseNickname = nickname;
+                var counter = 1;
+                while (await _context.Users.AnyAsync(u => u.Nickname != null && u.Nickname.ToLower() == nickname.ToLower()))
+                {
+                    nickname = $"{baseNickname}{counter}";
+                    counter++;
+                }
+
+                user = new User
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Username = normalizedEmail,
+                    Password = null,
+                    Nickname = nickname,
+                    AuthProvider = provider,
+                    ExternalId = nameIdentifier
+                };
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        HttpContext.Session.SetString("UserId", user.Id);
+
+        return Redirect(returnUrl ?? "/#/");
+    }
+
+    [HttpGet("providers")]
+    public IActionResult GetAvailableProviders()
+    {
+        var schemes = HttpContext.RequestServices
+            .GetRequiredService<IAuthenticationSchemeProvider>()
+            .GetAllSchemesAsync()
+            .Result;
+
+        var providers = schemes
+            .Where(s => s.DisplayName != null && s.Name != "Cookies")
+            .Select(s => new { name = s.Name, displayName = s.DisplayName })
+            .ToList();
+
+        return Ok(providers);
     }
 }
