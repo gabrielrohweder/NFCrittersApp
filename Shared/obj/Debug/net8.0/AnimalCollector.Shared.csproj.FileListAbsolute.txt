@@ -5,8 +5,8 @@
 /home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.AssemblyInfoInputs.cache
 /home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.AssemblyInfo.cs
 /home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.csproj.CoreCompileInputs.cache
+/home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.sourcelink.json
 /home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.dll
 /home/runner/workspace/Shared/obj/Debug/net8.0/refint/AnimalCollector.Shared.dll
 /home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.pdb
 /home/runner/workspace/Shared/obj/Debug/net8.0/ref/AnimalCollector.Shared.dll
-/home/runner/workspace/Shared/obj/Debug/net8.0/AnimalCollector.Shared.sourcelink.json

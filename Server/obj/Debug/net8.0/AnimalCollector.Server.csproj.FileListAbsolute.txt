@@ -17,8 +17,10 @@
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.runtimeconfig.json
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.pdb
+/home/runner/workspace/Server/bin/Debug/net8.0/AspNet.Security.OAuth.Apple.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/HealthChecks.NpgSql.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Humanizer.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.Google.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.Build.Locator.dll
@@ -42,6 +44,12 @@
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.OpenApi.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Mono.TextTemplating.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/Npgsql.dll
@@ -56,6 +64,7 @@
 /home/runner/workspace/Server/bin/Debug/net8.0/System.Composition.Runtime.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/System.Composition.TypedParts.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
+/home/runner/workspace/Server/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/System.IO.Pipelines.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/System.Text.Encodings.Web.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/System.Text.Json.dll
@@ -134,6 +143,7 @@
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.csproj.CoreCompileInputs.cache
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.MvcApplicationPartsAssemblyInfo.cs
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.MvcApplicationPartsAssemblyInfo.cache
+/home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.sourcelink.json
 /home/runner/workspace/Server/obj/Debug/net8.0/staticwebassets.build.json
 /home/runner/workspace/Server/obj/Debug/net8.0/staticwebassets.development.json
 /home/runner/workspace/Server/obj/Debug/net8.0/staticwebassets/msbuild.AnimalCollector.Server.Microsoft.AspNetCore.StaticWebAssets.props
@@ -148,13 +158,3 @@
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.pdb
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.genruntimeconfig.cache
 /home/runner/workspace/Server/obj/Debug/net8.0/ref/AnimalCollector.Server.dll
-/home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.sourcelink.json
-/home/runner/workspace/Server/bin/Debug/net8.0/AspNet.Security.OAuth.Apple.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.Google.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
-/home/runner/workspace/Server/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
