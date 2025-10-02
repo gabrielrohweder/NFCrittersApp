@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\AnimalCollector.Shared.csproj" />
+    <ProjectReference Include="..\Client\AnimalCollector.Client.csproj" />
   </ItemGroup>
 
 </Project>
