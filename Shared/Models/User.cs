@@ -12,10 +12,13 @@ public class User
     [Required]
     public string Username { get; set; } = string.Empty;
 
-    [Required]
-    public string Password { get; set; } = string.Empty;
+    public string? Password { get; set; }
 
     public string? Nickname { get; set; }
+
+    public string AuthProvider { get; set; } = "local";
+
+    public string? ExternalId { get; set; }
 
     public virtual ICollection<UserAnimal> UserAnimals { get; set; } = new List<UserAnimal>();
 }

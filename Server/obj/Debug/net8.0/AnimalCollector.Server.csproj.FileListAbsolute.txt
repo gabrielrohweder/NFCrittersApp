@@ -148,3 +148,4 @@
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.pdb
 /home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.genruntimeconfig.cache
 /home/runner/workspace/Server/obj/Debug/net8.0/ref/AnimalCollector.Server.dll
+/home/runner/workspace/Server/obj/Debug/net8.0/AnimalCollector.Server.sourcelink.json
