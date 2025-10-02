@@ -10,9 +10,21 @@ The application is a collection-based game focused on discovering and collecting
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (October 1, 2025)
+## Recent Changes (October 2, 2025)
 
-### Achievement Celebration System (Latest)
+### External Authentication System (Latest)
+- **Google & Apple Sign-In**: Added OAuth authentication alongside existing email/password system
+- **Conditional Provider Registration**: Authentication providers only register when credentials are configured (no startup errors when unconfigured)
+- **Database Schema Extended**: Added `auth_provider` (default 'local'), `external_id` (nullable), made `password` nullable for external auth
+- **Account Linking**: Automatic linking of external accounts when email matches existing user
+- **Nickname Auto-Generation**: External users get unique nicknames from provider name or email
+- **Multi-Page Integration**: External auth buttons available on all auth modals (Scan, AnimalView, Collection, Profile)
+- **Comprehensive Documentation**: Created SETUP_EXTERNAL_AUTH.md with complete setup instructions
+- **NuGet Packages Added**: Microsoft.AspNetCore.Authentication.Google, AspNet.Security.OAuth.Apple
+- **API Endpoints**: /api/auth/external-login, /api/auth/external-login-callback, /api/auth/providers
+- **Security**: Session-based authentication with 30-day cookie expiration, HTTPS required in production
+
+### Achievement Celebration System (October 1, 2025)
 - **Modal Celebration Popups**: Child-friendly achievement unlocks with animations and confetti effects
 - **Six Achievement Types**: First Discovery (1 collected), Collector (5), Hunter (25), Legendary Hunter (1 legendary), Cryptozoologist (all legendary), Explorer (100% completion)
 - **Stats API Endpoint**: GET /api/animals/stats returns user progress (collectedCount, legendaryCount, totalLegendaryCount, completionRate)
