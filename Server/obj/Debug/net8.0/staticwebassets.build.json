@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3X7Zv2FfuDAqF15m/InLP7m5nupYp6CC9UuaZqV3qq8=",
+  "Hash": "fRR1qFzD+ObCguPf9gjWQEtX2MHfbrSi/54Um5P0eoE=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -7862,6 +7862,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/app.css"
+    },
+    {
+      "Identity": "/home/runner/workspace/Server/wwwroot/index.html",
+      "SourceId": "AnimalCollector.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Server/wwwroot/",
+      "BasePath": "_content/AnimalCollector.Server",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
     }
   ]
 }
