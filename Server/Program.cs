@@ -73,6 +73,63 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// Add external authentication (Google and Apple) - only if configured
+var authBuilder = builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+})
+.AddCookie("Cookies", options =>
+{
+    options.LoginPath = "/api/auth/external-login";
+    options.LogoutPath = "/api/auth/logout";
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+});
+
+// Add Google authentication if configured
+var googleClientId = builder.Configuration["Authentication:Google:ClientId"];
+var googleClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+if (!string.IsNullOrEmpty(googleClientId) && !string.IsNullOrEmpty(googleClientSecret))
+{
+    authBuilder.AddGoogle(options =>
+    {
+        options.ClientId = googleClientId;
+        options.ClientSecret = googleClientSecret;
+        options.CallbackPath = "/api/auth/signin-google";
+        options.SaveTokens = true;
+        options.Scope.Add("profile");
+        options.Scope.Add("email");
+    });
+    Console.WriteLine("Google authentication configured");
+}
+
+// Add Apple authentication if configured
+var appleClientId = builder.Configuration["Authentication:Apple:ClientId"];
+var appleKeyId = builder.Configuration["Authentication:Apple:KeyId"];
+var appleTeamId = builder.Configuration["Authentication:Apple:TeamId"];
+if (!string.IsNullOrEmpty(appleClientId) && !string.IsNullOrEmpty(appleKeyId) && !string.IsNullOrEmpty(appleTeamId))
+{
+    authBuilder.AddApple(options =>
+    {
+        options.ClientId = appleClientId;
+        options.KeyId = appleKeyId;
+        options.TeamId = appleTeamId;
+        options.GenerateClientSecret = true;
+        
+        var privateKeyContent = builder.Configuration["Authentication:Apple:PrivateKey"];
+        if (!string.IsNullOrEmpty(privateKeyContent))
+        {
+            options.PrivateKey = (keyId, cancellationToken) =>
+            {
+                return Task.FromResult(privateKeyContent.AsMemory());
+            };
+        }
+        
+        options.CallbackPath = "/api/auth/signin-apple";
+        options.SaveTokens = true;
+    });
+    Console.WriteLine("Apple authentication configured");
+}
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -120,6 +177,8 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseRouting();
 app.UseCors();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseSession();
 
 // Add health check endpoints for Cloud Run
