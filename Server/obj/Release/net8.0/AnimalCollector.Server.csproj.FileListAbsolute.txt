@@ -158,3 +158,15 @@
 /home/runner/workspace/Server/bin/Release/net8.0/Microsoft.IdentityModel.Tokens.dll
 /home/runner/workspace/Server/bin/Release/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /home/runner/workspace/Server/obj/Release/net8.0/AnimalCollector.Server.sourcelink.json
+/home/runner/workspace/Server/bin/Release/net8.0/AnimalCollector.Client.staticwebassets.runtime.json
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.AspNetCore.Authorization.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.AspNetCore.Components.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.AspNetCore.Components.Forms.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.AspNetCore.Components.Web.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.AspNetCore.Components.WebAssembly.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.AspNetCore.Metadata.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.Extensions.Configuration.Binder.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.JSInterop.dll
+/home/runner/workspace/Server/bin/Release/net8.0/Microsoft.JSInterop.WebAssembly.dll
+/home/runner/workspace/Server/bin/Release/net8.0/AnimalCollector.Client.dll
+/home/runner/workspace/Server/bin/Release/net8.0/AnimalCollector.Client.pdb
