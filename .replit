@@ -8,8 +8,8 @@ packages = ["dotnet-sdk_8"]
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["dotnet", "publish", "Server/AnimalCollector.Server.csproj", "-c", "Release", "-o", "publish"]
-run = ["dotnet", "publish/AnimalCollector.Server.dll"]
+build = ["sh", "-c", "cd Client && dotnet publish -c Release -o ../Server/wwwroot && cd ../Server && dotnet publish -c Release -o ../output"]
+run = ["sh", "-c", "cd output && dotnet AnimalCollector.Server.dll"]
 
 [[ports]]
 localPort = 5000
@@ -18,10 +18,6 @@ externalPort = 80
 [[ports]]
 localPort = 5001
 externalPort = 3000
-
-[[ports]]
-localPort = 46413
-externalPort = 3001
 
 [env]
 PORT = "5000"
