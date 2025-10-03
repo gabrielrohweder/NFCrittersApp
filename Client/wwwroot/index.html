@@ -9,6 +9,140 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="AnimalCollector.Client.styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <style>
+        .home-page {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .home-hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, rgba(245, 158, 11, 0.8) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--muted-foreground);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-image-container {
+            margin: 32px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .polaroid-frame {
+            background: white;
+            padding: 16px 16px 50px 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid-frame:hover {
+            transform: rotate(0deg);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .polaroid-caption {
+            margin-top: 12px;
+            font-family: "Rock Salt", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 20px;
+            color: #2563eb;
+            text-align: center;
+        }
+
+        .features-section {
+            margin-top: 60px;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--foreground);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: var(--muted-foreground);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -25,7 +159,7 @@
                         <div class="hero-image-container">
                             <div class="polaroid-frame">
                                 <img src="images/yume_book.png" class="hero-image" alt="Explorer"/>
-                                <div class="polaroid-caption">"Children's dreams are whispers of the future." -Unknown Author</div>
+                                <div class="polaroid-caption">"Children's dreams are whispers of the future."  -Unknown Author</div>
                             </div>
                         </div>
                     </div>
