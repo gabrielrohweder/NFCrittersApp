@@ -41,8 +41,8 @@ public class AnimalsController : ControllerBase
             Habitat = a.Habitat,
             Rarity = a.Rarity,
             ImageUrl = a.ImageUrl,
-            Facts = string.IsNullOrEmpty(a.Facts) 
-                ? new List<string>() 
+            Facts = string.IsNullOrEmpty(a.Facts)
+                ? new List<string>()
                 : JsonSerializer.Deserialize<List<string>>(a.Facts) ?? new List<string>(),
             Collected = collectedAnimalIds.Contains(a.Id)
         }).ToList();
@@ -198,7 +198,7 @@ public class AnimalsController : ControllerBase
                 Count = g.Count()
             })
             .OrderByDescending(x => x.Count)
-            .Take(5)
+            .Take(3)
             .Join(
                 _context.Users,
                 ua => ua.UserId,

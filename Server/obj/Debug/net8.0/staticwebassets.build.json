@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fhQbT43XfmeoYbTWYfXAuudOXm8bWxNrqGZpIkxfqig=",
+  "Hash": "gUFbsDVujYVuRV5DEPwEctBmb9ccjtUCCQy40QyjUHA=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -8064,25 +8064,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/lion.jpg"
-    },
-    {
-      "Identity": "/home/runner/workspace/Client/wwwroot/images/nfcritters_text.png",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Project",
-      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "images/nfcritters_text.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/images/nfcritters_text.png"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/images/owl.jpg",
