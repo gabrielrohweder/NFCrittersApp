@@ -69,7 +69,45 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+    
+    <script>
+        // Lazy-load Blazor only when user navigates away from home page
+        let blazorLoaded = false;
+        let blazorLoading = false;
+
+        function loadBlazor(targetUrl) {
+            if (blazorLoading || blazorLoaded) return;
+            blazorLoading = true;
+
+            // Inject Blazor script
+            const script = document.createElement('script');
+            script.src = '_framework/blazor.webassembly.js';
+            script.onload = () => {
+                blazorLoaded = true;
+                // Blazor will automatically start and handle the current URL
+            };
+            script.onerror = () => {
+                console.error('Failed to load Blazor');
+                blazorLoading = false;
+            };
+            document.body.appendChild(script);
+        }
+
+        // Intercept navigation link clicks
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a.nav-item');
+            if (link && !blazorLoaded) {
+                const href = link.getAttribute('href');
+                // Only load Blazor if navigating away from home
+                if (href && href !== '/' && href !== '/home') {
+                    e.preventDefault();
+                    loadBlazor();
+                    // After Blazor loads, it will handle routing to the target URL
+                    history.pushState(null, '', href);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
