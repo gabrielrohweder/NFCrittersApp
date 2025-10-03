@@ -1,15 +1,15 @@
 {
   "mainAssemblyName": "AnimalCollector.Client",
   "resources": {
-    "hash": "sha256-tCf8nFSF22/jmdOKuimkrWLIvKJ5cbcjhV6OrltxSPg=",
+    "hash": "sha256-crpzYWm55QIq0ms4364/NqOrHHcWa4GlaHYA+lTU4Qk=",
     "jsModuleNative": {
-      "dotnet.native.8.0.5.k8qrcc28q0.js": "sha256-boyHe+0RMZDkzBKGhsrnXPhPg3oZ6UqJnTUzngJPjNY="
+      "dotnet.native.8.0.18.td341apd3g.js": "sha256-1QpKPnxEuRCElzcp+e3MrovJeAJkuzqKmRQay/6Aa08="
     },
     "jsModuleRuntime": {
-      "dotnet.runtime.8.0.5.qb3erypam5.js": "sha256-5oi05+Ql/1JzyAphppAHmbRquli4a3/0XLMa8mQDKn8="
+      "dotnet.runtime.8.0.18.8mo5vi2764.js": "sha256-QVLJL2PFoMyGwMOZIRShe4/0TJQfK2WMqoIYdVaI+yM="
     },
     "wasmNative": {
-      "dotnet.native.wasm": "sha256-b3QtgAqvT5FoNyYgoEYsdE4zF5C1Is6lhQ8VEkROor8="
+      "dotnet.native.wasm": "sha256-0icL1rktur02b0t8WzUUQh+w3sa0rLR7YIla31PAEHM="
     },
     "icu": {
       "icudt_CJK.dat": "sha256-SZLtQnRc0JkwqHab0VUVP7T3uBPSeYzxzDnpxPpUnHk=",
@@ -208,12 +208,12 @@
       "mscorlib.wasm": "sha256-XvLAB5IyfVSmj5aaGnPwgVFaaZz8jXmbN8WmeopiPBM=",
       "netstandard.wasm": "sha256-TbMssdnuTiKq1gjTPkpgROAuWN0uhvPnagvWR+wAgNs=",
       "System.Private.CoreLib.wasm": "sha256-sscg+Efk8ROPq+q4IVmhShzITuoOYvB8Bsc+Mp9vcSM=",
-      "AnimalCollector.Shared.wasm": "sha256-/GAGHFcPI1fYGF3WEl242sJ0KmcQIxIPrH1+Gq1Qgoc=",
-      "AnimalCollector.Client.wasm": "sha256-SRagO3GDPPjq4IbLJskGR9BbGFMmZX9CPrtEE1Sa3Bw="
+      "AnimalCollector.Shared.wasm": "sha256-rKfupDdvNvn1UriuOzHIO+QoxbUWp4UTQViRLBXbr4A=",
+      "AnimalCollector.Client.wasm": "sha256-9xPIDWxK1RIWKYNXghFqwdmNqTLufr7SePtFT9S4AP4="
     },
     "pdb": {
-      "AnimalCollector.Shared.pdb": "sha256-9vYNMCxQn0dvgJcVs5PCGHvZd9JJal7Qlp1vl3RPukc=",
-      "AnimalCollector.Client.pdb": "sha256-5oADgJ7LGDmI20l9XZYog5SUEnDQ1fRnLFfgdbXiQNQ="
+      "AnimalCollector.Shared.pdb": "sha256-ZEhuDdmpvQvBij+zwqb/ovW8oDZuSEZCAMDG9MnZGpc=",
+      "AnimalCollector.Client.pdb": "sha256-t43HwvMREXAEDN7wqraXcnHt9sIxgJY5YysELm5IbWk="
     }
   },
   "cacheBootResources": true,

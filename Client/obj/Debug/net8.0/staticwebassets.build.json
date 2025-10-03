@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3eIDSJdO29KLSx2qnMWw3/5CUPngCDq1P32NSCIy+vs=",
+  "Hash": "RWCKQdRK44tbPXk0N683SgNbgGrqPJtbSVHcblSysos=",
   "Source": "AnimalCollector.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -147,7 +147,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/dotnet.js"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/dotnet.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map",
@@ -166,15 +166,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/dotnet.js.map"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/dotnet.js.map"
     },
     {
-      "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js",
+      "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.18.td341apd3g.js",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
       "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.5.k8qrcc28q0.js",
+      "RelativePath": "_framework/dotnet.native.8.0.18.td341apd3g.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -185,7 +185,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/dotnet.native.js"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/dotnet.native.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm",
@@ -204,15 +204,15 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/dotnet.native.wasm"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/dotnet.native.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js",
+      "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.18.8mo5vi2764.js",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
       "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.5.qb3erypam5.js",
+      "RelativePath": "_framework/dotnet.runtime.8.0.18.8mo5vi2764.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -223,7 +223,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/dotnet.runtime.js"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/dotnet.runtime.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.js.map",
@@ -242,7 +242,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/dotnet.runtime.js.map"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/dotnet.runtime.js.map"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat",
@@ -261,7 +261,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/icudt_CJK.dat"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/icudt_CJK.dat"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
@@ -280,7 +280,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/icudt_EFIGS.dat"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/icudt_EFIGS.dat"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
@@ -299,7 +299,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.5/runtimes/browser-wasm/native/icudt_no_CJK.dat"
+      "OriginalItemSpec": "/home/runner/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.18/runtimes/browser-wasm/native/icudt_no_CJK.dat"
     },
     {
       "Identity": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/Microsoft.AspNetCore.Authorization.wasm",
@@ -4140,25 +4140,6 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Memory.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/17dj5bprq2.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map"
-    },
-    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/17o15csih5.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -4368,6 +4349,25 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/Microsoft.AspNetCore.Authorization.wasm"
     },
     {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/3n2gxcorys.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat"
+    },
+    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/3qwsm14ik9.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -4423,6 +4423,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Security.wasm"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/429g4n7dz5.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/44qmhvxmyu.gz",
@@ -4729,25 +4748,6 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.Handles.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/7ovij7yx5n.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat"
-    },
-    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/7ytmqlcjuj.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -4860,6 +4860,44 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Collections.Specialized.wasm"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/8mo5vi2764.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.8.0.18.8mo5vi2764.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.18.8mo5vi2764.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.18.8mo5vi2764.js"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/8oq0n0um2d.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/8p5pbmsigv.gz",
@@ -5109,25 +5147,6 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Web.HttpUtility.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/b28o0szhtk.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat"
-    },
-    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/b5q0sw48i8.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -5145,6 +5164,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Private.Xml.Linq.wasm"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/bikenlkm3q.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/bm4g2xo9k9.gz",
@@ -5373,25 +5411,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Net.Http.wasm"
-    },
-    {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/dkul4aeldo.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/drgoibbzrz.gz",
@@ -5717,25 +5736,6 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/Microsoft.Extensions.Configuration.FileExtensions.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/i27s4fu6dh.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.wasm.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm"
-    },
-    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/i4pthzir3m.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -5981,25 +5981,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.IO.Pipes.AccessControl.wasm"
-    },
-    {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/k8qrcc28q0.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.5.k8qrcc28q0.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.5.k8qrcc28q0.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/k96nnmh96q.gz",
@@ -6610,25 +6591,6 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.IO.Compression.FileSystem.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/qb3erypam5.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.5.qb3erypam5.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.5.qb3erypam5.js"
-    },
-    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/qb43iokxig.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -7066,6 +7028,25 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Buffers.wasm"
     },
     {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/swyu6gbb0k.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat"
+    },
+    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/t96z1w0z9p.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -7142,7 +7123,26 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Globalization.Extensions.wasm"
     },
     {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/tm2tzmyeo0.gz",
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/td341apd3g.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.8.0.18.td341apd3g.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.18.td341apd3g.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.18.td341apd3g.js"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/tntfka0w4q.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
       "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
@@ -7541,6 +7541,25 @@
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Net.Security.wasm"
     },
     {
+      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/wrbwpldak7.gz",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat"
+    },
+    {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/wylv4wk475.gz",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Computed",
@@ -7691,25 +7710,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Net.WebProxy.wasm"
-    },
-    {
-      "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/yp20vdbejc.gz",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/dotnet.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/yrbjhxdnmh.gz",

@@ -996,12 +996,18 @@
           "Microsoft.AspNetCore.Components.WebAssembly": "8.0.5"
         },
         "runtime": {
-          "AnimalCollector.Client.dll": {}
+          "AnimalCollector.Client.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "AnimalCollector.Shared/1.0.0": {
         "runtime": {
-          "AnimalCollector.Shared.dll": {}
+          "AnimalCollector.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
