@@ -216,7 +216,31 @@ app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthC
 });
 
 app.MapControllers();
-app.MapFallbackToFile("index.html");
+
+// SPA fallback - serve index.html for any non-API routes
+app.MapFallback(async context =>
+{
+    // Don't intercept API calls
+    if (context.Request.Path.StartsWithSegments("/api") || 
+        context.Request.Path.StartsWithSegments("/health"))
+    {
+        context.Response.StatusCode = 404;
+        return;
+    }
+    
+    // Serve index.html for all other routes
+    context.Response.ContentType = "text/html";
+    var indexPath = Path.Combine(clientWwwroot, "index.html");
+    if (File.Exists(indexPath))
+    {
+        await context.Response.SendFileAsync(indexPath);
+    }
+    else
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("index.html not found");
+    }
+});
 
 // Configure to listen on all interfaces on port 5000
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";

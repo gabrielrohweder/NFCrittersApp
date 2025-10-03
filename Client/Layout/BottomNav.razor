@@ -19,6 +19,8 @@
     private string GetActiveClass(string path)
     {
         var currentPath = new Uri(Navigation.Uri).AbsolutePath;
+        // Normalize /home to / for comparison
+        if (currentPath == "/home") currentPath = "/";
         return currentPath == path ? "active" : "";
     }
 
