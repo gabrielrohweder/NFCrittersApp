@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animal Collector</title>
+    <title>Critter Wrangler - Yume Zoo</title>
     <base href="/" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -13,11 +13,69 @@
 
 <body>
     <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+        <div class="app-container">
+            <main class="main-content">
+                <div class="page-container home-page">
+                    <div class="home-hero">
+                        <h1 class="hero-title">Welcome to Yume Zoo!</h1>
+                        <p class="hero-subtitle">
+                            Discover and collect amazing 3D printed animals with NFC technology
+                        </p>
+                        
+                        <div class="hero-image-container">
+                            <div class="polaroid-frame">
+                                <img src="images/yume_book.png" class="hero-image" alt="Explorer"/>
+                                <div class="polaroid-caption">"Children's dreams are whispers of the future." -Unknown Author</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h2 class="section-title">How It Works</h2>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <h3>Scan NFC Tags</h3>
+                                <p>Hold your phone near any NFC-enabled animal figure to discover it</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon">🦁</div>
+                                <h3>Build Your Collection</h3>
+                                <p>Collect animals from around the world and track your progress</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon">📚</div>
+                                <h3>Learn Fun Facts</h3>
+                                <p>Discover interesting facts about each animal you collect</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon">🏆</div>
+                                <h3>Unlock Achievements</h3>
+                                <p>Complete your collection and earn special achievements</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <nav class="bottom-nav">
+                <a href="/" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Home</span>
+                </a>
+                <a href="/collection" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span class="nav-label">Collection</span>
+                </a>
+                <a href="/profile" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-label">Profile</span>
+                </a>
+            </nav>
+        </div>
     </div>
 
     <div id="blazor-error-ui">
