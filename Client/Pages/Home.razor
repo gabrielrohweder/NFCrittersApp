@@ -11,7 +11,10 @@
         </p>
         
         <div class="hero-image-container">
-            <img src="images/yume_book.png" class="hero-image" alt="Explorer"/>
+            <div class="polaroid-frame">
+                <img src="images/yume_book.png" class="hero-image" alt="Explorer"/>
+                <div class="polaroid-caption">Dreams</div>
+            </div>
         </div>
 
     </div>
@@ -84,12 +87,33 @@
     justify-content: center;
 }
 
-.hero-image {
+.polaroid-frame {
+    background: white;
+    padding: 16px 16px 50px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     max-width: 600px;
     width: 100%;
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.polaroid-frame:hover {
+    transform: rotate(0deg);
+}
+
+.hero-image {
+    width: 100%;
     height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 8px 16px rgba(124, 58, 237, 0.2));
+    display: block;
+}
+
+.polaroid-caption {
+    margin-top: 12px;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 32px;
+    color: #2563eb;
+    text-align: center;
+    font-style: italic;
 }
 
 .home-actions {
