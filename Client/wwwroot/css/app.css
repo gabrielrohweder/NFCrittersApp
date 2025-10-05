@@ -1035,8 +1035,41 @@ code {
     transform: translate(-50%, -50%);
 }
 
+.pointer {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    line-height: 1;
+    user-select: none;
+    transform-origin: 50% 100%;
+    z-index: 3;
+    color: #111827;
+}
+
 .pointer.bump {
     animation: tick-bump 90ms ease-out;
+}
+
+.wheel::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.08);
+    z-index: 2;
+}
+
+.pins {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
 }
 
 @media (max-width: 480px) {

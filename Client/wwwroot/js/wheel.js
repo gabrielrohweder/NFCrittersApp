@@ -20,9 +20,10 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     wheel.style.maxWidth = size + 'px';
     wheel.style.maxHeight = size + 'px';
     wheel.style.borderRadius = '50%';
-    wheel.style.overflow = 'hidden';
     wheel.style.display = 'block';
     wheel.style.position = 'relative';
+    wheel.style.boxShadow = '0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7)';
+    wheel.style.zIndex = '1';
 
     const sectors = labels.length;
     const sectorAngle = 360 / sectors;
