@@ -988,26 +988,48 @@ code {
     color: #c02d76;
 }
 
-/* Wheel Spinner - Global styles to ensure circular shape */
-.wheel {
-    width: 320px !important;
-    height: 320px !important;
-    min-width: 320px !important;
-    min-height: 320px !important;
-    max-width: 320px !important;
-    max-height: 320px !important;
-    aspect-ratio: 1 / 1 !important;
-    border-radius: 50% !important;
-    position: relative !important;
-    transition: none !important;
-    will-change: transform;
-    box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7) !important;
-    z-index: 1;
-    flex-shrink: 0 !important;
-    overflow: hidden !important;
-    display: block !important;
+/* Wheel Spinner Styles - From tryit.html */
+.spin-wrap {
+    display: grid;
+    place-items: center;
+    gap: 16px;
+    padding: 24px;
 }
 
+.wheel-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+/* Wheel: JS owns transform; NO CSS transition */
+.wheel {
+    --size: 320px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    position: relative;
+    transform: none;
+    transition: none !important;
+    will-change: transform;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
+    z-index: 1;
+}
+
+/* Optional center dot */
+.wheel::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.08);
+    z-index: 2;
+}
+
+/* Labels on slices (children of .wheel) */
 .wheel-label {
     position: absolute;
     top: 50%;
@@ -1023,46 +1045,7 @@ code {
     z-index: 2;
 }
 
-.pin {
-    position: absolute;
-    width: 12px !important;
-    height: 12px !important;
-    background: #9ca3af;
-    border: 2px solid #4b5563;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.5);
-}
-
-.pointer {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 22px;
-    line-height: 1;
-    user-select: none;
-    transform-origin: 50% 100%;
-    z-index: 10;
-    color: #111827;
-}
-
-.pointer.bump {
-    animation: tick-bump 90ms ease-out;
-}
-
-.wheel::after {
-    content: "";
-    position: absolute;
-    inset: 50% auto auto 50%;
-    width: 14px;
-    height: 14px;
-    margin: -7px 0 0 -7px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px rgba(0,0,0,.08);
-    z-index: 2;
-}
-
+/* Pins (children of .wheel so they rotate with it) */
 .pins {
     position: absolute;
     inset: 0;
@@ -1070,15 +1053,69 @@ code {
     z-index: 2;
 }
 
-@media (max-width: 480px) {
-    .wheel {
-        width: 280px !important;
-        height: 280px !important;
-        min-width: 280px !important;
-        min-height: 280px !important;
-        max-width: 280px !important;
-        max-height: 280px !important;
-    }
+.pin {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #e5e7eb;
+    border: 2px solid rgba(0,0,0,.15);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.8);
+    transform: translate(-50%, -50%);
+}
+
+/* Top-dead-center pointer */
+.pointer {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    line-height: 1;
+    user-select: none;
+    transform-origin: 50% 100%;
+    z-index: 3;
+    color: #111827;
+}
+
+/* Pointer tick animation (subtle) */
+.pointer.bump { 
+    animation: tick-bump 90ms ease-out; 
+}
+
+@keyframes tick-bump {
+    0% { transform: translateX(-50%) rotate(0); }
+    35% { transform: translateX(-50%) rotate(-6deg); }
+    70% { transform: translateX(-50%) rotate(2deg); }
+    100% { transform: translateX(-50%) rotate(0); }
+}
+
+.spin-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #111827;
+    color: white;
+    box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+.spin-btn:disabled { 
+    opacity: .6; 
+    cursor: default; 
+}
+
+.spin-btn:focus-visible { 
+    outline: 3px solid #60a5fa; 
+    outline-offset: 3px; 
+}
+
+.result { 
+    min-height: 1.2em; 
+    font-weight: 600; 
 }
 /* Achievement Celebration Styles */
 .achievement-celebration-overlay {

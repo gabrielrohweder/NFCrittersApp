@@ -3,7 +3,7 @@
     display: grid;
     place-items: center;
     gap: 16px;
-    padding: 24px;
+    padding: 2px;
 }
 
 .wheel-wrap[b-9fcorij01j] {
@@ -23,7 +23,7 @@
     margin: -7px 0 0 -7px;
     background: white;
     border-radius: 50%;
-    box-shadow: 0 0 0 2px rgba(0,0,0,.08);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, .08);
     z-index: 2;
 }
 
@@ -51,10 +51,21 @@
 
 
 @keyframes tick-bump-b-9fcorij01j {
-    0% { transform: translateX(-50%) rotate(0); }
-    35% { transform: translateX(-50%) rotate(-6deg); }
-    70% { transform: translateX(-50%) rotate(2deg); }
-    100% { transform: translateX(-50%) rotate(0); }
+    0% {
+        transform: translateX(-50%) rotate(0);
+    }
+
+    35% {
+        transform: translateX(-50%) rotate(-6deg);
+    }
+
+    70% {
+        transform: translateX(-50%) rotate(2deg);
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(0);
+    }
 }
 
 .spin-btn[b-9fcorij01j] {
@@ -93,7 +104,6 @@
     color: var(--primary);
     text-align: center;
 }
-
 /* /Layout/MainLayout.razor.rz.scp.css */
 /* /Pages/Profile.razor.rz.scp.css */
 .token-balance[b-kfeboi4yeu] {

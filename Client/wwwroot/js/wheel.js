@@ -1,5 +1,5 @@
-// Wheel spin implementation for Blazor
-window.wheelInstances = {};
+// Wheel spinner - adapted from tryit.html for Blazor integration
+const wheelInstances = {};
 
 window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetRef) {
     const wheel = document.getElementById(wheelId);
@@ -11,24 +11,10 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
         return;
     }
 
-    // Force wheel to be circular with inline styles
-    const size = window.innerWidth < 480 ? 280 : 320;
-    wheel.style.setProperty('--size', size + 'px');
-    wheel.style.width = size + 'px';
-    wheel.style.height = size + 'px';
-    wheel.style.borderRadius = '50%';
-    wheel.style.position = 'relative';
-    wheel.style.transform = 'none';
-    wheel.style.transition = 'none !important';
-    wheel.style.willChange = 'transform';
-    wheel.style.boxShadow = '0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7)';
-    wheel.style.zIndex = '1';
-
     const sectors = labels.length;
     const sectorAngle = 360 / sectors;
 
-    let current = 0;
-
+    // ---- Utils (from tryit.html) ----
     const norm = a => ((a % 360) + 360) % 360;
     const easeOutQuint = t => 1 - Math.pow(1 - t, 5);
     const easeOutSine = t => Math.sin((t * Math.PI) / 2);
@@ -37,20 +23,27 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
         return d === -180 ? 180 : d;
     };
 
+    // Generate conic gradient
     function generateConicGradient() {
-        const stops = colors.map((color, i) => {
+        let gradient = 'conic-gradient(from -90deg';
+        for (let i = 0; i < sectors; i++) {
             const startDeg = i * sectorAngle;
             const endDeg = (i + 1) * sectorAngle;
-            return `${color} ${startDeg}deg ${endDeg}deg`;
-        }).join(', ');
-        return `conic-gradient(from -90deg, ${stops})`;
+            gradient += `, ${colors[i]} ${startDeg}deg ${endDeg}deg`;
+        }
+        gradient += ')';
+        return gradient;
     }
 
     wheel.style.background = generateConicGradient();
 
+    // ---- State ----
+    let current = 0;
+
+    // ---- Render labels on slices (from tryit.html) ----
     function renderLabels() {
-        const wheelSize = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
-        const radius = wheelSize / 2 - 42;
+        const size = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
+        const radius = size / 2 - 42;
 
         wheel.querySelectorAll('.wheel-label').forEach(el => el.remove());
 
@@ -65,9 +58,10 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
         }
     }
 
+    // ---- Render pins at boundaries (from tryit.html) ----
     function renderPins() {
-        const wheelSize = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
-        const R = wheelSize / 2 + 4;
+        const size = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
+        const R = size / 2 + 4;
         pinsEl.innerHTML = '';
         for (let i = 0; i < sectors; i++) {
             const deg = -90 + i * sectorAngle;
@@ -84,17 +78,16 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     renderPins();
 
     current = 0;
-    const initialTransform = `rotate(${current}deg)`;
-    wheel.style.transform = initialTransform;
-    wheel.style.WebkitTransform = initialTransform;
-    wheel.style.MozTransform = initialTransform;
+    wheel.style.transform = `rotate(${current}deg)`;
 
+    // ---- Pointer tick (from tryit.html) ----
     function bumpPointer() {
         pointer.classList.remove('bump');
         void pointer.offsetWidth;
         pointer.classList.add('bump');
     }
 
+    // ---- rAF-driven spin + micro-snap (from tryit.html) ----
     function spinTo(deltaDeg, durationMs, callback) {
         const start = performance.now();
         const startAbs = current;
@@ -108,10 +101,7 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
             const angle = startAbs + deltaDeg * eased;
 
             current = angle;
-            const rotateTransform = `rotate(${current}deg)`;
-            wheel.style.transform = rotateTransform;
-            wheel.style.WebkitTransform = rotateTransform;
-            wheel.style.MozTransform = rotateTransform;
+            wheel.style.transform = `rotate(${current}deg)`;
 
             const progressed = angle - startAbs;
             const idxTick = Math.floor((baseMod + progressed + 1e-6) / sectorAngle);
@@ -138,28 +128,19 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
                         const tt = Math.min(1, (now2 - snapStart) / dur);
                         const easedSnap = easeOutSine(tt);
                         current = snapFrom + delta * easedSnap;
-                        const snapTransform1 = `rotate(${current}deg)`;
-                        wheel.style.transform = snapTransform1;
-                        wheel.style.WebkitTransform = snapTransform1;
-                        wheel.style.MozTransform = snapTransform1;
+                        wheel.style.transform = `rotate(${current}deg)`;
                         if (tt < 1) {
                             requestAnimationFrame(snapFrame);
                         } else {
                             current = norm(current);
-                            const snapTransform2 = `rotate(${current}deg)`;
-                            wheel.style.transform = snapTransform2;
-                            wheel.style.WebkitTransform = snapTransform2;
-                            wheel.style.MozTransform = snapTransform2;
+                            wheel.style.transform = `rotate(${current}deg)`;
                             callback(labels[i]);
                         }
                     };
                     requestAnimationFrame(snapFrame);
                 } else {
                     current = final;
-                    const finalTransform = `rotate(${current}deg)`;
-                    wheel.style.transform = finalTransform;
-                    wheel.style.WebkitTransform = finalTransform;
-                    wheel.style.MozTransform = finalTransform;
+                    wheel.style.transform = `rotate(${current}deg)`;
                     callback(labels[i]);
                 }
             }
