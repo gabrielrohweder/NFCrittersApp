@@ -60,6 +60,7 @@
             width: 100%;
             transform: rotate(-2deg);
             transition: transform 0.3s ease;
+            container-type: inline-size;
         }
 
         .polaroid-frame:hover {
@@ -77,10 +78,12 @@
             font-family: "Rock Salt", cursive;
             font-weight: 400;
             font-style: normal;
-            font-size: clamp(12px, 3vw, 20px);
+            font-size: clamp(0.55rem, 3cqi, 1.1rem);
             color: #2563eb;
             text-align: center;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .features-section {
