@@ -13,19 +13,16 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
 
     // Force wheel to be circular with inline styles
     const size = window.innerWidth < 480 ? 280 : 320;
+    wheel.style.setProperty('--size', size + 'px');
     wheel.style.width = size + 'px';
     wheel.style.height = size + 'px';
-    wheel.style.minWidth = size + 'px';
-    wheel.style.minHeight = size + 'px';
-    wheel.style.maxWidth = size + 'px';
-    wheel.style.maxHeight = size + 'px';
     wheel.style.borderRadius = '50%';
-    wheel.style.display = 'block';
     wheel.style.position = 'relative';
+    wheel.style.transform = 'none';
+    wheel.style.transition = 'none !important';
+    wheel.style.willChange = 'transform';
     wheel.style.boxShadow = '0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7)';
     wheel.style.zIndex = '1';
-    wheel.style.transformStyle = 'preserve-3d';
-    wheel.style.backfaceVisibility = 'visible';
 
     const sectors = labels.length;
     const sectorAngle = 360 / sectors;
@@ -52,7 +49,8 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     wheel.style.background = generateConicGradient();
 
     function renderLabels() {
-        const radius = size / 2 - 42;
+        const wheelSize = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
+        const radius = wheelSize / 2 - 42;
 
         wheel.querySelectorAll('.wheel-label').forEach(el => el.remove());
 
@@ -68,7 +66,8 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     }
 
     function renderPins() {
-        const R = size / 2 + 4;
+        const wheelSize = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
+        const R = wheelSize / 2 + 4;
         pinsEl.innerHTML = '';
         for (let i = 0; i < sectors; i++) {
             const deg = -90 + i * sectorAngle;
@@ -85,7 +84,10 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     renderPins();
 
     current = 0;
-    wheel.style.transform = `rotate(${current}deg)`;
+    const initialTransform = `rotate(${current}deg)`;
+    wheel.style.transform = initialTransform;
+    wheel.style.WebkitTransform = initialTransform;
+    wheel.style.MozTransform = initialTransform;
 
     function bumpPointer() {
         pointer.classList.remove('bump');
@@ -106,7 +108,10 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
             const angle = startAbs + deltaDeg * eased;
 
             current = angle;
-            wheel.style.transform = `rotate(${current}deg)`;
+            const rotateTransform = `rotate(${current}deg)`;
+            wheel.style.transform = rotateTransform;
+            wheel.style.WebkitTransform = rotateTransform;
+            wheel.style.MozTransform = rotateTransform;
 
             const progressed = angle - startAbs;
             const idxTick = Math.floor((baseMod + progressed + 1e-6) / sectorAngle);
@@ -133,19 +138,28 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
                         const tt = Math.min(1, (now2 - snapStart) / dur);
                         const easedSnap = easeOutSine(tt);
                         current = snapFrom + delta * easedSnap;
-                        wheel.style.transform = `rotate(${current}deg)`;
+                        const snapTransform1 = `rotate(${current}deg)`;
+                        wheel.style.transform = snapTransform1;
+                        wheel.style.WebkitTransform = snapTransform1;
+                        wheel.style.MozTransform = snapTransform1;
                         if (tt < 1) {
                             requestAnimationFrame(snapFrame);
                         } else {
                             current = norm(current);
-                            wheel.style.transform = `rotate(${current}deg)`;
+                            const snapTransform2 = `rotate(${current}deg)`;
+                            wheel.style.transform = snapTransform2;
+                            wheel.style.WebkitTransform = snapTransform2;
+                            wheel.style.MozTransform = snapTransform2;
                             callback(labels[i]);
                         }
                     };
                     requestAnimationFrame(snapFrame);
                 } else {
                     current = final;
-                    wheel.style.transform = `rotate(${current}deg)`;
+                    const finalTransform = `rotate(${current}deg)`;
+                    wheel.style.transform = finalTransform;
+                    wheel.style.WebkitTransform = finalTransform;
+                    wheel.style.MozTransform = finalTransform;
                     callback(labels[i]);
                 }
             }

@@ -9,7 +9,8 @@
 .wheel-wrap[b-9fcorij01j] {
     position: relative;
     display: inline-block;
-    padding: 30px;
+    padding: 40px;
+    overflow: visible;
 }
 
 
