@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mQyZk3FFfYwjQcgRjRNpVNve56IilkXLUkQIbHnR9AM=",
+  "Hash": "5+c5/Gr/YO4d7N4JhQJGthY31SEH0Wj20gPdvQRCyX0=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -8159,6 +8159,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/js/wheel.js",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/wheel.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/wheel.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/sample-data/weather.json",

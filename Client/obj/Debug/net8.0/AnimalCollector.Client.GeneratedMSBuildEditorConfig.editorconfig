@@ -46,18 +46,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/runner/workspace/Client/Pages/Profile.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/runner/workspace/Client/Pages/Scan.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2Nhbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/runner/workspace/Client/Pages/WheelTest.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2hlZWxUZXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/runner/workspace/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/runner/workspace/Client/Components/WheelSpin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9XaGVlbFNwaW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9fcorij01j
+
 [/home/runner/workspace/Client/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-efu1zwmsjz
+
+[/home/runner/workspace/Client/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-kfeboi4yeu

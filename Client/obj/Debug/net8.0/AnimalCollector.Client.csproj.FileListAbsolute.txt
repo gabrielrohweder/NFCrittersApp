@@ -1038,3 +1038,5 @@
 /home/runner/workspace/Client/obj/Debug/net8.0/refint/AnimalCollector.Client.dll
 /home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.pdb
 /home/runner/workspace/Client/obj/Debug/net8.0/ref/AnimalCollector.Client.dll
+/home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Components/WheelSpin.razor.rz.scp.css
+/home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/Profile.razor.rz.scp.css

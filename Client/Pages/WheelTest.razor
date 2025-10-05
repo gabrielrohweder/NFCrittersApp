@@ -1,0 +1,56 @@
+@page "/wheel-test"
+
+<PageTitle>Wheel Test - Critter Wrangler</PageTitle>
+
+<div class="page-container" style="padding: 40px 20px;">
+    <h1 style="text-align: center; font-family: var(--font-display); margin-bottom: 24px;">Wheel Spin Test</h1>
+    <p style="text-align: center; color: var(--muted-foreground); margin-bottom: 40px;">
+        Test the wheel spinner component with different configurations
+    </p>
+
+    <div style="margin-bottom: 60px;">
+        <h2 style="text-align: center; margin-bottom: 24px;">Animal Wheel</h2>
+        <WheelSpin 
+            Labels="@animalLabels" 
+            Colors="@animalColors"
+            OnSpinComplete="@HandleAnimalSpin" />
+    </div>
+
+    <div style="margin-bottom: 60px;">
+        <h2 style="text-align: center; margin-bottom: 24px;">Token Wheel</h2>
+        <WheelSpin 
+            Labels="@tokenLabels" 
+            Colors="@tokenColors"
+            OnSpinComplete="@HandleTokenSpin" />
+    </div>
+
+    @if (!string.IsNullOrEmpty(lastResult))
+    {
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f3f4f6; border-radius: 12px;">
+            <h3 style="margin: 0 0 8px 0;">Last Result:</h3>
+            <p style="font-size: 20px; font-weight: 600; color: var(--primary); margin: 0;">@lastResult</p>
+        </div>
+    }
+</div>
+
+@code {
+    private string[] animalLabels = new[] { "Lion", "Elephant", "Penguin", "Panda", "Owl", "Dolphin" };
+    private string[] animalColors = new[] { "#f8b4b4", "#fde68a", "#bfdbfe", "#fecaca", "#fef3c7", "#c7d2fe" };
+
+    private string[] tokenLabels = new[] { "5 Tokens", "10 Tokens", "25 Tokens", "50 Tokens" };
+    private string[] tokenColors = new[] { "#fbbf24", "#f59e0b", "#d97706", "#b45309" };
+
+    private string lastResult = string.Empty;
+
+    private void HandleAnimalSpin(string result)
+    {
+        lastResult = $"Animal Spin: {result}";
+        Console.WriteLine($"Animal wheel landed on: {result}");
+    }
+
+    private void HandleTokenSpin(string result)
+    {
+        lastResult = $"Token Spin: {result}";
+        Console.WriteLine($"Token wheel landed on: {result}");
+    }
+}
