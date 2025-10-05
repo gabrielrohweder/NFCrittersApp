@@ -987,6 +987,64 @@ body {
 code {
     color: #c02d76;
 }
+
+/* Wheel Spinner - Global styles to ensure circular shape */
+.wheel {
+    --size: 320px;
+    width: var(--size) !important;
+    height: var(--size) !important;
+    min-width: var(--size) !important;
+    min-height: var(--size) !important;
+    max-width: var(--size) !important;
+    max-height: var(--size) !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    position: relative;
+    transform: none;
+    transition: none !important;
+    will-change: transform;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
+    z-index: 1;
+    flex-shrink: 0;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+.wheel-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    transform-origin: 0 0;
+    text-align: center;
+    font: 600 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color: #111827;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 1px 2px rgba(255,255,255,.85);
+    z-index: 2;
+}
+
+.pin {
+    position: absolute;
+    width: 10px !important;
+    height: 10px !important;
+    background: #e5e7eb;
+    border: 2px solid rgba(0,0,0,.15);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.8);
+    transform: translate(-50%, -50%);
+}
+
+.pointer.bump {
+    animation: tick-bump 90ms ease-out;
+}
+
+@media (max-width: 480px) {
+    .wheel {
+        --size: 280px;
+    }
+}
 /* Achievement Celebration Styles */
 .achievement-celebration-overlay {
     position: fixed;
