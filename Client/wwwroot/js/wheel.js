@@ -24,6 +24,8 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     wheel.style.position = 'relative';
     wheel.style.boxShadow = '0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7)';
     wheel.style.zIndex = '1';
+    wheel.style.transformStyle = 'preserve-3d';
+    wheel.style.backfaceVisibility = 'visible';
 
     const sectors = labels.length;
     const sectorAngle = 360 / sectors;

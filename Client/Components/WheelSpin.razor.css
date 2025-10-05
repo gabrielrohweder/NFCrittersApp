@@ -8,6 +8,7 @@
 .wheel-wrap {
     position: relative;
     display: inline-block;
+    padding: 30px;
 }
 
 
