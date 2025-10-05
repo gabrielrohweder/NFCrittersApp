@@ -139,7 +139,7 @@
 }
 
 @media (max-width: 480px) {
-    .wheel[b-9fcorij01j] {
+    [b-9fcorij01j] .wheel {
         --size: 280px;
     }
 }
