@@ -47,7 +47,8 @@ public class AuthController : ControllerBase
             {
                 Id = user.Id,
                 Username = user.Username,
-                Nickname = user.Nickname ?? string.Empty
+                Nickname = user.Nickname ?? string.Empty,
+                Tokens = user.Tokens
             }
         });
     }
@@ -151,7 +152,8 @@ public class AuthController : ControllerBase
             {
                 Id = user.Id,
                 Username = user.Username,
-                Nickname = user.Nickname ?? string.Empty
+                Nickname = user.Nickname ?? string.Empty,
+                Tokens = user.Tokens
             }
         });
     }
@@ -186,7 +188,8 @@ public class AuthController : ControllerBase
         {
             Id = user.Id,
             Username = user.Username,
-            Nickname = user.Nickname ?? string.Empty
+            Nickname = user.Nickname ?? string.Empty,
+            Tokens = user.Tokens
         });
     }
 

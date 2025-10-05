@@ -25,6 +25,11 @@
                     @GetInitials()
                 </div>
                 <h1 data-testid="text-username">@(AuthService.CurrentUser?.Nickname ?? "Explorer")</h1>
+                <div class="token-balance" data-testid="token-balance">
+                    <span class="token-icon">🪙</span>
+                    <span class="token-amount">@(AuthService.CurrentUser?.Tokens ?? 0)</span>
+                    <span class="token-label">Tokens</span>
+                </div>
                 <p class="join-date" data-testid="text-join-date">Critter wrangler since @DateTime.Now.ToString("MMMM yyyy")</p>
             </div>
 
