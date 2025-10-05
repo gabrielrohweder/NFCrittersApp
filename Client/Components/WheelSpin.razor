@@ -1,0 +1,76 @@
+@inject IJSRuntime JS
+
+<div class="spin-wrap">
+    <div class="wheel-wrap">
+        <div class="wheel" @ref="wheelElement" id="@wheelId" aria-live="polite" aria-label="Prize Wheel">
+            <div class="pins" id="@pinsId"></div>
+        </div>
+        <div class="pointer" id="@pointerId" aria-hidden="true">▼</div>
+    </div>
+
+    <button @onclick="SpinWheel" class="spin-btn" type="button" disabled="@isSpinning">
+        @(isSpinning ? "Spinning..." : "Spin the wheel")
+    </button>
+    
+    @if (!string.IsNullOrEmpty(result))
+    {
+        <p class="result" role="status" aria-live="polite">Result: @result</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string[] Labels { get; set; } = Array.Empty<string>();
+
+    [Parameter]
+    public string[] Colors { get; set; } = Array.Empty<string>();
+
+    [Parameter]
+    public EventCallback<string> OnSpinComplete { get; set; }
+
+    private ElementReference wheelElement;
+    private string wheelId = Guid.NewGuid().ToString();
+    private string pinsId = Guid.NewGuid().ToString();
+    private string pointerId = Guid.NewGuid().ToString();
+    private bool isSpinning = false;
+    private string result = string.Empty;
+    private DotNetObjectReference<WheelSpin>? dotNetRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && Labels.Length > 0)
+        {
+            dotNetRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("initWheel", wheelId, pinsId, pointerId, Labels, Colors, dotNetRef);
+        }
+    }
+
+    private async Task SpinWheel()
+    {
+        if (!isSpinning)
+        {
+            isSpinning = true;
+            result = string.Empty;
+            StateHasChanged();
+            await JS.InvokeVoidAsync("spinWheel", wheelId);
+        }
+    }
+
+    [JSInvokable]
+    public async Task HandleSpinComplete(string winningLabel)
+    {
+        result = winningLabel;
+        isSpinning = false;
+        StateHasChanged();
+        
+        if (OnSpinComplete.HasDelegate)
+        {
+            await OnSpinComplete.InvokeAsync(winningLabel);
+        }
+    }
+
+    public void Dispose()
+    {
+        dotNetRef?.Dispose();
+    }
+}
