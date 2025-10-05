@@ -11,12 +11,16 @@
     display: inline-block;
 }
 
-.wheel[b-9fcorij01j] {
+[b-9fcorij01j] .wheel {
     --size: 320px;
-    width: var(--size);
-    height: var(--size);
+    width: var(--size) !important;
+    height: var(--size) !important;
+    min-width: var(--size);
+    min-height: var(--size);
+    max-width: var(--size);
+    max-height: var(--size);
     aspect-ratio: 1 / 1;
-    border-radius: 50%;
+    border-radius: 50% !important;
     position: relative;
     transform: none;
     transition: none !important;
@@ -24,6 +28,7 @@
     box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
     z-index: 1;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .wheel[b-9fcorij01j]::after {
