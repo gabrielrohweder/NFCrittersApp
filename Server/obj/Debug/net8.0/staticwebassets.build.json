@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gUFbsDVujYVuRV5DEPwEctBmb9ccjtUCCQy40QyjUHA=",
+  "Hash": "mQyZk3FFfYwjQcgRjRNpVNve56IilkXLUkQIbHnR9AM=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -8178,6 +8178,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/sample-data/weather.json"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/tryit.html",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "tryit.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/tryit.html"
     }
   ]
 }

@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/tryit.html",
+      "PackagePath": "staticwebassets/tryit.html"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.AnimalCollector.Client.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

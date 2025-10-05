@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yume Zoo Wheel Spin</title>
+  <base href="/" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-display: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      --foreground: #111827;
+      --muted-foreground: #6b7280;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--foreground);
+      background: #fafafa;
+    }
+
+    .home-page {
+      padding: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .spin-wrap {
+      display: grid;
+      place-items: center;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    .wheel-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Wheel: JS owns transform; NO CSS transition */
+    .wheel {
+      --size: 320px; /* Adjust wheel size here */
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background:
+        conic-gradient(from -90deg,
+          #f8b4b4 0deg 60deg,   /* 0 */
+          #fde68a 60deg 120deg, /* 1 */
+          #bfdbfe 120deg 180deg,/* 2 */
+          #fecaca 180deg 240deg,/* 3 */
+          #fef3c7 240deg 300deg,/* 4 */
+          #c7d2fe 300deg 360deg /* 5 */
+        );
+      position: relative;
+      transform: none;
+      transition: none !important; /* prevent CSS from fighting JS */
+      will-change: transform;
+      box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
+      z-index: 1; /* under pointer */
+    }
+
+    /* Optional center dot */
+    .wheel::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 14px;
+      height: 14px;
+      margin: -7px 0 0 -7px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(0,0,0,.08);
+      z-index: 2;
+    }
+
+    /* Labels on slices (children of .wheel) */
+    .wheel-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;            /* text box width per slice */
+      transform-origin: 0 0;   /* rotate around center */
+      text-align: center;
+      font: 600 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color: #111827;
+      pointer-events: none;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(255,255,255,.85);
+      z-index: 2;              /* above gradient, below pointer */
+    }
+
+    /* Pins (children of .wheel so they rotate with it) */
+    .pins {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .pin {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: #e5e7eb;
+      border: 2px solid rgba(0,0,0,.15);
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.8);
+      transform: translate(-50%, -50%);
+    }
+
+    /* Top-dead-center pointer */
+    .pointer {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      line-height: 1;
+      user-select: none;
+      transform-origin: 50% 100%;
+      z-index: 3;              /* ensure visible above wheel */
+      color: #111827;
+    }
+
+    /* Pointer tick animation (subtle) */
+    .pointer.bump { animation: tick-bump 90ms ease-out; }
+    @keyframes tick-bump {
+      0%{transform:translateX(-50%) rotate(0)}
+      35%{transform:translateX(-50%) rotate(-6deg)}
+      70%{transform:translateX(-50%) rotate(2deg)}
+      100%{transform:translateX(-50%) rotate(0)}
+    }
+
+    .spin-btn {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #111827;
+      color: white;
+      box-shadow: 0 6px 14px rgba(0,0,0,.15);
+    }
+    .spin-btn:disabled { opacity: .6; cursor: default; }
+    .spin-btn:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+
+    .result { min-height: 1.2em; font-weight: 600; }
+  </style>
+</head>
+
+<body>
+  <main class="home-page">
+    <h1 style="text-align:center;font-family:var(--font-display);margin:0 0 8px;">Yume Zoo – Spin the Wheel</h1>
+    <p style="text-align:center;color:var(--muted-foreground);margin:0 0 24px;">
+      Tap the button to spin. The slice under the ▼ wins.
+    </p>
+
+    <section class="spin-wrap">
+      <div class="wheel-wrap">
+        <div class="wheel" id="wheel" aria-live="polite" aria-label="Prize Wheel">
+          <div class="pins" id="pins"></div>
+          <!-- labels will be injected by JS -->
+        </div>
+        <div class="pointer" id="pointer" aria-hidden="true">▼</div>
+      </div>
+
+      <button id="spinBtn" class="spin-btn" type="button" aria-controls="wheel">Spin the wheel</button>
+      <p id="result" class="result" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    // ---- DOM refs ----
+    const wheel   = document.getElementById('wheel');
+    const pinsEl  = document.getElementById('pins');      // inside .wheel
+    const pointer = document.getElementById('pointer');
+    const btn     = document.getElementById('spinBtn');
+    const out     = document.getElementById('result');
+
+    // ---- Config ----
+    const sectors = 6;
+    const sectorAngle = 360 / sectors; // 60°
+    // Clockwise from top, same order as the conic-gradient:
+    const labels = ["Elephant", "Dolphin", "Lion", "Owl", "Panda", "Penguin"];
+
+    // ---- State ----
+    let current = 0; // absolute rotation in degrees (monotonic increasing)
+
+    // ---- Utils ----
+    const norm = a => ((a % 360) + 360) % 360;
+    const easeOutQuint = t => 1 - Math.pow(1 - t, 5);
+    const easeOutSine  = t => Math.sin((t * Math.PI) / 2);
+    // shortest signed angular delta in (-180, 180]
+    const shortestDelta = (from, to) => {
+      let d = ((to - from + 540) % 360) - 180;
+      return d === -180 ? 180 : d;
+    };
+
+    // ---- Render labels on slices ----
+    function renderLabels() {
+      const size   = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
+      const radius = size / 2 - 42; // inset for readability
+
+      wheel.querySelectorAll('.wheel-label').forEach(el => el.remove());
+
+      for (let i = 0; i < sectors; i++) {
+        // centers at: -60 + i*60 (because 'from -90deg' and 60° slices)
+        const angle = -60 + i * sectorAngle;
+        const el = document.createElement('div');
+        el.className = 'wheel-label';
+        el.textContent = labels[i];
+        // rotate to center, translate out, keep text upright
+        el.style.transform =
+          `translate(-50%, -50%) rotate(${angle}deg) translate(0, -${radius}px) rotate(${-angle}deg)`;
+        wheel.appendChild(el);
+      }
+    }
+
+    // ---- Render pins at boundaries ----
+    function renderPins() {
+      const size = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
+      const R = size / 2 + 4; // just outside rim
+      pinsEl.innerHTML = '';
+      for (let i = 0; i < sectors; i++) {
+        const deg = -90 + i * sectorAngle; // boundaries from top
+        const pin = document.createElement('div');
+        pin.className = 'pin';
+        pin.style.left = '50%';
+        pin.style.top  = '50%';
+        pin.style.transform = `translate(-50%,-50%) rotate(${deg}deg) translate(0, -${R}px)`;
+        pinsEl.appendChild(pin);
+      }
+    }
+
+    renderLabels();
+    renderPins();
+
+    // ---- Start with a slice CENTER under the pointer ----
+    // Choose slice 1 (its center is at 0°), so rotation 0 starts centered.
+    current = 0;
+    wheel.style.transform = `rotate(${current}deg)`;
+
+    // ---- Pointer tick ----
+    function bumpPointer() {
+      pointer.classList.remove('bump');
+      void pointer.offsetWidth; // restart CSS animation
+      pointer.classList.add('bump');
+    }
+
+    // ---- rAF-driven spin + micro-snap to nearest center ----
+    function spinTo(deltaDeg, durationMs) {
+      const start = performance.now();
+      const startAbs = current;
+
+      // track pin crossings during the main spin
+      const baseMod = norm(startAbs);
+      let lastTick = Math.floor(baseMod / sectorAngle);
+
+      function frame(now) {
+        const t = Math.min(1, (now - start) / durationMs);
+        const eased = easeOutQuint(t);
+        const angle = startAbs + deltaDeg * eased;
+
+        current = angle;
+        wheel.style.transform = `rotate(${current}deg)`; // JS is the only writer
+
+        // tick at every 60° boundary crossed
+        const progressed = angle - startAbs;
+        const idxTick = Math.floor((baseMod + progressed + 1e-6) / sectorAngle);
+        if (idxTick !== lastTick) {
+          lastTick = idxTick;
+          bumpPointer();
+        }
+
+        if (t < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          // ---- Micro-snap: move to nearest slice center (≤30°), no bumps ----
+          const final = norm(current);
+
+          // content angle at the pointer is -final (mod 360)
+          const c = norm(-final);
+          // centers are at -60 + i*60  => i = round((c + 60)/60) % 6
+          const i = Math.round((c + sectorAngle) / sectorAngle) % sectors;
+
+          // rotation that centers slice i at the pointer:
+          // rotation(i) = 60 - i*60  (mod 360)
+          const centerRotation = norm(60 - i * sectorAngle);
+          const delta = shortestDelta(final, centerRotation); // ≤ 30°
+
+          if (Math.abs(delta) > 0.001) {
+            const snapStart = performance.now();
+            const snapFrom  = final;
+            const dur = 180; // quick, subtle snap
+
+            const snapFrame = (now2) => {
+              const tt = Math.min(1, (now2 - snapStart) / dur);
+              const easedSnap = easeOutSine(tt);
+              current = snapFrom + delta * easedSnap;
+              wheel.style.transform = `rotate(${current}deg)`;
+              if (tt < 1) {
+                requestAnimationFrame(snapFrame);
+              } else {
+                current = norm(current);
+                wheel.style.transform = `rotate(${current}deg)`;
+                out.textContent = `Result: ${labels[i]}`;
+                btn.disabled = false;
+              }
+            };
+            requestAnimationFrame(snapFrame);
+          } else {
+            // already centered
+            current = final;
+            wheel.style.transform = `rotate(${current}deg)`;
+            out.textContent = `Result: ${labels[i]}`;
+            btn.disabled = false;
+          }
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    // ---- Button handler ----
+    btn.addEventListener('click', () => {
+      btn.disabled = true;
+      out.textContent = "Spinning…";
+
+      const k = Math.floor(Math.random() * sectors);       // winning slice index (0..5)
+      const fullTurns = 2 + Math.floor(Math.random() * 3); // 2–4 full rotations
+
+      const baseMod = norm(current);
+
+      // rotation that centers slice k at the pointer (see derivation above):
+      const targetMod = norm(60 - k * sectorAngle);
+      const deltaToTarget = norm(targetMod - baseMod); // small forward step [0,360)
+
+      const totalDelta = fullTurns * 360 + deltaToTarget;
+      spinTo(totalDelta, 3400); // ~3.4s smooth decel
+    });
+
+    // If you change --size dynamically, you can re-render:
+    // window.addEventListener('resize', () => { renderLabels(); renderPins(); });
+  })();
+  </script>
+
+
+
+</body>
+</html>

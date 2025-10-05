@@ -22,6 +22,12 @@
             padding: 40px 20px;
         }
 
+        .block-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
         .hero-title {
             font-family: var(--font-display);
             font-size: 48px;
@@ -109,7 +115,6 @@
             transform: translateY(-4px);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
-
         .feature-icon {
             font-size: 48px;
             margin-bottom: 16px;
@@ -128,7 +133,7 @@
             color: var(--muted-foreground);
             line-height: 1.5;
         }
-
+        
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 36px;
@@ -195,7 +200,7 @@
                     </div>
                 </div>
             </main>
-        </div>
+        </div> 
     </div>
 
     <div id="blazor-error-ui">
@@ -203,6 +208,23 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.try-it-card[data-url]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const url = btn.getAttribute('data-url') || '/scan';
+            // Update URL without reloading, then start Blazor so it handles the route
+            history.pushState(null, '', url);
+            loadBlazor();
+          });
+        });
+
+        // If user lands directly on a non-home route, auto-load Blazor
+        if (location.pathname !== '/' && location.pathname !== '/home') {
+          loadBlazor();
+        }
+      });
+    </script>
 
     <script>
         // Lazy-load Blazor only when user navigates away from home page
@@ -233,7 +255,7 @@
             if (link && !blazorLoaded) {
                 const href = link.getAttribute('href');
                 // Only load Blazor if navigating away from home
-                if (href && href !== '/' && href !== '/home') {
+                if (href && href !== '/' && href !== '/home' && href !== 'tryit.html') {
                     e.preventDefault();
                     loadBlazor();
                     // After Blazor loads, it will handle routing to the target URL
@@ -242,6 +264,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>
