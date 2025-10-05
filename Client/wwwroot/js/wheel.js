@@ -1,7 +1,7 @@
 // Wheel spinner - adapted from tryit.html for Blazor integration
 const wheelInstances = {};
 
-window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetRef) {
+window.initWheel = function(wheelId, pinsId, pointerId, labels, colors, dotNetRef) {
     const wheel = document.getElementById(wheelId);
     const pinsEl = document.getElementById(pinsId);
     const pointer = document.getElementById(pointerId);
@@ -48,7 +48,7 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
         wheel.querySelectorAll('.wheel-label').forEach(el => el.remove());
 
         for (let i = 0; i < sectors; i++) {
-            const angle = -sectorAngle/2 + i * sectorAngle;
+            const angle = -sectorAngle + i * sectorAngle;
             const el = document.createElement('div');
             el.className = 'wheel-label';
             el.textContent = labels[i];
@@ -156,7 +156,7 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
             const targetMod = norm(sectorAngle - k * sectorAngle);
             const deltaToTarget = norm(targetMod - baseMod);
             const totalDelta = fullTurns * 360 + deltaToTarget;
-            
+
             spinTo(totalDelta, 3400, (winningLabel) => {
                 dotNetRef.invokeMethodAsync('HandleSpinComplete', winningLabel);
             });
@@ -164,7 +164,7 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     };
 };
 
-window.spinWheel = function (wheelId) {
+window.spinWheel = function(wheelId) {
     if (wheelInstances[wheelId]) {
         wheelInstances[wheelId].spin();
     }

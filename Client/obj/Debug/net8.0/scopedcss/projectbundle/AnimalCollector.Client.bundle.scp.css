@@ -1,15 +1,8 @@
 /* /Components/WheelSpin.razor.rz.scp.css */
-.spin-wrap[b-9fcorij01j] {
-    display: grid;
-    place-items: center;
-    gap: 16px;
-    padding: 2px;
-}
-
 .wheel-wrap[b-9fcorij01j] {
     position: relative;
     display: inline-block;
-    padding: 40px;
+    padding: 0px;
     overflow: visible;
 }
 

@@ -1037,8 +1037,15 @@ code {
     width: 100px;
     transform-origin: 0 0;
     text-align: center;
-    font: 600 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    color: #111827;
+    font: 600 32px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+        
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, rgba(245, 158, 11, 0.8) 100%);
+    background-size: 100% 100%;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
     pointer-events: none;
     user-select: none;
     text-shadow: 0 1px 2px rgba(255,255,255,.85);

@@ -148,12 +148,14 @@
     </div>
 }
 
+
 <AchievementCelebration 
-    IsVisible="@showCelebration" 
-    Achievement="@unlockedAchievement" 
-    OnClose="@OnCelebrationClose" />
+IsVisible="@showCelebration" 
+Achievement="@unlockedAchievement" 
+OnClose="@OnCelebrationClose" />
 
 @code {
+
     [Parameter]
     public string Token { get; set; } = string.Empty;
 
