@@ -11,6 +11,19 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
         return;
     }
 
+    // Force wheel to be circular with inline styles
+    const size = window.innerWidth < 480 ? 280 : 320;
+    wheel.style.width = size + 'px';
+    wheel.style.height = size + 'px';
+    wheel.style.minWidth = size + 'px';
+    wheel.style.minHeight = size + 'px';
+    wheel.style.maxWidth = size + 'px';
+    wheel.style.maxHeight = size + 'px';
+    wheel.style.borderRadius = '50%';
+    wheel.style.overflow = 'hidden';
+    wheel.style.display = 'block';
+    wheel.style.position = 'relative';
+
     const sectors = labels.length;
     const sectorAngle = 360 / sectors;
 
