@@ -20,5 +20,7 @@ public class User
 
     public string? ExternalId { get; set; }
 
+    public int Tokens { get; set; } = 0;
+
     public virtual ICollection<UserAnimal> UserAnimals { get; set; } = new List<UserAnimal>();
 }

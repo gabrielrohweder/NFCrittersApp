@@ -1,4 +1,4 @@
-modules = ["web", "dotnet-7.0", "bash", "dotnet-8.0"]
+modules = ["web", "dotnet-7.0", "bash", "dotnet-8.0", "postgresql-16"]
 run = "cd Server && dotnet run"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
@@ -18,10 +18,6 @@ externalPort = 80
 [[ports]]
 localPort = 5001
 externalPort = 3000
-
-[[ports]]
-localPort = 36543
-externalPort = 3001
 
 [env]
 PORT = "5000"

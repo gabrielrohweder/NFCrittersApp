@@ -29,6 +29,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.Nickname).HasColumnName("nickname");
             entity.Property(e => e.AuthProvider).HasColumnName("auth_provider").HasDefaultValue("local");
             entity.Property(e => e.ExternalId).HasColumnName("external_id");
+            entity.Property(e => e.Tokens).HasColumnName("tokens").HasDefaultValue(0);
             entity.HasIndex(e => e.Username).IsUnique();
             entity.HasIndex(e => new { e.AuthProvider, e.ExternalId });
         });
