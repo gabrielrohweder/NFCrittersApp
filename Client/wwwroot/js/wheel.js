@@ -50,7 +50,6 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     wheel.style.background = generateConicGradient();
 
     function renderLabels() {
-        const size = parseFloat(getComputedStyle(wheel).getPropertyValue('--size')) || 320;
         const radius = size / 2 - 42;
 
         wheel.querySelectorAll('.wheel-label').forEach(el => el.remove());
@@ -67,7 +66,6 @@ window.initWheel = function (wheelId, pinsId, pointerId, labels, colors, dotNetR
     }
 
     function renderPins() {
-        const size = parseFloat(getComputedStyle(wheel).getPropertyValue('--size')) || 320;
         const R = size / 2 + 4;
         pinsEl.innerHTML = '';
         for (let i = 0; i < sectors; i++) {
