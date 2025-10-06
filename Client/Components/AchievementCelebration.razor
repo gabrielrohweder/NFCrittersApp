@@ -9,7 +9,6 @@
             <h2 class="celebration-title">Achievement Unlocked!</h2>
             <h3 class="achievement-name" data-testid="achievement-name">@Achievement.Name</h3>
             <p class="achievement-description" data-testid="achievement-description">@Achievement.Description</p>
-            <WheelSpin Values = "@animalLabels" Colors="@animalColors"/>
             <button class="btn-primary celebration-button" @onclick="Close" data-testid="button-close-celebration">
                 @ButtonText
             </button>
@@ -27,9 +26,7 @@
     [Parameter]
     public EventCallback OnClose { get; set; }
 
-    private Int32[] animalLabels = new Int32[] { 20,50,75,100,120,200 };
-    private string[] animalColors = new String[] { "#f8b4b4", "#fde68a", "#bfdbfe", "#fecaca", "#fef3c7", "#c7d2fe" };
-    private string ButtonText = "Spin the wheel!";
+    private string ButtonText = "Continue Exploring!";
     private async Task Close()
     {
         await OnClose.InvokeAsync();

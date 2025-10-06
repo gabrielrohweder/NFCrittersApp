@@ -102,3 +102,55 @@
     color: var(--primary);
     text-align: center;
 }
+
+/* Make wheel box predictable for JS (safe duplicate if also in app.css) */
+:deep(.wheel) {
+  --size: 320px;                 /* JS reads this */
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  position: relative;
+  transform: none;
+  transition: none !important;   /* JS owns transform */
+  will-change: transform;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
+  z-index: 1;
+}
+
+/* Pins layer already exists (.pins), but pins themselves are JS-created */
+:deep(.pin) {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #e5e7eb;
+  border: 2px solid rgba(0,0,0,.15);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.8);
+  transform: translate(-50%, -50%); /* center after left/top:50% */
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+/* Ensure the wrapper box equals the wheel area so .pins (absolute/inset:0) aligns */
+.wheel-wrap {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  overflow: visible;
+  width: var(--size);
+  height: var(--size);
+}
+
+/* Keep your existing .pins/.tokens/.pointer rules as-is */
+:deep(.wheel-label) {
+  position: absolute; top:50%; left:50%;
+  transform-origin: 0 0;
+  pointer-events: none; user-select: none; z-index: 2;
+}
+
+:deep(.wheel-token) {
+  position: absolute; top:50%; left:50%;
+  transform-origin: 0 0;
+  pointer-events: none; user-select: none; z-index: 2;
+}

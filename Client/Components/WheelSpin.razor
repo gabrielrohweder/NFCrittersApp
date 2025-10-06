@@ -2,8 +2,7 @@
 
 <div class="wheel-wrap">
     <div class="wheel" @ref="wheelElement" id="@wheelId" aria-live="polite" aria-label="Prize Wheel">
-        <div class="pins" id="@pinsId"></div>
-        <div class="tokens">🪙</div>
+        <div class="pins" id="@pinsId"></div>        
     </div>
     <div class="pointer" id="@pointerId" aria-hidden="true">▼</div>
 </div>
@@ -19,7 +18,7 @@
 
 @code {
     [Parameter]
-    public Int32[] Values  { get; set; } = Array.Empty<int>();
+    public Int32[] Values  { get; set; } = Array.Empty<Int32>();
 
     [Parameter]
     public string[] Colors { get; set; } = Array.Empty<string>();
