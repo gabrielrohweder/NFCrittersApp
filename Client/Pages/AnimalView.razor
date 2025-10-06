@@ -279,9 +279,10 @@ OnClose="@OnCelebrationClose" />
     private Achievement? CheckNewAchievement(StatsDTO? before, StatsDTO? after)
     {
         if (before == null || after == null) return null;
-
+        
         foreach (var achievement in Achievements.All)
         {
+            return achievement;
             var wasUnlocked = achievement.Condition(
                 before.CollectedCount,
                 before.LegendaryCount,
