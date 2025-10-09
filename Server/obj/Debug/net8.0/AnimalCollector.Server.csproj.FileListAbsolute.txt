@@ -14,6 +14,7 @@
 /home/runner/workspace/Server/bin/Debug/net8.0/BlazorDebugProxy/Newtonsoft.Json.dll
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.staticwebassets.runtime.json
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server
+/home/runner/workspace/Server/bin/Debug/net8.0/Components/WheelSpin.razor.js
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.deps.json
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.runtimeconfig.json
 /home/runner/workspace/Server/bin/Debug/net8.0/AnimalCollector.Server.dll

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ogJVvqemNLYIJAYMHccyrGoiwEDKTWIgRleFH3U+kBk=",
+  "Hash": "YFzW84sveEM70RtweobVFX9z3MSmvxQAgyEpAVGBHwk=",
   "Source": "AnimalCollector.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -3929,6 +3929,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/obj/Debug/net8.0/webcil/WindowsBase.wasm"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/Components/WheelSpin.razor.js",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Client/",
+      "BasePath": "/",
+      "RelativePath": "Components/WheelSpin.razor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Always",
+      "CopyToPublishDirectory": "Always",
+      "OriginalItemSpec": "Components/WheelSpin.razor.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/00mkd0em2j.gz",
@@ -8166,25 +8185,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
-    },
-    {
-      "Identity": "/home/runner/workspace/Client/wwwroot/js/wheel.js",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "js/wheel.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/js/wheel.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/sample-data/weather.json",

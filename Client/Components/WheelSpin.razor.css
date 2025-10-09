@@ -1,156 +1,108 @@
+/* === Wheel container (square) === */
 .wheel-wrap {
-    position: relative;
-    display: inline-block;
-    padding: 0px;
-    overflow: visible;
-}
-
-
-.wheel::after {
-    content: "";
-    position: absolute;
-    inset: 50% auto auto 50%;
-    width: 14px;
-    height: 14px;
-    margin: -7px 0 0 -7px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, .08);
-    z-index: 2;
-}
-
-
-.pins {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.tokens {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.pointer {
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 22px;
-    line-height: 1;
-    user-select: none;
-    transform-origin: 50% 100%;
-    z-index: 3;
-    color: #111827;
-}
-
-
-@keyframes tick-bump {
-    0% {
-        transform: translateX(-50%) rotate(0);
-    }
-
-    35% {
-        transform: translateX(-50%) rotate(-6deg);
-    }
-
-    70% {
-        transform: translateX(-50%) rotate(2deg);
-    }
-
-    100% {
-        transform: translateX(-50%) rotate(0);
-    }
-}
-
-.spin-btn {
-    appearance: none;
-    -webkit-appearance: none;
-    border: 0;
-    border-radius: 999px;
-    padding: 12px 18px;
-    font-weight: 600;
-    cursor: pointer;
-    background: #7c3aed;
-    color: white;
-    box-shadow: 0 6px 14px rgba(124, 58, 237, 0.3);
-    transition: all 0.2s;
-}
-
-.spin-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.4);
-}
-
-.spin-btn:disabled {
-    opacity: .6;
-    cursor: default;
-}
-
-.spin-btn:focus-visible {
-    outline: 3px solid #60a5fa;
-    outline-offset: 3px;
-}
-
-.result {
-    min-height: 1.2em;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--primary);
-    text-align: center;
-}
-
-/* Make wheel box predictable for JS (safe duplicate if also in app.css) */
-:deep(.wheel) {
-  --size: 320px;                 /* JS reads this */
+  --size: 320px;                 /* change to resize the whole widget */
+  position: relative;
+  display: inline-block;
   width: var(--size);
   height: var(--size);
-  border-radius: 50%;
-  position: relative;
-  transform: none;
-  transition: none !important;   /* JS owns transform */
-  will-change: transform;
-  box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
-  z-index: 1;
+  aspect-ratio: 1 / 1;
+  overflow: visible;             /* we clip at .wheel */
 }
 
-/* Pins layer already exists (.pins), but pins themselves are JS-created */
-:deep(.pin) {
+/* === The wheel disc === */
+.wheel {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  transition: none !important;   /* JS owns transform */
+  overflow: hidden;              /* clip labels/tokens inside the circle */
+  box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
+}
+
+/* Optional center dot */
+.wheel::after {
+  content: "";
   position: absolute;
+  inset: 50% auto auto 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.08);
+  z-index: 2;
+}
+
+/* === Pins layer (same box as wheel) === */
+.pins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;                    /* above wheel background */
+}
+
+/* Pins created in JS */
+::deep(.pin) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);   /* JS adds rotate/translate after this */
   width: 10px;
   height: 10px;
   background: #e5e7eb;
   border: 2px solid rgba(0,0,0,.15);
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.8);
-  transform: translate(-50%, -50%); /* center after left/top:50% */
   pointer-events: none;
   z-index: 2;
 }
 
-
-/* Ensure the wrapper box equals the wheel area so .pins (absolute/inset:0) aligns */
-.wheel-wrap {
-  position: relative;
-  display: inline-block;
-  padding: 0;
-  overflow: visible;
-  width: var(--size);
-  height: var(--size);
+/* === Labels & tokens inserted into .wheel by JS === */
+::deep(.wheel-label),
+::deep(.wheel-token) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
 }
 
-/* Keep your existing .pins/.tokens/.pointer rules as-is */
-:deep(.wheel-label) {
-  position: absolute; top:50%; left:50%;
-  transform-origin: 0 0;
-  pointer-events: none; user-select: none; z-index: 2;
+/* Pretty gradient text for labels (optional) */
+::deep(.wheel-label) {
+  width: 100px;
+  text-align: center;
+  font: 600 32px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(255,255,255,.85);
 }
 
-:deep(.wheel-token) {
-  position: absolute; top:50%; left:50%;
-  transform-origin: 0 0;
-  pointer-events: none; user-select: none; z-index: 2;
+/* === Pointer at top-dead-center === */
+.pointer {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  line-height: 1;
+  user-select: none;
+  transform-origin: 50% 100%;
+  z-index: 3;
+  color: #111827;
+}
+
+.pointer.bump { animation: tick-bump 90ms ease-out; }
+@keyframes tick-bump {
+  0% { transform: translateX(-50%) rotate(0) }
+  35% { transform: translateX(-50%) rotate(-6deg) }
+  70% { transform: translateX(-50%) rotate(2deg) }
+  100% { transform: translateX(-50%) rotate(0) }
 }

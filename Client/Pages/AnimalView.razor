@@ -282,7 +282,6 @@ OnClose="@OnCelebrationClose" />
         
         foreach (var achievement in Achievements.All)
         {
-            return achievement;
             var wasUnlocked = achievement.Condition(
                 before.CollectedCount,
                 before.LegendaryCount,

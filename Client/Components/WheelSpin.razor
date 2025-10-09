@@ -1,64 +1,63 @@
 @inject IJSRuntime JS
 
 <div class="wheel-wrap">
-    <div class="wheel" @ref="wheelElement" id="@wheelId" aria-live="polite" aria-label="Prize Wheel">
-        <div class="pins" id="@pinsId"></div>        
-    </div>
-    <div class="pointer" id="@pointerId" aria-hidden="true">▼</div>
+  <div class="wheel"
+       id="@wheelId"
+       @ref="_root"
+       aria-live="polite"
+       aria-label="Prize Wheel"></div>
+
+  <div class="pins" id="@pinsId"></div>
+  <div class="pointer" id="@pointerId" aria-hidden="true">▼</div>
 </div>
 
 <button @onclick="SpinWheel" class="spin-btn" type="button" disabled="@isSpinning">
-    @(isSpinning ? "Spinning..." : "Spin the wheel")
+  @(isSpinning ? "Spinning..." : "Spin the wheel")
 </button>
 
 @if (!string.IsNullOrEmpty(result))
 {
-   // Code when spinner is completed
+  <div class="result">@result</div>
 }
 
 @code {
-    [Parameter]
-    public Int32[] Values  { get; set; } = Array.Empty<Int32>();
-
-    [Parameter]
-    public string[] Colors { get; set; } = Array.Empty<string>();
-
-    [Parameter]
-    public EventCallback<string> OnSpinComplete { get; set; }
+    [Parameter] public int[] Values  { get; set; } = Array.Empty<int>();
+    [Parameter] public string[] Colors { get; set; } = Array.Empty<string>();
+    [Parameter] public EventCallback<string> OnSpinComplete { get; set; }
 
     private string[] Labels = Array.Empty<string>();
-    private ElementReference wheelElement;
+
     private string wheelId = Guid.NewGuid().ToString();
-    private string pinsId = Guid.NewGuid().ToString();
+    private string pinsId  = Guid.NewGuid().ToString();
     private string pointerId = Guid.NewGuid().ToString();
+
     private bool isSpinning = false;
     private string result = string.Empty;
+
+    private ElementReference _root;
+    private IJSObjectReference? _mod;
     private DotNetObjectReference<WheelSpin>? dotNetRef;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    
-        if (firstRender && Values.Length > 0)
-        {            
-            Labels = new string[Values.Length];
-            for(int i = 0; i < Values.Length; ++i)
-            {
-                Labels[i] = Values[i].ToString();
-            }
-            dotNetRef = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("initWheel", wheelId, pinsId, pointerId, Labels, Colors, dotNetRef);
-        }
+        if (!firstRender || Values.Length == 0) return;
+
+        Labels = Values.Select(v => v.ToString()).ToArray();
+
+        _mod = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/WheelSpin.razor.js");
+        dotNetRef = DotNetObjectReference.Create(this);
+
+        // Call the EXPORTED init (module), not window.*
+        await _mod.InvokeVoidAsync("initWheel", _root, wheelId, pinsId, pointerId, Labels, Colors, dotNetRef);
     }
 
     private async Task SpinWheel()
     {
-        if (!isSpinning)
-        {
-            isSpinning = true;
-            result = string.Empty;
-            StateHasChanged();
-            await JS.InvokeVoidAsync("spinWheel", wheelId);
-        }
+        if (isSpinning || _mod is null) return;
+        isSpinning = true;
+        result = string.Empty;
+        StateHasChanged();
+        await _mod.InvokeVoidAsync("spinWheel", wheelId);
     }
 
     [JSInvokable]
@@ -67,15 +66,22 @@
         result = winningLabel;
         isSpinning = false;
         StateHasChanged();
-        
+
         if (OnSpinComplete.HasDelegate)
-        {
             await OnSpinComplete.InvokeAsync(winningLabel);
-        }
     }
 
     public void Dispose()
     {
         dotNetRef?.Dispose();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_mod is not null)
+        {
+            await _mod.InvokeVoidAsync("dispose");
+            await _mod.DisposeAsync();
+        }
     }
 }

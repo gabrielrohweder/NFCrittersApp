@@ -1,13 +1,3 @@
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.csproj.AssemblyReference.cache
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.GeneratedMSBuildEditorConfig.editorconfig
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.AssemblyInfoInputs.cache
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.AssemblyInfo.cs
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.csproj.CoreCompileInputs.cache
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.MvcApplicationPartsAssemblyInfo.cache
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.sourcelink.json
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.dll
-/home/runner/workspace/Client/obj/Debug/net8.0/refint/AnimalCollector.Client.dll
-/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.pdb
 /home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/AnimalCollector.Client.pdb
 /home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/AnimalCollector.Client.wasm
 /home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/AnimalCollector.Shared.pdb
@@ -420,7 +410,9 @@
 /home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Diagnostics.DiagnosticSource.wasm.gz
 /home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/System.Security.Principal.Windows.wasm.gz
 /home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json.gz
+/home/runner/workspace/Client/bin/Debug/net8.0/wwwroot/Components/WheelSpin.razor.js
 /home/runner/workspace/Client/bin/Debug/net8.0/AnimalCollector.Client.staticwebassets.runtime.json
+/home/runner/workspace/Client/bin/Debug/net8.0/Components/WheelSpin.razor.js
 /home/runner/workspace/Client/bin/Debug/net8.0/AnimalCollector.Client.dll
 /home/runner/workspace/Client/bin/Debug/net8.0/AnimalCollector.Client.pdb
 /home/runner/workspace/Client/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
@@ -625,6 +617,13 @@
 /home/runner/workspace/Client/bin/Debug/net8.0/icudt_no_CJK.dat
 /home/runner/workspace/Client/bin/Debug/net8.0/AnimalCollector.Shared.dll
 /home/runner/workspace/Client/bin/Debug/net8.0/AnimalCollector.Shared.pdb
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.csproj.AssemblyReference.cache
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.AssemblyInfoInputs.cache
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.AssemblyInfo.cs
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.csproj.CoreCompileInputs.cache
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.MvcApplicationPartsAssemblyInfo.cache
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.sourcelink.json
 /home/runner/workspace/Client/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Authorization.wasm
 /home/runner/workspace/Client/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Components.wasm
 /home/runner/workspace/Client/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Components.Forms.wasm
@@ -1039,4 +1038,7 @@
 /home/runner/workspace/Client/obj/Debug/net8.0/compressed/56usl4r00m.gz
 /home/runner/workspace/Client/obj/Debug/net8.0/compressed/zut9de47ww.gz
 /home/runner/workspace/Client/obj/Debug/net8.0/AnimalCo.1222F822.Up2Date
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.dll
+/home/runner/workspace/Client/obj/Debug/net8.0/refint/AnimalCollector.Client.dll
+/home/runner/workspace/Client/obj/Debug/net8.0/AnimalCollector.Client.pdb
 /home/runner/workspace/Client/obj/Debug/net8.0/ref/AnimalCollector.Client.dll
