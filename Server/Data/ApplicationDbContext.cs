@@ -13,6 +13,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Animal> Animals { get; set; }
     public DbSet<UserAnimal> UserAnimals { get; set; }
+    public DbSet<Gift> Gifts { get; set; }
+    public DbSet<UserGift> UserGifts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -68,6 +70,44 @@ public class ApplicationDbContext : DbContext
             entity.HasOne(e => e.Animal)
                 .WithMany(a => a.UserAnimals)
                 .HasForeignKey(e => e.AnimalId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        // Configure Gift entity
+        modelBuilder.Entity<Gift>(entity =>
+        {
+            entity.ToTable("gifts");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name).HasColumnName("name");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.Image).HasColumnName("image");
+            entity.Property(e => e.Boredom).HasColumnName("boredom");
+            entity.Property(e => e.Hunger).HasColumnName("hunger");
+            entity.Property(e => e.Sadness).HasColumnName("sadness");
+            entity.Property(e => e.Health).HasColumnName("health");
+            entity.Property(e => e.Energy).HasColumnName("energy");
+        });
+
+        // Configure UserGift entity
+        modelBuilder.Entity<UserGift>(entity =>
+        {
+            entity.ToTable("user_gifts");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.GiftId).HasColumnName("gift_id");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
+            entity.Property(e => e.PurchasedAt).HasColumnName("purchased_at");
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.UserGifts)
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.Gift)
+                .WithMany(g => g.UserGifts)
+                .HasForeignKey(e => e.GiftId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
 
