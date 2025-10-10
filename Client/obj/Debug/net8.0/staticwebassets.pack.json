@@ -29,6 +29,14 @@
       "PackagePath": "staticwebassets/images/bg-near.png"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/bg-near.webp",
+      "PackagePath": "staticwebassets/images/bg-near.webp"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/bg.webp",
+      "PackagePath": "staticwebassets/images/bg.webp"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/images/dolphin.jpg",
       "PackagePath": "staticwebassets/images/dolphin.jpg"
     },
@@ -63,6 +71,10 @@
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/lion.jpg",
       "PackagePath": "staticwebassets/images/lion.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/mg2.webp",
+      "PackagePath": "staticwebassets/images/mg2.webp"
     },
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/owl.jpg",

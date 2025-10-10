@@ -7,7 +7,7 @@ using AnimalCollector.Shared.Models;
 namespace AnimalCollector.Server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/gifts")]
 public class GiftController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
