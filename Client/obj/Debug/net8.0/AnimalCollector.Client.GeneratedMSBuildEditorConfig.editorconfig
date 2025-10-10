@@ -46,10 +46,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29sbGVjdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/runner/workspace/Client/Pages/GiftShop.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR2lmdFNob3AucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/runner/workspace/Client/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -69,6 +65,10 @@ build_metadata.AdditionalFiles.CssScope =
 [/home/runner/workspace/Client/Components/WheelSpin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9XaGVlbFNwaW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-9fcorij01j
+
+[/home/runner/workspace/Client/Pages/GiftShop.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR2lmdFNob3AucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-u0scjo8lsb
 
 [/home/runner/workspace/Client/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5yYXpvcg==

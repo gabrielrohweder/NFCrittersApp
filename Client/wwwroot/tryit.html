@@ -1,354 +1,298 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yume Zoo Wheel Spin</title>
-  <base href="/" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+                                           <!doctype html>
+                                           <html lang="en">
+                                           <head>
+                                           <meta charset="utf-8" />
+                                           <meta name="viewport" content="width=device-width, initial-scale=1" />
+                                           <title>Sliding Tile Game (Config-only)</title>
+                                           <style>
+                                             :root{
+                                               --size: min(90vmin, 640px);
+                                               --gap: 6px;
+                                               --round: 16px;
+                                               --dur: .18s;
+                                               --ease: cubic-bezier(.2,.8,.2,1);
+                                               --accent: #6366f1;
+                                               --bg: #0b0c10;
+                                               --panel: #111317;
+                                               --ink: #e5e7eb;
+                                               --muted: #9ca3af;
+                                             }
+                                             * { box-sizing: border-box }
+                                             html, body { height: 100%; margin: 0; background: radial-gradient(120% 120% at 80% -10%, #0f172a, #0b0c10 60%); color: var(--ink); font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
+                                             .page { display:grid; gap: 16px; place-items:center; padding: 24px; }
 
-  <style>
-    :root {
-      --font-display: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      --foreground: #111827;
-      --muted-foreground: #6b7280;
-    }
+                                             .title { font-size: clamp(20px, 3.5vw, 28px); font-weight: 800; letter-spacing:.2px; }
+                                             .hud { display:flex; gap: 14px; align-items:center; justify-content:center; color: var(--muted); }
+                                             .hud strong { color: var(--ink) }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color: var(--foreground);
-      background: #fafafa;
-    }
+                                             .board-wrap{ position:relative; }
+                                             .board {
+                                               position: relative; width: var(--size); height: var(--size);
+                                               border-radius: var(--round); overflow: hidden; background: #0d1117;
+                                               border: 1px solid rgba(255,255,255,.08);
+                                               box-shadow: 0 30px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+                                             }
+                                             .tile {
+                                               position: absolute; top: 0; left: 0;
+                                               width: calc((var(--size) - (var(--gap) * (var(--N) - 1))) / var(--N));
+                                               height: calc((var(--size) - (var(--gap) * (var(--N) - 1))) / var(--N));
+                                               border-radius: 10px;
+                                               background-size: calc(var(--N) * 100%) calc(var(--N) * 100%); background-repeat: no-repeat;
+                                               box-shadow: 0 8px 18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+                                               transition: transform var(--dur) var(--ease); will-change: transform;
+                                               user-select: none; -webkit-user-drag: none; display:grid; place-items:end;
+                                               font-weight:800; color: rgba(255,255,255,.9);
+                                               text-shadow: 0 1px 0 rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.55);
+                                               padding: 6px 8px; cursor: pointer;
+                                             }
+                                             .tile.is-empty { visibility:hidden; pointer-events:none; }
+                                             .tile.kb-focus { outline: 3px solid var(--accent) }
 
-    .home-page {
-      padding: 24px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+                                             .toast {
+                                               position: absolute; inset: auto 0 10px 0; margin-inline:auto;
+                                               width:max-content; max-width: 90%;
+                                               background: #111826; color:#e5e7eb; padding:10px 14px; border-radius:12px;
+                                               opacity: 0; transform: translateY(8px);
+                                               transition: all .25s var(--ease);
+                                               border:1px solid rgba(255,255,255,.08);
+                                             }
+                                             .toast.show { opacity:1; transform: translateY(0); }
+                                           </style>
+                                           </head>
+                                           <body>
+                                             <div class="page">
+                                               <div class="title">Sliding Tile Game</div>
 
-    .spin-wrap {
-      display: grid;
-      place-items: center;
-      gap: 16px;
-      padding: 24px;
-    }
+                                               <div class="hud" role="status" aria-live="polite">
+                                                 <div>Moves: <strong id="moves">0</strong></div>
+                                                 <div>Time: <strong id="time">00:00</strong></div>
+                                               </div>
 
-    .wheel-wrap {
-      position: relative;
-      display: inline-block;
-    }
+                                               <div class="board-wrap">
+                                                 <div id="board" class="board" aria-label="Sliding puzzle board"></div>
+                                                 <div id="toast" class="toast" role="alert" aria-live="assertive">You win! 🎉</div>
+                                               </div>
+                                             </div>
 
-    /* Wheel: JS owns transform; NO CSS transition */
-    .wheel {
-      --size: 320px; /* Adjust wheel size here */
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      background:
-        conic-gradient(from -90deg,
-          #f8b4b4 0deg 60deg,   /* 0 */
-          #fde68a 60deg 120deg, /* 1 */
-          #bfdbfe 120deg 180deg,/* 2 */
-          #fecaca 180deg 240deg,/* 3 */
-          #fef3c7 240deg 300deg,/* 4 */
-          #c7d2fe 300deg 360deg /* 5 */
-        );
-      position: relative;
-      transform: none;
-      transition: none !important; /* prevent CSS from fighting JS */
-      will-change: transform;
-      box-shadow: 0 6px 20px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.7);
-      z-index: 1; /* under pointer */
-    }
+                                           <script>
+                                           /* =========================
+                                              CONFIGURE HERE
+                                              ========================= */
+                                           window.PUZZLE_CONFIG = {
+                                             N: 4,                                      // Grid size (2..10)
+                                             image: "/images/yume_book_3d.webp",         // Image URL (same-origin or CORS-enabled)
+                                             shuffleMovesPerTile: 240,                  // Shuffle intensity (multiplied by N)
+                                             showNumbers: true                          // Show tile numbers overlay
+                                           };
+                                           /* ========================= */
 
-    /* Optional center dot */
-    .wheel::after {
-      content: "";
-      position: absolute;
-      inset: 50% auto auto 50%;
-      width: 14px;
-      height: 14px;
-      margin: -7px 0 0 -7px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 0 2px rgba(0,0,0,.08);
-      z-index: 2;
-    }
+                                           (() => {
+                                             const boardEl  = document.getElementById('board');
+                                             const movesEl  = document.getElementById('moves');
+                                             const timeEl   = document.getElementById('time');
+                                             const toastEl  = document.getElementById('toast');
 
-    /* Labels on slices (children of .wheel) */
-    .wheel-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100px;            /* text box width per slice */
-      transform-origin: 0 0;   /* rotate around center */
-      text-align: center;
-      font: 600 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      color: #111827;
-      pointer-events: none;
-      user-select: none;
-      text-shadow: 0 1px 2px rgba(255,255,255,.85);
-      z-index: 2;              /* above gradient, below pointer */
-    }
-    
-    /* Pins (children of .wheel so they rotate with it) */
-    .pins {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .pin {
-      position: absolute;
-      width: 10px; height: 10px;
-      background: #e5e7eb;
-      border: 2px solid rgba(0,0,0,.15);
-      border-radius: 50%;
-      box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.8);
-      transform: translate(-50%, -50%);
-    }
+                                             // Game state
+                                             let N = clamp(int(PUZZLE_CONFIG.N, 4), 2, 10);
+                                             let imgURL = PUZZLE_CONFIG.image || null;
+                                             let tiles = [];           // permutation of [0..N*N-1]
+                                             let emptyIndex = N*N - 1; // position of the empty slot
+                                             let moves = 0;
+                                             let timer = { start: 0, id: null, running: false };
 
-    /* Top-dead-center pointer */
-    .pointer {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 22px;
-      line-height: 1;
-      user-select: none;
-      transform-origin: 50% 100%;
-      z-index: 3;              /* ensure visible above wheel */
-      color: #111827;
-    }
+                                             function int(v, d){ v = parseInt(v,10); return Number.isFinite(v) ? v : d; }
+                                             function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+                                             function setNVars(){ boardEl.style.setProperty('--N', N); }
 
-    /* Pointer tick animation (subtle) */
-    .pointer.bump { animation: tick-bump 90ms ease-out; }
-    @keyframes tick-bump {
-      0%{transform:translateX(-50%) rotate(0)}
-      35%{transform:translateX(-50%) rotate(-6deg)}
-      70%{transform:translateX(-50%) rotate(2deg)}
-      100%{transform:translateX(-50%) rotate(0)}
-    }
+                                             // index <-> (row,col)
+                                             const idxToRC = (idx) => [Math.floor(idx / N), idx % N];
+                                             const rcToIdx = (r,c) => r * N + c;
 
-    .spin-btn {
-      appearance: none;
-      -webkit-appearance: none;
-      border: 0;
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 600;
-      cursor: pointer;
-      background: #111827;
-      color: white;
-      box-shadow: 0 6px 14px rgba(0,0,0,.15);
-    }
-    .spin-btn:disabled { opacity: .6; cursor: default; }
-    .spin-btn:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+                                             // Build solved array: [0..N*N-1]
+                                             function makeSolved(){ return [...Array(N*N).keys()]; }
 
-    .result { min-height: 1.2em; font-weight: 600; }
-  </style>
-</head>
+                                             function isSolved(){ for (let i=0;i<tiles.length;i++) if (tiles[i] !== i) return false; return true; }
 
-<body>
-  <main class="home-page">
-    <h1 style="text-align:center;font-family:var(--font-display);margin:0 0 8px;">Yume Zoo – Spin the Wheel</h1>
-    <p style="text-align:center;color:var(--muted-foreground);margin:0 0 24px;">
-      Tap the button to spin. The slice under the ▼ wins.
-    </p>
+                                             function formatTime(ms){
+                                               const s = Math.floor(ms/1000), m = Math.floor(s/60);
+                                               return `${String(m).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+                                             }
 
-    <section class="spin-wrap">
-      <div class="wheel-wrap">
-        <div class="wheel" id="wheel" aria-live="polite" aria-label="Prize Wheel">
-          <div class="pins" id="pins"></div>
-          <!-- labels will be injected by JS -->
-        </div>
-        <div class="pointer" id="pointer" aria-hidden="true">▼</div>
-      </div>
+                                             function startTimer(){
+                                               stopTimer();
+                                               timer.start = performance.now(); timer.running = true;
+                                               const tick = () => {
+                                                 if (!timer.running) return;
+                                                 timeEl.textContent = formatTime(performance.now() - timer.start);
+                                                 timer.id = requestAnimationFrame(tick);
+                                               };
+                                               tick();
+                                             }
+                                             function stopTimer(){ if (timer.id) cancelAnimationFrame(timer.id); timer.running = false; }
 
-      <button id="spinBtn" class="spin-btn" type="button" aria-controls="wheel">Spin the wheel</button>
-      <p id="result" class="result" role="status" aria-live="polite"></p>
-    </section>
-  </main>
+                                             function showToast(msg="You win! 🎉"){
+                                               toastEl.textContent = msg;
+                                               toastEl.classList.add('show');
+                                               setTimeout(()=>toastEl.classList.remove('show'), 2000);
+                                             }
 
-  <script>
-  (function () {
-    // ---- DOM refs ----
-    const wheel   = document.getElementById('wheel');
-    const pinsEl  = document.getElementById('pins');      // inside .wheel
-    const pointer = document.getElementById('pointer');
-    const btn     = document.getElementById('spinBtn');
-    const out     = document.getElementById('result');
+                                             // DOM
+                                             function buildBoard(){
+                                               boardEl.innerHTML = '';
+                                               setNVars();
 
-    // ---- Config ----
-    const sectors = 6;
-    const sectorAngle = 360 / sectors; // 60°
-    // Clockwise from top, same order as the conic-gradient:
-    const labels = ["Elephant", "Dolphin", "Lion", "Owl", "Panda", "Penguin"];
+                                               const frag = document.createDocumentFragment();
+                                               for (let i=0;i<N*N;i++){
+                                                 const tileEl = document.createElement('div');
+                                                 tileEl.className = 'tile';
+                                                 tileEl.dataset.i = i;     // piece id (home position)
+                                                 tileEl.tabIndex = 0;
 
-    // ---- State ----
-    let current = 0; // absolute rotation in degrees (monotonic increasing)
+                                                 // background slice for this piece
+                                                 const r = Math.floor(i / N), c = i % N;
+                                                 const bgX = (c / (N-1)) * 100, bgY = (r / (N-1)) * 100;
+                                                 tileEl.style.backgroundPosition = `${bgX}% ${bgY}%`;
 
-    // ---- Utils ----
-    const norm = a => ((a % 360) + 360) % 360;
-    const easeOutQuint = t => 1 - Math.pow(1 - t, 5);
-    const easeOutSine  = t => Math.sin((t * Math.PI) / 2);
-    // shortest signed angular delta in (-180, 180]
-    const shortestDelta = (from, to) => {
-      let d = ((to - from + 540) % 360) - 180;
-      return d === -180 ? 180 : d;
-    };
+                                                 frag.appendChild(tileEl);
+                                               }
+                                               boardEl.appendChild(frag);
 
-    // ---- Render labels on slices ----
-    function renderLabels() {
-      const size   = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
-      const radius = size / 2 - 42; // inset for readability
+                                               applyBackgroundImage();
+                                               render(); // solved layout initially
+                                             }
 
-      wheel.querySelectorAll('.wheel-label').forEach(el => el.remove());
+                                             function applyBackgroundImage(){
+                                               const tEls = boardEl.querySelectorAll('.tile');
+                                               for (const el of tEls){
+                                                 el.style.backgroundImage = imgURL ? `url("${imgURL}")` : defaultBackdrop();
+                                               }
+                                             }
 
-      for (let i = 0; i < sectors; i++) {
-        // centers at: -60 + i*60 (because 'from -90deg' and 60° slices)
-        const angle = -60 + i * sectorAngle;
-        const el = document.createElement('div');
-        el.className = 'wheel-label';
-        el.textContent = labels[i];
-        // rotate to center, translate out, keep text upright
-        el.style.transform =
-          `translate(-50%, -50%) rotate(${angle}deg) translate(0, -${radius}px) rotate(${-angle}deg)`;
-        wheel.appendChild(el);
-      }
-    }
+                                             function defaultBackdrop(){
+                                               const svg = encodeURIComponent(
+                                                 `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+                                                    <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+                                                      <stop offset='0' stop-color='#1f2937'/><stop offset='1' stop-color='#0ea5e9'/></linearGradient></defs>
+                                                    <rect width='100' height='100' fill='url(#g)'/>
+                                                    <circle cx='75' cy='28' r='10' fill='rgba(255,255,255,0.18)'/>
+                                                    <circle cx='35' cy='70' r='14' fill='rgba(255,255,255,0.12)'/>
+                                                  </svg>`
+                                               );
+                                               return `url("data:image/svg+xml,${svg}")`;
+                                             }
 
-    // ---- Render pins at boundaries ----
-    function renderPins() {
-      const size = parseFloat(getComputedStyle(wheel).getPropertyValue('--size'));
-      const R = size / 2 + 4; // just outside rim
-      pinsEl.innerHTML = '';
-      for (let i = 0; i < sectors; i++) {
-        const deg = -90 + i * sectorAngle; // boundaries from top
-        const pin = document.createElement('div');
-        pin.className = 'pin';
-        pin.style.left = '50%';
-        pin.style.top  = '50%';
-        pin.style.transform = `translate(-50%,-50%) rotate(${deg}deg) translate(0, -${R}px)`;
-        pinsEl.appendChild(pin);
-      }
-    }
+                                             function render(){
+                                               const tEls = boardEl.querySelectorAll('.tile');
+                                               const gap = parseFloat(getComputedStyle(boardEl).getPropertyValue('--gap'));
+                                               const tileSize = (boardEl.clientWidth - (gap * (N-1))) / N;
 
-    renderLabels();
-    renderPins();
+                                               for (let pos=0; pos<tiles.length; pos++){
+                                                 const pieceId = tiles[pos];
+                                                 const el = tEls[pieceId];
+                                                 const [r,c] = idxToRC(pos);
+                                                 const x = c * (tileSize + gap);
+                                                 const y = r * (tileSize + gap);
+                                                 el.style.transform = `translate(${x}px, ${y}px)`;
 
-    // ---- Start with a slice CENTER under the pointer ----
-    // Choose slice 1 (its center is at 0°), so rotation 0 starts centered.
-    current = 0;
-    wheel.style.transform = `rotate(${current}deg)`;
+                                                 if (pieceId === N*N-1){ // empty piece
+                                                   el.classList.add('is-empty');
+                                                   el.setAttribute('aria-hidden','true');
+                                                   el.textContent = '';
+                                                 } else {
+                                                   el.classList.remove('is-empty');
+                                                   el.removeAttribute('aria-hidden');
+                                                   el.textContent = PUZZLE_CONFIG.showNumbers ? (pieceId + 1) : '';
+                                                 }
+                                                 el.classList.remove('kb-focus');
+                                               }
+                                             }
 
-    // ---- Pointer tick ----
-    function bumpPointer() {
-      pointer.classList.remove('bump');
-      void pointer.offsetWidth; // restart CSS animation
-      pointer.classList.add('bump');
-    }
+                                             function neighborsOf(idx){
+                                               const [r,c] = idxToRC(idx); const list=[];
+                                               if (r>0) list.push(rcToIdx(r-1,c));
+                                               if (r<N-1) list.push(rcToIdx(r+1,c));
+                                               if (c>0) list.push(rcToIdx(r,c-1));
+                                               if (c<N-1) list.push(rcToIdx(r,c+1));
+                                               return list;
+                                             }
 
-    // ---- rAF-driven spin + micro-snap to nearest center ----
-    function spinTo(deltaDeg, durationMs) {
-      const start = performance.now();
-      const startAbs = current;
+                                             function tryMove(tileIndex){
+                                               if (tileIndex === emptyIndex) return false;
+                                               if (!neighborsOf(emptyIndex).includes(tileIndex)) return false;
 
-      // track pin crossings during the main spin
-      const baseMod = norm(startAbs);
-      let lastTick = Math.floor(baseMod / sectorAngle);
+                                               const tmp = tiles[tileIndex];
+                                               tiles[tileIndex] = tiles[emptyIndex];
+                                               tiles[emptyIndex] = tmp;
+                                               emptyIndex = tileIndex;
 
-      function frame(now) {
-        const t = Math.min(1, (now - start) / durationMs);
-        const eased = easeOutQuint(t);
-        const angle = startAbs + deltaDeg * eased;
+                                               moves++; movesEl.textContent = moves;
+                                               render();
 
-        current = angle;
-        wheel.style.transform = `rotate(${current}deg)`; // JS is the only writer
+                                               if (isSolved()){
+                                                 stopTimer();
+                                                 showToast(`Solved in ${moves} moves, ${timeEl.textContent} ⏱️`);
+                                               }
+                                               return true;
+                                             }
 
-        // tick at every 60° boundary crossed
-        const progressed = angle - startAbs;
-        const idxTick = Math.floor((baseMod + progressed + 1e-6) / sectorAngle);
-        if (idxTick !== lastTick) {
-          lastTick = idxTick;
-          bumpPointer();
-        }
+                                             function shuffleBoard(steps = 200 * N){
+                                               let prev = -1;
+                                               for (let k=0;k<steps;k++){
+                                                 const opts = neighborsOf(emptyIndex).filter(i => i !== prev);
+                                                 const pick = opts[Math.floor(Math.random()*opts.length)];
+                                                 // swap without counting a move
+                                                 const tmp = tiles[pick]; tiles[pick] = tiles[emptyIndex]; tiles[emptyIndex] = tmp;
+                                                 prev = emptyIndex; emptyIndex = pick;
+                                               }
+                                               render();
+                                               moves = 0; movesEl.textContent = '0';
+                                               stopTimer(); startTimer();
+                                             }
 
-        if (t < 1) {
-          requestAnimationFrame(frame);
-        } else {
-          // ---- Micro-snap: move to nearest slice center (≤30°), no bumps ----
-          const final = norm(current);
+                                             // Click/touch
+                                             boardEl.addEventListener('click', (e) => {
+                                               const tileEl = e.target.closest('.tile'); if (!tileEl) return;
+                                               const pieceId = parseInt(tileEl.dataset.i,10);
+                                               const pos = tiles.indexOf(pieceId);
+                                               if (tryMove(pos) && !timer.running) startTimer();
+                                             });
 
-          // content angle at the pointer is -final (mod 360)
-          const c = norm(-final);
-          // centers are at -60 + i*60  => i = round((c + 60)/60) % 6
-          const i = Math.round((c + sectorAngle) / sectorAngle) % sectors;
+                                             // Arrow keys move the neighbor into the empty
+                                             document.addEventListener('keydown', (e) => {
+                                               const key = e.key;
+                                               let targetIndex = -1;
+                                               const [er,ec] = idxToRC(emptyIndex);
+                                               if (key === 'ArrowUp'   && er < N-1) targetIndex = rcToIdx(er+1, ec);
+                                               if (key === 'ArrowDown' && er > 0)   targetIndex = rcToIdx(er-1, ec);
+                                               if (key === 'ArrowLeft' && ec < N-1) targetIndex = rcToIdx(er, ec+1);
+                                               if (key === 'ArrowRight'&& ec > 0)   targetIndex = rcToIdx(er, ec-1);
 
-          // rotation that centers slice i at the pointer:
-          // rotation(i) = 60 - i*60  (mod 360)
-          const centerRotation = norm(60 - i * sectorAngle);
-          const delta = shortestDelta(final, centerRotation); // ≤ 30°
+                                               if (targetIndex >= 0){
+                                                 e.preventDefault();
+                                                 tryMove(targetIndex);
+                                                 if (!timer.running) startTimer();
+                                                 const movedPieceId = tiles[targetIndex];
+                                                 const el = boardEl.querySelector(`.tile[data-i="${movedPieceId}"]`);
+                                                 if (el){ el.classList.add('kb-focus'); el.focus({preventScroll:true}); setTimeout(()=>el.classList.remove('kb-focus'), 180); }
+                                               }
+                                             }, {passive:false});
 
-          if (Math.abs(delta) > 0.001) {
-            const snapStart = performance.now();
-            const snapFrom  = final;
-            const dur = 180; // quick, subtle snap
+                                             // Init: build, then auto-shuffle
+                                             (function init(){
+                                               tiles = makeSolved();
+                                               emptyIndex = tiles.length - 1;
+                                               buildBoard();
+                                               // Defer shuffle until first layout to avoid jank
+                                               requestAnimationFrame(() => {
+                                                 const steps = int(PUZZLE_CONFIG.shuffleMovesPerTile, 240) * N;
+                                                 shuffleBoard(steps);
+                                               });
+                                             })();
 
-            const snapFrame = (now2) => {
-              const tt = Math.min(1, (now2 - snapStart) / dur);
-              const easedSnap = easeOutSine(tt);
-              current = snapFrom + delta * easedSnap;
-              wheel.style.transform = `rotate(${current}deg)`;
-              if (tt < 1) {
-                requestAnimationFrame(snapFrame);
-              } else {
-                current = norm(current);
-                wheel.style.transform = `rotate(${current}deg)`;
-                out.textContent = `Result: ${labels[i]}`;
-                btn.disabled = false;
-              }
-            };
-            requestAnimationFrame(snapFrame);
-          } else {
-            // already centered
-            current = final;
-            wheel.style.transform = `rotate(${current}deg)`;
-            out.textContent = `Result: ${labels[i]}`;
-            btn.disabled = false;
-          }
-        }
-      }
-      requestAnimationFrame(frame);
-    }
+                                             // Keep transforms crisp on resize
+                                             window.addEventListener('resize', render);
 
-    // ---- Button handler ----
-    btn.addEventListener('click', () => {
-      btn.disabled = true;
-      out.textContent = "Spinning…";
-
-      const k = Math.floor(Math.random() * sectors);       // winning slice index (0..5)
-      const fullTurns = 2 + Math.floor(Math.random() * 3); // 2–4 full rotations
-
-      const baseMod = norm(current);
-
-      // rotation that centers slice k at the pointer (see derivation above):
-      const targetMod = norm(60 - k * sectorAngle);
-      const deltaToTarget = norm(targetMod - baseMod); // small forward step [0,360)
-
-      const totalDelta = fullTurns * 360 + deltaToTarget;
-      spinTo(totalDelta, 3400); // ~3.4s smooth decel
-    });
-
-    // If you change --size dynamically, you can re-render:
-    // window.addEventListener('resize', () => { renderLabels(); renderPins(); });
-  })();
-  </script>
-
-
-
-</body>
-</html>
+                                           })();
+                                           </script>
+                                           </body>
+                                           </html>

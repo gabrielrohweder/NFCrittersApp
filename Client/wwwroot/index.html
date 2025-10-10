@@ -185,12 +185,22 @@
             background: lightblue;
             min-height: 100vh;
             color: var(--foreground);
+            background-image: url("/images/bg.webp");
+            /* adjust path */
+            background-size: cover;
+            /* fill screen */
+            background-position: center;
+            /* center crop */
+            background-repeat: no-repeat;
+            /* no tiling */
+            background-attachment: fixed;
         }
 
 
         .parallax {
             position: relative;
-            height: var(--parallax-height); /* Needs external var (300dvh) to work */
+            height: var(--parallax-height);
+            /* Needs external var (300dvh) to work */
             z-index: 0;
             pointer-events: none;
         }
@@ -211,7 +221,7 @@
             inset: 0;
             background-size: cover;
             /* FIX: Pin the background to the top to prevent initial gaps */
-            background-position: top center; 
+            background-position: top center;
             background-repeat: no-repeat;
             will-change: transform;
         }
@@ -221,15 +231,22 @@
             /* FIX: Calculate for Scale 1.5 (Image 1536px / Viewport ~1024px) 
                Scale = 1 - Z/P => 1.5 = 1 - Z/1 => Z = -0.5px */
             transform: translateZ(-0.5px) scale(1.5);
-            background-image: url("images/bg-far.png");
+            background-image: url("images/bg.webp");
             opacity: 1.0;
         }
 
+        .layer.mg {
+            /* FIX: Set opacity to 1.0 to ensure the foreground covers the lightblue body background */
+            transform: translateZ(-0.25px) scale(1.5) background-image: url("images/mg2.webp");
+            opacity: 1.0;
+        }
+
+
         .layer.fg {
             /* FIX: Set opacity to 1.0 to ensure the foreground covers the lightblue body background */
-            transform: translateZ(0); 
-            background-image: url("images/bg-near.png");
-            opacity: 1.0; 
+            transform: translateZ(0);
+            background-image: url("images/bg-near.webp");
+            opacity: 1.0;
         }
 
 
@@ -243,19 +260,14 @@
         #app {
             position: relative;
             z-index: 1;
-            margin-top: calc(-1 * var(--parallax-height)); /* Needs external var (300dvh) to work */
+            /* margin-top: calc(-1 * var(--parallax-height)); */
+            /* Needs external var (300dvh) to work */
         }
-
     </style>
 </head>
 
 <body>
-    <section class="parallax" aria-hidden="true">
-        <div class="parallax-stage">
-            <div class="layer bg"></div>
-            <div class="layer fg"></div>
-        </div>
-    </section>
+
 
     <div id="app">
         <div class="app-container">

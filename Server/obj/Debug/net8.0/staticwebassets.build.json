@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ASjQVEYcL2GGjBsqDL9N+xXVM4mj/c7/Mc7W5l/R/08=",
+  "Hash": "b0r6Xm2Pp8miBt6yqPFI8z+JUnZyXnyr2csnqCHTMwI=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -12,10 +12,10 @@
       "Source": "AnimalCollector.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "_PublishingBlazorWasmProject=true;BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true",
-      "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
+      "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;Configuration;Platform;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;TargetFramework"
+      "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;Configuration;Platform;TargetFramework"
     }
   ],
   "DiscoveryPatterns": [
