@@ -11,6 +11,11 @@
     <link href="AnimalCollector.Client.styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
+        /*
+         * ---------------------------------------------
+         * Standard Page Styles (Unchanged but included)
+         * ---------------------------------------------
+         */
         .home-page {
             padding: 20px;
             max-width: 1200px;
@@ -160,10 +165,98 @@
                 grid-template-columns: 1fr;
             }
         }
+
+
+        /*
+         * ---------------------------------------------
+         * PARALLAX FIXES START HERE
+         * ---------------------------------------------
+         */
+
+        /* 1) The scroller is the page; no transforms here */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+            background: lightblue;
+            min-height: 100vh;
+            color: var(--foreground);
+        }
+
+
+        .parallax {
+            position: relative;
+            height: var(--parallax-height); /* Needs external var (300dvh) to work */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+
+        .parallax-stage {
+            position: sticky;
+            top: 0;
+            height: 100dvh;
+            overflow: hidden;
+            perspective: 1px;
+            transform-style: preserve-3d;
+        }
+
+
+        .layer {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            /* FIX: Pin the background to the top to prevent initial gaps */
+            background-position: top center; 
+            background-repeat: no-repeat;
+            will-change: transform;
+        }
+
+
+        .layer.bg {
+            /* FIX: Calculate for Scale 1.5 (Image 1536px / Viewport ~1024px) 
+               Scale = 1 - Z/P => 1.5 = 1 - Z/1 => Z = -0.5px */
+            transform: translateZ(-0.5px) scale(1.5);
+            background-image: url("images/bg-far.png");
+            opacity: 1.0;
+        }
+
+        .layer.fg {
+            /* FIX: Set opacity to 1.0 to ensure the foreground covers the lightblue body background */
+            transform: translateZ(0); 
+            background-image: url("images/bg-near.png");
+            opacity: 1.0; 
+        }
+
+
+        /* Respect motion prefs */
+        @media (prefers-reduced-motion: reduce) {
+            .layer {
+                transform: none !important;
+            }
+        }
+
+        #app {
+            position: relative;
+            z-index: 1;
+            margin-top: calc(-1 * var(--parallax-height)); /* Needs external var (300dvh) to work */
+        }
+
     </style>
 </head>
 
 <body>
+    <section class="parallax" aria-hidden="true">
+        <div class="parallax-stage">
+            <div class="layer bg"></div>
+            <div class="layer fg"></div>
+        </div>
+    </section>
+
     <div id="app">
         <div class="app-container">
             <main class="main-content">
@@ -176,7 +269,7 @@
 
                         <div class="hero-image-container">
                             <div class="polaroid-frame">
-                                <img src="images/yume_book.png" class="hero-image" alt="Explorer" />
+                                <img src="images/yume_book_3d.webp" class="hero-image" alt="Explorer" />
                                 <div class="polaroid-caption">Children's dreams are whispers of the future.</div>
                             </div>
                         </div>
@@ -267,11 +360,12 @@
             const link = e.target.closest('a.nav-item');
             if (link && !blazorLoaded) {
                 const href = link.getAttribute('href');
-                // Load Blazor for any navigation away from the landing page
+                // Only load Blazor if navigating away from home
                 if (href && href !== '/' && href !== 'tryit.html') {
                     e.preventDefault();
-                    history.pushState(null, '', href);
                     loadBlazor();
+                    // After Blazor loads, it will handle routing to the target URL
+                    history.pushState(null, '', href);
                 }
             }
         });

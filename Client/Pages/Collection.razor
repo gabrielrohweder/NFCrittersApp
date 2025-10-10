@@ -2,7 +2,7 @@
 @inject HttpClient Http
 @inject AuthService AuthService
 
-<PageTitle>Collection - Critter Wrangler</PageTitle>
+<PageTitle>Collection -  Yume Zoo</PageTitle>
 
 <div class="page-container">
     @if (!AuthService.IsAuthenticated)
@@ -19,8 +19,8 @@
     else
     {
         <div class="collection-content">
-            <h1>Critter Collection</h1>
-            <p class="subtitle">Your discovered critters</p>
+            <h1 class = "hero-title">Your Yume Zoo Collection</h1>
+            <p class="subtitle">Your collected critters</p>
 
             @if (isLoading)
             {

@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets/css/app.css"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/bg-far.png",
+      "PackagePath": "staticwebassets/images/bg-far.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/bg-near.png",
+      "PackagePath": "staticwebassets/images/bg-near.png"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/images/dolphin.jpg",
       "PackagePath": "staticwebassets/images/dolphin.jpg"
     },
@@ -71,6 +79,10 @@
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/yume_book.png",
       "PackagePath": "staticwebassets/images/yume_book.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/yume_book_3d.webp",
+      "PackagePath": "staticwebassets/images/yume_book_3d.webp"
     },
     {
       "Id": "/home/runner/workspace/Client/wwwroot/index.html",

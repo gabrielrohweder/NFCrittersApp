@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bKBS+tVEpVxV+fBhubsbDPfVq2IBlExnhMv79XxoaE4=",
+  "Hash": "fNtpEivrflT3Ss9r8Ll2Itazj+9l5xC8uMvg4R8PZ4U=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -12,10 +12,10 @@
       "Source": "AnimalCollector.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "_PublishingBlazorWasmProject=true;BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true",
-      "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
+      "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;Configuration;Platform;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;TargetFramework"
+      "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;Configuration;Platform;TargetFramework"
     }
   ],
   "DiscoveryPatterns": [
@@ -7914,6 +7914,44 @@
       "OriginalItemSpec": "wwwroot/css/app.css"
     },
     {
+      "Identity": "/home/runner/workspace/Client/wwwroot/images/bg-far.png",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/bg-far.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/bg-far.png"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/images/bg-near.png",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/bg-near.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/bg-near.png"
+    },
+    {
       "Identity": "/home/runner/workspace/Client/wwwroot/images/dolphin.jpg",
       "SourceId": "AnimalCollector.Client",
       "SourceType": "Project",
@@ -8140,6 +8178,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/penguin.jpg"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/images/yume_book_3d.webp",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/yume_book_3d.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/yume_book_3d.webp"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/images/yume_book.png",
