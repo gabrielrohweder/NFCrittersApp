@@ -267,12 +267,11 @@
             const link = e.target.closest('a.nav-item');
             if (link && !blazorLoaded) {
                 const href = link.getAttribute('href');
-                // Only load Blazor if navigating away from home
+                // Load Blazor for any navigation away from the landing page
                 if (href && href !== '/' && href !== 'tryit.html') {
                     e.preventDefault();
-                    loadBlazor();
-                    // After Blazor loads, it will handle routing to the target URL
                     history.pushState(null, '', href);
+                    loadBlazor();
                 }
             }
         });
