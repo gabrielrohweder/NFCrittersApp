@@ -27,7 +27,7 @@ public class GiftController : ControllerBase
             Id = g.Id.ToString(),
             Name = g.Name,
             Price = g.Price,
-            ImageUrl = g.Image,
+            ImageUrl = g.Image ?? string.Empty,
             Boredom = g.Boredom,
             Hunger = g.Hunger,
             Sadness = g.Sadness,

@@ -13,7 +13,7 @@ public class Gift
     [Required]
     public int Price { get; set; }
 
-    public string Image { get; set; } = string.Empty;
+    public string? Image { get; set; }
 
     public bool Boredom { get; set; } = false;
 
