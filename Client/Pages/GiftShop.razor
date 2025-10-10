@@ -1,30 +1,30 @@
-@page "/store"
+@page "/giftshop"
 @inject HttpClient Http
 @inject AuthService AuthService
 
-<PageTitle>YumeZoo Store</PageTitle>
+<PageTitle>Gift Shop - Yume Zoo</PageTitle>
 
 <div class="page-container">
     @if (!AuthService.IsAuthenticated)
     {
         <div class="auth-required">
             <div class="lock-icon">🔒</div>
-            <h2>Store is Locked</h2>
+            <h2>Gift Shop is Locked</h2>
             <p>Create an account to start building your animal collection!</p>
             <button class="btn-primary" @onclick="ShowAuth" data-testid="button-login-to-view">
-                Login to View Store
+                Login to View Gift Shop
             </button>
         </div>
     }
     else
     {
         <div class="collection-content">
-            <h1 class="hero-title">Welcome to the Yume Zoo Store</h1>
-            <p class="subtitle">Store Items</p>
+            <h1 class="hero-title">Welcome to the Yume Zoo Gift Shop</h1>
+            <p class="subtitle">Available Gifts</p>
 
             @if (isLoading)
             {
-                <div class="loading">Stocking the store...</div>
+                <div class="loading">Stocking the gift shop...</div>
             }
             else if (false)
             {

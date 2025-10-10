@@ -77,10 +77,6 @@
       "PackagePath": "staticwebassets/images/penguin.jpg"
     },
     {
-      "Id": "/home/runner/workspace/Client/wwwroot/images/yume_book.png",
-      "PackagePath": "staticwebassets/images/yume_book.png"
-    },
-    {
       "Id": "/home/runner/workspace/Client/wwwroot/images/yume_book_3d.webp",
       "PackagePath": "staticwebassets/images/yume_book_3d.webp"
     },
