@@ -827,7 +827,6 @@
 /home/runner/workspace/Client/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.AnimalCollector.Client.props
 /home/runner/workspace/Client/obj/Debug/net8.0/staticwebassets.pack.json
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Components/WheelSpin.razor.rz.scp.css
-/home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Layout/MainLayout.razor.rz.scp.css
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/Profile.razor.rz.scp.css
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/bundle/AnimalCollector.Client.styles.css
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/projectbundle/AnimalCollector.Client.bundle.scp.css

@@ -1,13 +1,17 @@
 @inject NavigationManager Navigation
 
 <nav class="bottom-nav">
-    <a href="/" class="nav-item @GetActiveClass("/")" data-testid="nav-scan">
+    <a href="/home" class="nav-item @GetActiveClass("/home")" data-testid="nav-scan">
         <span class="nav-icon">🏠</span>
         <span class="nav-label">Home</span>
     </a>
     <a href="/collection" class="nav-item @GetActiveClass("/collection")" data-testid="nav-collection">
         <span class="nav-icon">📦</span>
         <span class="nav-label">Collection</span>
+    </a>
+    <a href="/store" class="nav-item @GetActiveClass("/store")" data-testid="nav-store">
+        <span class="nav-icon">🪙</span>
+        <span class="nav-label">Store</span>
     </a>
     <a href="/profile" class="nav-item @GetActiveClass("/profile")" data-testid="nav-profile">
         <span class="nav-icon">👤</span>
@@ -20,7 +24,7 @@
     {
         var currentPath = new Uri(Navigation.Uri).AbsolutePath;
         // Normalize /home to / for comparison
-        if (currentPath == "/home") currentPath = "/";
+        // if (currentPath == "/home") currentPath = "/";
         return currentPath == path ? "active" : "";
     }
 

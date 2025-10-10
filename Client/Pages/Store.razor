@@ -1,0 +1,200 @@
+@page "/store"
+@inject HttpClient Http
+@inject AuthService AuthService
+
+<PageTitle>YumeZoo Store</PageTitle>
+
+<div class="page-container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="auth-required">
+            <div class="lock-icon">🔒</div>
+            <h2>Store is Locked</h2>
+            <p>Create an account to start building your animal collection!</p>
+            <button class="btn-primary" @onclick="ShowAuth" data-testid="button-login-to-view">
+                Login to View Store
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="collection-content">
+            <h1 class="hero-title">Welcome to the Yume Zoo Store</h1>
+            <p class="subtitle">Store Items</p>
+
+            @if (isLoading)
+            {
+                <div class="loading">Stocking the store...</div>
+            }
+            else if (false)
+            {
+                <div class="store-items-grid">
+
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <p>You don't have any coins to spend.</p>
+                </div>
+            }
+        </div>
+    }
+
+
+    @if (showAuthModal)
+    {
+        <div class="modal-overlay" @onclick="CloseAuthModal">
+            <div class="modal-content auth-modal" @onclick:stopPropagation="true">
+                <button class="modal-close" @onclick="CloseAuthModal">×</button>
+                <h2>@(isLogin ? "Login" : "Sign Up")</h2>
+                
+                <div class="auth-form">
+                    <input type="email" placeholder="Email Address" @bind="username" data-testid="input-username" />
+                    <input type="password" placeholder="Password" @bind="password" data-testid="input-password" />
+                    @if (!isLogin)
+                    {
+                        <input type="text" placeholder="Nickname (3-20 characters)" @bind="nickname" data-testid="input-nickname" />
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(authError))
+                    {
+                        <p class="error">@authError</p>
+                    }
+
+                    <button class="btn-primary" @onclick="HandleAuth" data-testid="button-submit-auth">
+                        @(isLogin ? "Login" : "Sign Up")
+                    </button>
+                    
+                    @if (availableProviders.Any())
+                    {
+                        <div class="auth-divider">
+                            <span>or continue with</span>
+                        </div>
+
+                        <div class="external-auth-buttons">
+                            @if (availableProviders.Contains("Google"))
+                            {
+                                <a href="/api/auth/external-login?provider=Google&returnUrl=/collection" class="btn-external-auth btn-google" data-testid="button-google-signin">
+                                    <img src="https://www.google.com/favicon.ico" alt="Google" />
+                                    <span>Google</span>
+                                </a>
+                            }
+                            @if (availableProviders.Contains("Apple"))
+                            {
+                                <a href="/api/auth/external-login?provider=Apple&returnUrl=/collection" class="btn-external-auth btn-apple" data-testid="button-apple-signin">
+                                    <img src="https://www.apple.com/favicon.ico" alt="Apple" />
+                                    <span>Apple</span>
+                                </a>
+                            }
+                        </div>
+                    }
+                    
+                    <button class="btn-text" @onclick="ToggleAuthMode">
+                        @(isLogin ? "Need an account? Sign up" : "Have an account? Login")
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+ 
+    private bool isLoading = true;
+    private bool showAnimalModal = false;
+    private bool showAuthModal = false;
+    private bool isLogin = true;
+    private string username = "";
+    private string password = "";
+    private string nickname = "";
+    private string authError = "";
+    private List<string> availableProviders = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.OnAuthStateChanged += OnAuthChanged;        
+        await LoadAvailableProviders();
+    }
+
+    private async Task LoadAvailableProviders()
+    {
+        try
+        {
+            availableProviders = await Http.GetFromJsonAsync<List<string>>("/api/auth/providers") ?? new();
+        }
+        catch
+        {
+            availableProviders = new();
+        }
+    }
+
+
+
+    private async void OnAuthChanged()
+    {
+        StateHasChanged();
+    }
+
+    private void CloseModal()
+    {
+        showAnimalModal = false;
+    }
+
+    private void ShowAuth()
+    {
+        showAuthModal = true;
+    }
+
+    private void CloseAuthModal()
+    {
+        showAuthModal = false;
+        authError = "";
+    }
+
+    private void ToggleAuthMode()
+    {
+        isLogin = !isLogin;
+        authError = "";
+    }
+
+    private async Task HandleAuth()
+    {
+        authError = "";
+        
+        try
+        {
+            AuthResponse result;
+            if (isLogin)
+            {
+                result = await AuthService.LoginAsync(username, password);
+            }
+            else
+            {
+                result = await AuthService.RegisterAsync(username, password, nickname);
+            }
+
+            if (result.Success)
+            {
+                CloseAuthModal();
+                username = "";
+                password = "";
+                nickname = "";
+            }
+            else
+            {
+                authError = result.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+            authError = "An error occurred. Please try again.";
+            Console.WriteLine($"Auth error: {ex.Message}");
+        }
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= OnAuthChanged;
+    }
+}

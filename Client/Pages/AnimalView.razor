@@ -1,5 +1,4 @@
-@page "/animal/{Token}"
-@page "/{Token}"
+@page "/tag/{Token}/{Uid}/{Hash}"
 @using AnimalCollector.Shared.DTOs
 @using AnimalCollector.Client.Models
 @using System.Net.Http.Json
@@ -158,6 +157,12 @@ OnClose="@OnCelebrationClose" />
 
     [Parameter]
     public string Token { get; set; } = string.Empty;
+    
+    [Parameter]
+    public string Uid { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Hash { get; set; } = string.Empty;
 
     private AnimalDTO? animal;
     private bool isLoading = true;

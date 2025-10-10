@@ -107,7 +107,6 @@
   70% { transform: translateX(-50%) rotate(2deg) }
   100% { transform: translateX(-50%) rotate(0) }
 }
-/* /Layout/MainLayout.razor.rz.scp.css */
 /* /Pages/Profile.razor.rz.scp.css */
 .token-balance[b-kfeboi4yeu] {
     display: flex;

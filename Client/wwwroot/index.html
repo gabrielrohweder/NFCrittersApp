@@ -33,7 +33,7 @@
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, rgba(245, 158, 11, 0.8) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--tertiary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -54,7 +54,7 @@
 
         .polaroid-frame {
             background: white;
-            padding: 16px 16px 50px 16px;
+            padding: 16px 16px 30px 16px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             max-width: 600px;
             width: 100%;
@@ -79,12 +79,19 @@
             font-weight: 400;
             font-style: normal;
             font-size: clamp(10px, 2.5vw, 20px);
-            font-size: clamp(0.55rem, 3cqi, 1.1rem);
+            font-size: clamp(0.4rem, 3cqi, 1.1rem);
             color: #2563eb;
             text-align: center;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: normal;
+            display: block;
+            max-inline-size: 40ch;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+
         }
 
         .features-section {
@@ -120,6 +127,7 @@
             transform: translateY(-4px);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
+
         .feature-icon {
             font-size: 48px;
             margin-bottom: 16px;
@@ -138,7 +146,7 @@
             color: var(--muted-foreground);
             line-height: 1.5;
         }
-        
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 36px;
@@ -205,7 +213,7 @@
                     </div>
                 </div>
             </main>
-        </div> 
+        </div>
     </div>
 
     <div id="blazor-error-ui">
@@ -214,21 +222,21 @@
         <a class="dismiss">🗙</a>
     </div>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.try-it-card[data-url]').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const url = btn.getAttribute('data-url') || '/scan';
-            // Update URL without reloading, then start Blazor so it handles the route
-            history.pushState(null, '', url);
-            loadBlazor();
-          });
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.try-it-card[data-url]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const url = btn.getAttribute('data-url') || '/scan';
+                    // Update URL without reloading, then start Blazor so it handles the route
+                    history.pushState(null, '', url);
+                    loadBlazor();
+                });
+            });
 
-        // If user lands directly on a non-home route, auto-load Blazor
-        if (location.pathname !== '/' && location.pathname !== '/home') {
-          loadBlazor();
-        }
-      });
+            // If user lands directly on a non-home route, auto-load Blazor
+            if (location.pathname !== '/' /*&& location.pathname !== '/home'*/) {
+                loadBlazor();
+            }
+        });
     </script>
 
     <script>
@@ -260,7 +268,7 @@
             if (link && !blazorLoaded) {
                 const href = link.getAttribute('href');
                 // Only load Blazor if navigating away from home
-                if (href && href !== '/' && href !== '/home' && href !== 'tryit.html') {
+                if (href && href !== '/' && href !== 'tryit.html') {
                     e.preventDefault();
                     loadBlazor();
                     // After Blazor loads, it will handle routing to the target URL
@@ -269,8 +277,6 @@
             }
         });
     </script>
-
-    <script src="js/wheel.js"></script>
 </body>
 
 </html>
