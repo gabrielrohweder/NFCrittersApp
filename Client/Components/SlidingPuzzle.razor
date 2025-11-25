@@ -18,6 +18,7 @@
     <div id="board" class="board" style="--N:@N;">
       @for (var pos = 0; pos < Tiles.Length; pos++)
       {
+          var currentPos = pos;  // Capture the value for the closure
           var pieceId = Tiles[pos];
           var (r, c) = IdxToRC(pos);
           var (hr, hc) = IdxToRC(pieceId); // home row/col for background slice
@@ -28,7 +29,7 @@
           <div class="tile @(isEmpty ? "is-empty" : null)"
                role="button"
                style="--r:@r; --c:@c; background-position:@bgX% @bgY%; background-image:@BackgroundCss;"
-               @onclick="() => OnTileClick(pos)">
+               @onclick="() => OnTileClick(currentPos)">
               @if (ShowNumbers && !isEmpty)
               {
                   @((pieceId + 1).ToString())
