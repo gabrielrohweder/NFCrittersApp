@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/runner/workspace/Client/Pages/Puzzle.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHV6emxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/runner/workspace/Client/Pages/Scan.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2Nhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -61,6 +65,10 @@ build_metadata.AdditionalFiles.CssScope =
 [/home/runner/workspace/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[/home/runner/workspace/Client/Components/SlidingPuzzle.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TbGlkaW5nUHV6emxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-zmotzyqc2s
 
 [/home/runner/workspace/Client/Components/WheelSpin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9XaGVlbFNwaW4ucmF6b3I=

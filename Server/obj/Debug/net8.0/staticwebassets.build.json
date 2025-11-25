@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b0r6Xm2Pp8miBt6yqPFI8z+JUnZyXnyr2csnqCHTMwI=",
+  "Hash": "yVS5Z5gyTPqGWa6rlYPLTZ3MR27AY7BaXmEm0aEd7v8=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -12,10 +12,10 @@
       "Source": "AnimalCollector.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "_PublishingBlazorWasmProject=true;BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true",
-      "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;Configuration;Platform;TargetFramework",
+      "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;Configuration;Platform;TargetFramework"
+      "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;TargetFramework"
     }
   ],
   "DiscoveryPatterns": [
@@ -8254,6 +8254,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/yume_book_3d.webp"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/images/yume_book.webp",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/yume_book.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/yume_book.webp"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/index.html",

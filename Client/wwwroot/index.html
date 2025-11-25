@@ -42,7 +42,19 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+
         }
+
+        .hero-title:focus {
+            /* Example 1: Use a subtle box-shadow instead of the default outline */
+            outline: none;
+            /* Remove the default outline */
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0);
+            /* Use primary color with transparency */
+            border-radius: 4px;
+            /* Optional: adds rounded corners */
+        }
+
 
         .hero-subtitle {
             font-size: 20px;
@@ -173,7 +185,7 @@
          * ---------------------------------------------
          */
 
-        /* 1) The scroller is the page; no transforms here */
+        /* 
         html,
         body {
             height: 100%;
@@ -185,17 +197,8 @@
             background: lightblue;
             min-height: 100vh;
             color: var(--foreground);
-            background-image: url("/images/bg.webp");
-            /* adjust path */
-            background-size: cover;
-            /* fill screen */
-            background-position: center;
-            /* center crop */
-            background-repeat: no-repeat;
-            /* no tiling */
-            background-attachment: fixed;
         }
-
+         */
 
         .parallax {
             position: relative;
@@ -263,6 +266,16 @@
             /* margin-top: calc(-1 * var(--parallax-height)); */
             /* Needs external var (300dvh) to work */
         }
+
+        .background-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            /* Set the image transparency here */
+            z-index: -1;
+        }
     </style>
 </head>
 
@@ -271,6 +284,7 @@
 
     <div id="app">
         <div class="app-container">
+            <img src="/images/bg.webp" class="background-img" />"
             <main class="main-content">
                 <div class="page-container home-page">
                     <div class="home-hero">
@@ -281,7 +295,7 @@
 
                         <div class="hero-image-container">
                             <div class="polaroid-frame">
-                                <img src="images/yume_book_3d.webp" class="hero-image" alt="Explorer" />
+                                <img src="images/yume_book.webp" class="hero-image" alt="Explorer" />
                                 <div class="polaroid-caption">Children's dreams are whispers of the future.</div>
                             </div>
                         </div>

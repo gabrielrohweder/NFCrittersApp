@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Puv9eCOyAJsjexEl2ET0SDPPnqUT2dHuMTBDRSN7o9I=",
+  "Hash": "4JJWDI2c8k36M1B2LdMe11cM2AqO1x2vsAUBgH/opqI=",
   "Source": "AnimalCollector.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -8261,6 +8261,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/yume_book_3d.webp"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/images/yume_book.webp",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/yume_book.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/yume_book.webp"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/index.html",

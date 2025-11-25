@@ -8,6 +8,8 @@
     --parallax-height: 300dvh;
     --page-min-height: 250vh;
     --background: #FFDBB6;
+    --background2: #f2bfee;
+    --background3: #65bcd2;
     --foreground: #1f2937;
     --muted: #f3f4f6;
     --muted-foreground: #6b7280;
@@ -26,18 +28,18 @@
     padding: 0;
 }
 
-/*
+
 html,
 body {
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    background: linear-gradient(135deg, var(--background) 0%, var(--muted) 50%, rgba(245, 158, 11, 0.1) 100%);
+    background: linear-gradient(135deg, var(--background) 0%, var(--background2) 50%, var(--background3) 100%);
     min-height: 100vh;
     color: var(--foreground);
 }
-*/
+
 
 .app-container {
     min-height: 100vh;

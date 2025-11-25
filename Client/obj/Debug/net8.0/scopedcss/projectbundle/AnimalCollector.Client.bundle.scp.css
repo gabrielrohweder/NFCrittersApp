@@ -1,3 +1,75 @@
+/* /Components/SlidingPuzzle.razor.rz.scp.css */
+/* Component-scoped styles (work with Blazor CSS isolation) */
+:host[b-zmotzyqc2s] {
+  display: grid;
+  gap: 16px;
+  place-items: center;
+  padding: 24px;
+  color: #e5e7eb;
+}
+
+/* Put all “vars” on the board so they exist in the component scope */
+.board[b-zmotzyqc2s] {
+  --size: min(90vmin, 640px);
+  --gap: 6px;
+  --round: 16px;
+  --dur: .18s;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --accent: #6366f1;
+
+  /* derived */
+  --tile: calc((var(--size) - (var(--gap) * (var(--N) - 1))) / var(--N));
+
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--round);
+  overflow: hidden;
+  background: #0d1117;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 30px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.title[b-zmotzyqc2s] { font-size: clamp(20px, 3.5vw, 28px); font-weight: 800; }
+.hud[b-zmotzyqc2s] { display: flex; gap: 14px; color: #9ca3af; }
+.hud strong[b-zmotzyqc2s] { color: #e5e7eb; }
+
+.board-wrap[b-zmotzyqc2s] { position: relative; }
+
+.tile[b-zmotzyqc2s] {
+  position: absolute; top: 0; left: 0;
+  width: var(--tile);
+  height: var(--tile);
+  border-radius: 10px;
+  background-size: calc(var(--N) * 100%) calc(var(--N) * 100%);
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+  transition: transform var(--dur) var(--ease);
+  will-change: transform;
+  user-select: none; -webkit-user-drag: none;
+  display: grid; place-items: end;
+  font-weight: 800; color: rgba(255,255,255,.9);
+  text-shadow: 0 1px 0 rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.55);
+  padding: 6px 8px; cursor: pointer;
+
+  /* position using r/c set inline by the component */
+  transform: translate(
+    calc(var(--c) * (var(--tile) + var(--gap))),
+    calc(var(--r) * (var(--tile) + var(--gap)))
+  );
+}
+
+.tile.is-empty[b-zmotzyqc2s] { visibility: hidden; pointer-events: none; }
+
+.toast[b-zmotzyqc2s] {
+  position: absolute; inset: auto 0 10px 0; margin-inline:auto;
+  width: max-content; max-width: 90%;
+  background: #111826; color:#e5e7eb; padding:10px 14px; border-radius:12px;
+  opacity: 0; transform: translateY(8px);
+  transition: all .25s var(--ease);
+  border:1px solid rgba(255,255,255,.08); text-align:center;
+}
+.toast.show[b-zmotzyqc2s] { opacity: 1; transform: translateY(0); }
 /* /Components/WheelSpin.razor.rz.scp.css */
 /* === Wheel container (square) === */
 .wheel-wrap[b-9fcorij01j] {
@@ -107,6 +179,149 @@
   70% { transform: translateX(-50%) rotate(2deg) }
   100% { transform: translateX(-50%) rotate(0) }
 }
+/* /Pages/GiftShop.razor.rz.scp.css */
+<style>
+.token-balance[b-u0scjo8lsb] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+.token-icon[b-u0scjo8lsb] {
+    font-size: 24px;
+}
+
+.token-amount[b-u0scjo8lsb] {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.store-items-grid[b-u0scjo8lsb] {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));*/
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+    padding: 0 16px;
+}
+
+.gift-card[b-u0scjo8lsb] {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gift-card:hover[b-u0scjo8lsb] {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.gift-image-container[b-u0scjo8lsb] {
+    width: 100%;
+    height: 200px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-image[b-u0scjo8lsb] {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gift-placeholder[b-u0scjo8lsb] {
+    font-size: 64px;
+}
+
+.gift-info[b-u0scjo8lsb] {
+    padding: 16px;
+}
+
+.gift-name[b-u0scjo8lsb] {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--foreground);
+}
+
+.gift-price[b-u0scjo8lsb] {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f59e0b;
+    margin-bottom: 12px;
+}
+
+.btn-purchase[b-u0scjo8lsb] {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-purchase:hover:not(:disabled)[b-u0scjo8lsb] {
+    background: #6d28d9;
+    transform: translateY(-1px);
+}
+
+.btn-purchase.btn-disabled[b-u0scjo8lsb] {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.success-modal[b-u0scjo8lsb] {
+    text-align: center;
+    padding: 32px;
+}
+
+.success-icon[b-u0scjo8lsb] {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.error-modal[b-u0scjo8lsb] {
+    text-align: center;
+    padding: 32px;
+}
+
+.error-icon[b-u0scjo8lsb] {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.remaining-tokens[b-u0scjo8lsb] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f59e0b;
+    margin: 16px 0;
+}
+
+@@media (max-width: 768px) {
+    .store-items-grid[b-u0scjo8lsb] {
+        grid-template-columns: 1fr;
+    }
+}
+</style[b-u0scjo8lsb]>
 /* /Pages/Profile.razor.rz.scp.css */
 .token-balance[b-kfeboi4yeu] {
     display: flex;
@@ -140,4 +355,15 @@
     font-weight: 600;
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+body[b-kfeboi4yeu] {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    background: lightblue;
+    min-height: 100vh;
+    color: var(--foreground);
 }
