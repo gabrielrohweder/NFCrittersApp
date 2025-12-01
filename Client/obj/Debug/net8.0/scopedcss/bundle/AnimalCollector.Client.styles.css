@@ -180,8 +180,7 @@
   100% { transform: translateX(-50%) rotate(0) }
 }
 /* /Pages/GiftShop.razor.rz.scp.css */
-<style>
-.token-balance[b-u0scjo8lsb] {
+<style>.token-balance[b-u0scjo8lsb] {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,7 +227,6 @@
 
 .gift-image-container[b-u0scjo8lsb] {
     width: 100%;
-    height: 200px;
     background: #f3f4f6;
     display: flex;
     align-items: center;
@@ -236,7 +234,7 @@
 }
 
 .gift-image[b-u0scjo8lsb] {
-    width: 100%;
+    width: auto;
     height: 100%;
     object-fit: cover;
 }
@@ -250,6 +248,7 @@
 }
 
 .gift-name[b-u0scjo8lsb] {
+    justify-self: center;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 12px;
@@ -321,6 +320,7 @@
         grid-template-columns: 1fr;
     }
 }
+
 </style[b-u0scjo8lsb]>
 /* /Pages/Profile.razor.rz.scp.css */
 .token-balance[b-kfeboi4yeu] {
