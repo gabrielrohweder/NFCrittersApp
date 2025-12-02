@@ -121,7 +121,7 @@
                         <div class="achievement @(collectedCount >= 25 ? "earned" : "")" data-testid="achievement-2">
                             <span class="achievement-icon">⭐</span>
                             <div class="achievement-info">
-                                <h3>Hunter</h3>
+                                <h3>Explorer</h3>
                                 <p>Collected 25 animals</p>
                             </div>
                             @if (collectedCount >= 25)
@@ -132,7 +132,7 @@
                         <div class="achievement @(legendaryCount > 0 ? "earned" : "")" data-testid="achievement-3">
                             <span class="achievement-icon">⭐</span>
                             <div class="achievement-info">
-                                <h3>Legendary Hunter</h3>
+                                <h3>Legendary Explorer</h3>
                                 <p>Found a legendary animal</p>
                             </div>
                             @if (legendaryCount > 0)
@@ -154,7 +154,7 @@
                         <div class="achievement @(completionRate == 100 ? "earned" : "")" data-testid="achievement-4">
                             <span class="achievement-icon">⭐</span>
                             <div class="achievement-info">
-                                <h3>Explorer</h3>
+                                <h3>Adventurer</h3>
                                 <p>Discovered all species</p>
                             </div>
                             @if (completionRate == 100)
@@ -398,7 +398,7 @@
     private async Task HandleLogout()
     {
         await AuthService.LogoutAsync();
-        Navigation.NavigateTo("/");
+        Navigation.NavigateTo("/home");
     }
 
     public void Dispose()
