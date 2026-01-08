@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4JJWDI2c8k36M1B2LdMe11cM2AqO1x2vsAUBgH/opqI=",
+  "Hash": "4pgFMa38kM8VrTfgiZaMWhkXqBlLopWyfqaTDwSm8/s=",
   "Source": "AnimalCollector.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -3929,25 +3929,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/runner/workspace/Client/obj/Debug/net8.0/webcil/WindowsBase.wasm"
-    },
-    {
-      "Identity": "/home/runner/workspace/Client/Components/WheelSpin.razor.js",
-      "SourceId": "AnimalCollector.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/runner/workspace/Client/",
-      "BasePath": "/",
-      "RelativePath": "Components/WheelSpin.razor.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Always",
-      "CopyToPublishDirectory": "Always",
-      "OriginalItemSpec": "Components/WheelSpin.razor.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/obj/Debug/net8.0/compressed/00mkd0em2j.gz",
@@ -8299,6 +8280,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/js/WheelSpin.js",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/WheelSpin.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/WheelSpin.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/sample-data/weather.json",
