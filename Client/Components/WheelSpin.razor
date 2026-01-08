@@ -44,7 +44,7 @@
 
         Labels = Values.Select(v => v.ToString()).ToArray();
 
-        _mod = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/WheelSpin.razor.js");
+        _mod = await JS.InvokeAsync<IJSObjectReference>("import", "./js/WheelSpin.js");
         dotNetRef = DotNetObjectReference.Create(this);
 
         // Call the EXPORTED init (module), not window.*
