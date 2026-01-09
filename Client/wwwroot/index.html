@@ -273,8 +273,126 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.4;
-            /* Set the image transparency here */
             z-index: -1;
+        }
+
+        .login-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            margin-top: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 150, 200, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 150, 200, 0.4);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .login-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .login-modal h2 {
+            margin: 0 0 24px 0;
+            color: var(--foreground);
+            text-align: center;
+        }
+
+        .login-modal .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .login-modal input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .login-modal input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .login-modal .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .login-modal .toggle-mode {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-modal .error-msg {
+            color: #ef4444;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .nickname-field {
+            display: none;
+        }
+
+        .nickname-field.show {
+            display: block;
         }
     </style>
 </head>
@@ -299,6 +417,8 @@
                                 <div class="polaroid-caption">Children's dreams are whispers of the future.</div>
                             </div>
                         </div>
+
+                        <button class="login-btn" onclick="openLoginModal()">Start Your Adventure</button>
                     </div>
 
                     <div class="features-section">
@@ -332,6 +452,21 @@
                     </div>
                 </div>
             </main>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <button class="close-btn" onclick="closeLoginModal()">&times;</button>
+            <h2 id="authTitle">Login</h2>
+            <div class="error-msg" id="authError" style="display: none;"></div>
+            <input type="email" id="authEmail" placeholder="Email Address" />
+            <input type="password" id="authPassword" placeholder="Password" />
+            <div class="nickname-field" id="nicknameField">
+                <input type="text" id="authNickname" placeholder="Nickname (3-20 characters)" />
+            </div>
+            <button class="submit-btn" onclick="handleAuth()">Login</button>
+            <button class="toggle-mode" onclick="toggleAuthMode()">Need an account? Sign up</button>
         </div>
     </div>
 
@@ -393,6 +528,78 @@
                     // After Blazor loads, it will handle routing to the target URL
                     history.pushState(null, '', href);
                 }
+            }
+        });
+    </script>
+
+    <script>
+        let isLoginMode = true;
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('authError').style.display = 'none';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('authEmail').value = '';
+            document.getElementById('authPassword').value = '';
+            document.getElementById('authNickname').value = '';
+            document.getElementById('authError').style.display = 'none';
+        }
+
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('authTitle').textContent = isLoginMode ? 'Login' : 'Sign Up';
+            document.querySelector('.submit-btn').textContent = isLoginMode ? 'Login' : 'Sign Up';
+            document.querySelector('.toggle-mode').textContent = isLoginMode ? 'Need an account? Sign up' : 'Have an account? Login';
+            document.getElementById('nicknameField').classList.toggle('show', !isLoginMode);
+            document.getElementById('authError').style.display = 'none';
+        }
+
+        async function handleAuth() {
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+            const nickname = document.getElementById('authNickname').value;
+            const errorEl = document.getElementById('authError');
+
+            if (!email || !password) {
+                errorEl.textContent = 'Please fill in all fields';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            try {
+                const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/register';
+                const body = isLoginMode 
+                    ? { username: email, password } 
+                    : { username: email, password, nickname };
+
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    closeLoginModal();
+                    window.location.href = '/home';
+                } else {
+                    errorEl.textContent = result.message || 'Authentication failed';
+                    errorEl.style.display = 'block';
+                }
+            } catch (error) {
+                errorEl.textContent = 'An error occurred. Please try again.';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('loginModal').addEventListener('click', (e) => {
+            if (e.target.id === 'loginModal') {
+                closeLoginModal();
             }
         });
     </script>

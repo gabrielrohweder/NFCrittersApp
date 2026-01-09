@@ -1041,3 +1041,4 @@
 /home/runner/workspace/Client/bin/Debug/net8.0/AnimalCollector.Shared.pdb
 /home/runner/workspace/Client/obj/Debug/net8.0/AnimalCo.1222F822.Up2Date
 /home/runner/workspace/Client/obj/Debug/net8.0/ref/AnimalCollector.Client.dll
+/home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/Home.razor.rz.scp.css
