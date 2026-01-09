@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/css/app.css"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/balloon.png",
+      "PackagePath": "staticwebassets/images/balloon.png"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/images/bg-far.png",
       "PackagePath": "staticwebassets/images/bg-far.png"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/bg.webp",
       "PackagePath": "staticwebassets/images/bg.webp"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/book.png",
+      "PackagePath": "staticwebassets/images/book.png"
     },
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/dolphin.jpg",
@@ -83,6 +91,14 @@
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/penguin.jpg",
       "PackagePath": "staticwebassets/images/penguin.jpg"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/steak.png",
+      "PackagePath": "staticwebassets/images/steak.png"
+    },
+    {
+      "Id": "/home/runner/workspace/Client/wwwroot/images/teddy_bear.png",
+      "PackagePath": "staticwebassets/images/teddy_bear.png"
     },
     {
       "Id": "/home/runner/workspace/Client/wwwroot/images/yume_book.webp",

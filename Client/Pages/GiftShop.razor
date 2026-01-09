@@ -32,39 +32,35 @@
             }
             else if (gifts.Count > 0)
             {
-                <div class="store-items-grid">
+                <div class="gifts-grid">
                     @foreach (var gift in gifts)
                     {
                         <div class="gift-card">
-                            <div class="gift-image-container">
-                                @if (!string.IsNullOrEmpty(gift.ImageUrl))
-                                {
-                                    <img src="@gift.ImageUrl" alt="@gift.Name" class="gift-image" />
-                                }
-                                else
-                                {
-                                    <div class="gift-placeholder">🎁</div>
-                                }
+                            @if (!string.IsNullOrEmpty(gift.ImageUrl))
+                            {
+                                <img src="@gift.ImageUrl" alt="@gift.Name" class="gift-card-image" />
+                            }
+                            else
+                            {
+                                <div class="gift-placeholder">🎁</div>
+                            }
+                            <h3>@gift.Name</h3>
+                            <div class="gift-price">
+                                <span class="token-icon">🪙</span>
+                                <span>@gift.Price</span>
                             </div>
-                            <div class="gift-info">
-                                <h3 class="gift-name">@gift.Name</h3>
-                                <div class="gift-price">
-                                    <span class="token-icon">🪙</span>
-                                    <span>@gift.Price</span>
-                                </div>
-                                @if (AuthService.CurrentUser?.Tokens >= gift.Price)
-                                {
-                                    <button class="btn-purchase" @onclick="() => PurchaseGift(gift)">
-                                        Purchase
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button class="btn-purchase btn-disabled" disabled>
-                                        Not Enough Tokens
-                                    </button>
-                                }
-                            </div>
+                            @if (AuthService.CurrentUser?.Tokens >= gift.Price)
+                            {
+                                <button class="btn-purchase" @onclick="() => PurchaseGift(gift)">
+                                    Purchase
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn-purchase btn-disabled" disabled>
+                                    Not Enough Tokens
+                                </button>
+                            }
                         </div>
                     }
                 </div>
