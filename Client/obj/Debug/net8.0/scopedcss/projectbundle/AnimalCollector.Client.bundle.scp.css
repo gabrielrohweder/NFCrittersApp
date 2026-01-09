@@ -205,19 +205,19 @@
 
 .gifts-grid[b-u0scjo8lsb] {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
-    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
 }
 
 .gift-card[b-u0scjo8lsb] {
     background: var(--card);
     border: 2px solid var(--card-border);
     border-radius: 12px;
-    padding: 8px;
+    padding: 16px;
     text-align: center;
-    transition: all 0.2s;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 .gift-card:hover[b-u0scjo8lsb] {
@@ -227,23 +227,24 @@
 
 .gift-card-image[b-u0scjo8lsb] {
     width: 100%;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 6px;
-    margin-bottom: 4px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 6px;
 }
 
 .gift-placeholder[b-u0scjo8lsb] {
-    font-size: 32px;
-    height: 50px;
+    font-size: 48px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 6px;
 }
 
 .gift-card h3[b-u0scjo8lsb] {
-    font-size: 12px;
-    margin: 4px 0 2px;
+    font-size: 16px;
+    margin: 8px 0 4px;
     color: var(--foreground);
 }
 
@@ -254,12 +255,12 @@
     gap: 4px;
     font-size: 12px;
     font-weight: 600;
-    color: #f59e0b;
+    color: var(--muted-foreground);
     margin-bottom: 8px;
 }
 
 .gift-price .token-icon[b-u0scjo8lsb] {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .btn-purchase[b-u0scjo8lsb] {
