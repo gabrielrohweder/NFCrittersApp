@@ -1,0 +1,97 @@
+@page "/animal/{Id}"
+@using AnimalCollector.Shared.DTOs
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject AuthService AuthService
+
+<PageTitle>Animal Details - Yume Zoo</PageTitle>
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">Animal Details</h1>
+    </div>
+
+    <div class="page-content">
+        @if (isLoading)
+        {
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading animal...</p>
+            </div>
+        }
+        else if (errorMessage != null)
+        {
+            <div class="error-container">
+                <p class="error">@errorMessage</p>
+                <button class="btn-primary" @onclick="GoBack">Go Back</button>
+            </div>
+        }
+        else if (animal != null)
+        {
+            <div class="animal-detail">
+                <img src="@animal.ImageUrl" alt="@animal.Name" class="animal-detail-image" />
+                <h2>@animal.Name</h2>
+                <p class="species">@animal.Species</p>
+                <p class="habitat">🌍 @animal.Habitat</p>
+                <div class="rarity-badge rarity-@animal.Rarity">@animal.Rarity</div>
+                
+                <div class="facts">
+                    <h3>Fun Facts:</h3>
+                    @foreach (var fact in animal.Facts)
+                    {
+                        <p>• @fact</p>
+                    }
+                </div>
+
+                <button class="btn-secondary" @onclick="GoBack">Back to Collection</button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = string.Empty;
+
+    private AnimalDTO? animal;
+    private bool isLoading = true;
+    private string? errorMessage;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAnimal();
+    }
+
+    private async Task LoadAnimal()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+
+            var response = await Http.GetAsync($"api/animals/{Id}");
+            if (response.IsSuccessStatusCode)
+            {
+                animal = await response.Content.ReadFromJsonAsync<AnimalDTO>();
+            }
+            else
+            {
+                errorMessage = "Animal not found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load animal. Please try again.";
+            Console.WriteLine($"Error loading animal: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/collection");
+    }
+}

@@ -1,6 +1,7 @@
 @page "/collection"
 @inject HttpClient Http
 @inject AuthService AuthService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Collection -  Yume Zoo</PageTitle>
 
@@ -200,8 +201,7 @@
     {
         if (animal.Collected)
         {
-            selectedAnimal = animal;
-            showAnimalModal = true;
+            NavigationManager.NavigateTo($"/animal/{animal.Id}");
         }
     }
 
