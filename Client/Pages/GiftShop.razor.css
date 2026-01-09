@@ -23,9 +23,11 @@
 
 .gifts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-top: 24px;
+    padding: 16px;
+    justify-items: center;
 }
 
 .gift-card {
@@ -36,6 +38,11 @@
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
+    width: 100%;
+    max-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .gift-card:hover {
