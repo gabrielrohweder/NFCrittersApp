@@ -1,8 +1,17 @@
 @inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
 <div class="app-container">
+    @if (IsHomePage)
+    {
+        <img src="/images/bg.webp" class="background-img" />
+    }
     <main class="main-content">
         @Body
     </main>
     <BottomNav />
 </div>
+
+@code {
+    private bool IsHomePage => NavigationManager.Uri.EndsWith("/home") || NavigationManager.Uri.EndsWith("/");
+}
