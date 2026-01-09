@@ -86,9 +86,9 @@
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
@@ -96,13 +96,13 @@
 
 .btn-purchase:hover:not(:disabled) {
     opacity: 0.9;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .btn-purchase.btn-disabled {
     background: #9ca3af;
     cursor: not-allowed;
-    font-size: 16px; /* Keep consistent font size */
+    font-size: 10px;
 }
 
 .success-modal {
