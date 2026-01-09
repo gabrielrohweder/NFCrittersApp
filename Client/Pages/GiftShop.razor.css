@@ -23,7 +23,7 @@
 
 .gifts-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 16px;
     margin-top: 24px;
 }
@@ -83,26 +83,26 @@
 
 .btn-purchase {
     width: 100%;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .btn-purchase:hover:not(:disabled) {
-    background: #6d28d9;
-    transform: translateY(-1px);
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .btn-purchase.btn-disabled {
     background: #9ca3af;
     cursor: not-allowed;
-    font-size: 10px;
+    font-size: 16px; /* Keep consistent font size */
 }
 
 .success-modal {
@@ -132,8 +132,4 @@
     margin: 16px 0;
 }
 
-@media (max-width: 768px) {
-    .gifts-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+

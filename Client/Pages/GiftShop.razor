@@ -1,6 +1,7 @@
 @page "/giftshop"
 @inject HttpClient Http
 @inject AuthService AuthService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Gift Shop - Yume Zoo</PageTitle>
 
@@ -162,7 +163,6 @@
 @code {
  
     private bool isLoading = true;
-    private bool showAnimalModal = false;
     private bool showAuthModal = false;
     private bool showPurchaseSuccess = false;
     private bool showPurchaseError = false;
@@ -280,7 +280,6 @@
 
     private void CloseModal()
     {
-        showAnimalModal = false;
     }
 
     private void ShowAuth()
@@ -322,6 +321,7 @@
                 username = "";
                 password = "";
                 nickname = "";
+                await LoadGifts();
             }
             else
             {
