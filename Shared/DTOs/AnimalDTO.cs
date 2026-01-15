@@ -10,4 +10,5 @@ public class AnimalDTO
     public string ImageUrl { get; set; } = string.Empty;
     public List<string> Facts { get; set; } = new();
     public bool Collected { get; set; }
+    public string Mood { get; set; } = "happy";
 }

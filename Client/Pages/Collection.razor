@@ -39,6 +39,7 @@
                             @if (animal.Collected)
                             {
                                 <div class="rarity-badge rarity-@animal.Rarity">@animal.Rarity</div>
+                                <div class="mood-badge mood-@animal.Mood.ToLower()">@animal.Mood</div>
                                 <h3>@animal.Name</h3>
                                 <p>@animal.Species</p>
                             }

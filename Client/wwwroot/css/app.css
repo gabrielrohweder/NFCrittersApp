@@ -395,6 +395,119 @@ body {
     color: white;
 }
 
+.mood-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: 4px;
+}
+
+.mood-happy {
+    background: #86efac;
+    color: #166534;
+}
+
+.mood-bored {
+    background: #fde68a;
+    color: #92400e;
+}
+
+.mood-hungry {
+    background: #fed7aa;
+    color: #9a3412;
+}
+
+.mood-scared {
+    background: #c7d2fe;
+    color: #3730a3;
+}
+
+.mood-angry {
+    background: #fecaca;
+    color: #991b1b;
+}
+
+/* Games Page */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.game-card {
+    background: var(--card);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-card.coming-soon {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.game-card.coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.game-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.game-card h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.game-card p {
+    font-size: 12px;
+    color: var(--muted-foreground);
+    margin: 0;
+}
+
+.game-reward {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    background: #fef3c7;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #92400e;
+}
+
+.coming-soon-badge {
+    margin-top: 12px;
+    background: #e5e7eb;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
 /* Profile */
 .profile-header {
     text-align: center;

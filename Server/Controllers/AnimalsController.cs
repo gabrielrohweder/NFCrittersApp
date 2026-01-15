@@ -25,12 +25,18 @@ public class AnimalsController : ControllerBase
         var animals = await _context.Animals.ToListAsync();
 
         List<string> collectedAnimalIds = new();
+        Dictionary<string, string> animalMoods = new();
+        
         if (!string.IsNullOrEmpty(userId))
         {
             collectedAnimalIds = await _context.UserAnimals
                 .Where(ua => ua.UserId == userId)
                 .Select(ua => ua.AnimalId)
                 .ToListAsync();
+            
+            animalMoods = await _context.AnimalMoods
+                .Where(m => m.UserId == userId && m.IsActive)
+                .ToDictionaryAsync(m => m.AnimalId, m => m.MoodState);
         }
 
         var animalDTOs = animals.Select(a => new AnimalDTO
@@ -44,7 +50,8 @@ public class AnimalsController : ControllerBase
             Facts = string.IsNullOrEmpty(a.Facts)
                 ? new List<string>()
                 : JsonSerializer.Deserialize<List<string>>(a.Facts) ?? new List<string>(),
-            Collected = collectedAnimalIds.Contains(a.Id)
+            Collected = collectedAnimalIds.Contains(a.Id),
+            Mood = animalMoods.TryGetValue(a.Id, out var mood) ? mood : "Happy"
         }).ToList();
 
         return Ok(animalDTOs);
@@ -170,6 +177,10 @@ public class AnimalsController : ControllerBase
             .Include(ua => ua.Animal)
             .ToListAsync();
 
+        var animalMoods = await _context.AnimalMoods
+            .Where(m => m.UserId == userId && m.IsActive)
+            .ToDictionaryAsync(m => m.AnimalId, m => m.MoodState);
+
         var animalDTOs = userAnimals.Select(ua => new AnimalDTO
         {
             Id = ua.Animal.Id,
@@ -181,7 +192,8 @@ public class AnimalsController : ControllerBase
             Facts = string.IsNullOrEmpty(ua.Animal.Facts)
                 ? new List<string>()
                 : JsonSerializer.Deserialize<List<string>>(ua.Animal.Facts) ?? new List<string>(),
-            Collected = true
+            Collected = true,
+            Mood = animalMoods.TryGetValue(ua.Animal.Id, out var mood) ? mood : "Happy"
         }).ToList();
 
         return Ok(animalDTOs);
