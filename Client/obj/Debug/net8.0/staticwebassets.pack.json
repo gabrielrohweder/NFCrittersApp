@@ -117,6 +117,10 @@
       "PackagePath": "staticwebassets/js/WheelSpin.js"
     },
     {
+      "Id": "/home/runner/workspace/Client/wwwroot/js/giftAnimation.js",
+      "PackagePath": "staticwebassets/js/giftAnimation.js"
+    },
+    {
       "Id": "/home/runner/workspace/Client/wwwroot/sample-data/weather.json",
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },

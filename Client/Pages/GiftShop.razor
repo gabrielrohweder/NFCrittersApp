@@ -2,8 +2,11 @@
 @inject HttpClient Http
 @inject AuthService AuthService
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Gift Shop - Yume Zoo</PageTitle>
+
+<div class="inventory-target"></div>
 
 <div class="page-container">
     @if (!AuthService.IsAuthenticated)
@@ -36,7 +39,7 @@
                 <div class="gifts-grid">
                     @foreach (var gift in gifts)
                     {
-                        <div class="gift-card">
+                        <div class="gift-card" data-gift-id="@gift.Id">
                             @if (!string.IsNullOrEmpty(gift.ImageUrl))
                             {
                                 <img src="@gift.ImageUrl" alt="@gift.Name" class="gift-card-image" />
@@ -227,7 +230,10 @@
                 {
                     purchaseMessage = result.Message;
                     
-                    // Update user's token count
+                    await JSRuntime.InvokeVoidAsync("giftAnimation.animateToInventory", "", gift.Id);
+                    
+                    await Task.Delay(600);
+                    
                     if (AuthService.CurrentUser != null)
                     {
                         AuthService.CurrentUser.Tokens = result.RemainingTokens;

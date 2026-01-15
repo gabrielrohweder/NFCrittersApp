@@ -324,6 +324,16 @@
     text-decoration: underline;
 }
 /* /Pages/GiftShop.razor.rz.scp.css */
+.inventory-target[b-u0scjo8lsb] {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    pointer-events: none;
+}
+
 .token-balance[b-u0scjo8lsb] {
     display: flex;
     align-items: center;

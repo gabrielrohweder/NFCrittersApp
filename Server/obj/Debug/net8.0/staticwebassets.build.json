@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "78EyJTcBpb9t9poizqB9qETI/ZdViyTtzd4F/QaGzTs=",
+  "Hash": "VohtUQ2yAOd/1t5RwPlnvF3xQBkQUllzUp94ooRUlBQ=",
   "Source": "AnimalCollector.Server",
   "BasePath": "_content/AnimalCollector.Server",
   "Mode": "Default",
@@ -8349,6 +8349,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/home/runner/workspace/Client/wwwroot/js/giftAnimation.js",
+      "SourceId": "AnimalCollector.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/runner/workspace/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/giftAnimation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/giftAnimation.js"
     },
     {
       "Identity": "/home/runner/workspace/Client/wwwroot/js/WheelSpin.js",
