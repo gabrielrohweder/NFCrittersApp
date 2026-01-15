@@ -102,6 +102,32 @@ public class GiftController : ControllerBase
             giftName = gift.Name
         });
     }
+
+    [HttpGet("inventory")]
+    public async Task<ActionResult<List<UserGiftInventoryDTO>>> GetInventory()
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized(new { message = "Please log in to view inventory" });
+        }
+
+        var inventory = await _context.UserGifts
+            .Where(ug => ug.UserId == userId && ug.Quantity > 0)
+            .Include(ug => ug.Gift)
+            .Select(ug => new UserGiftInventoryDTO
+            {
+                GiftId = ug.GiftId,
+                Name = ug.Gift.Name,
+                ImageUrl = ug.Gift.Image,
+                Quantity = ug.Quantity,
+                Price = ug.Gift.Price
+            })
+            .ToListAsync();
+
+        return Ok(inventory);
+    }
 }
 
 public class PurchaseGiftRequest

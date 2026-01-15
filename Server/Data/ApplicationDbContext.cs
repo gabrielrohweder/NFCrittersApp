@@ -16,6 +16,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Gift> Gifts { get; set; }
     public DbSet<UserGift> UserGifts { get; set; }
     public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
+    public DbSet<AnimalMood> AnimalMoods { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -130,6 +131,31 @@ public class ApplicationDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasIndex(e => e.Token).IsUnique();
+        });
+
+        // Configure AnimalMood entity
+        modelBuilder.Entity<AnimalMood>(entity =>
+        {
+            entity.ToTable("animal_moods");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.AnimalId).HasColumnName("animal_id");
+            entity.Property(e => e.MoodState).HasColumnName("mood_state");
+            entity.Property(e => e.LastUpdated).HasColumnName("last_updated");
+            entity.Property(e => e.IsActive).HasColumnName("is_active").HasDefaultValue(true);
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.Animal)
+                .WithMany()
+                .HasForeignKey(e => e.AnimalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(e => new { e.UserId, e.AnimalId, e.IsActive });
         });
 
         // Seed animal data
