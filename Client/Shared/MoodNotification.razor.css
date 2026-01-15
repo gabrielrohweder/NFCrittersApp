@@ -1,0 +1,179 @@
+.mood-notification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.mood-notification {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.notification-animal {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.notification-animal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.animal-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+.notification-mood-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.mood-notification h3 {
+    font-size: 20px;
+    margin: 0 0 8px;
+    color: #333;
+}
+
+.mood-notification p {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 20px;
+}
+
+.notification-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification-actions .btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary, #8b5cf6) 0%, var(--secondary, #06b6d4) 100%);
+    color: white;
+}
+
+.notification-actions .btn-secondary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid #e5e7eb;
+    background: white;
+    color: #666;
+    cursor: pointer;
+}
+
+.gift-selection {
+    max-width: 400px;
+}
+
+.gift-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.gift-option {
+    background: #f8f8f8;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.gift-option:hover:not(:disabled) {
+    border-color: var(--primary, #8b5cf6);
+    transform: translateY(-2px);
+}
+
+.gift-option:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gift-option img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.gift-option .gift-placeholder {
+    font-size: 36px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-option .gift-name {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-option .gift-qty {
+    font-size: 10px;
+    color: var(--primary, #8b5cf6);
+    font-weight: 600;
+}

@@ -12,6 +12,8 @@
     <BottomNav />
 </div>
 
+<MoodNotification />
+
 @code {
     private bool IsHomePage => NavigationManager.Uri.EndsWith("/home") || NavigationManager.Uri.EndsWith("/");
 }

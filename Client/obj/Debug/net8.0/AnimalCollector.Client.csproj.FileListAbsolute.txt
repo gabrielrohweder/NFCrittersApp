@@ -1044,3 +1044,5 @@
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/Home.razor.rz.scp.css
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/ForgotPassword.razor.rz.scp.css
 /home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/ResetPassword.razor.rz.scp.css
+/home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Pages/Games.razor.rz.scp.css
+/home/runner/workspace/Client/obj/Debug/net8.0/scopedcss/Shared/MoodNotification.razor.rz.scp.css

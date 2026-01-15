@@ -1,0 +1,229 @@
+@using AnimalCollector.Shared.DTOs
+@inject HttpClient Http
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+@if (showNotification && unhappyResponse != null && unhappyResponse.HasUnhappyAnimal && unhappyResponse.UnhappyAnimal != null)
+{
+    <div class="mood-notification-overlay" @onclick="DismissNotification">
+        <div class="mood-notification" @onclick:stopPropagation="true">
+            <button class="notification-close" @onclick="DismissNotification">×</button>
+            
+            <div class="notification-animal">
+                @if (!string.IsNullOrEmpty(unhappyResponse.UnhappyAnimal.AnimalImage))
+                {
+                    <img src="@unhappyResponse.UnhappyAnimal.AnimalImage" alt="@unhappyResponse.UnhappyAnimal.AnimalName" />
+                }
+                else
+                {
+                    <div class="animal-placeholder">🐾</div>
+                }
+            </div>
+
+            <div class="notification-mood-icon">@GetMoodEmoji(unhappyResponse.UnhappyAnimal.MoodState)</div>
+            
+            <h3>@unhappyResponse.UnhappyAnimal.AnimalName is @unhappyResponse.UnhappyAnimal.MoodState!</h3>
+            
+            <p>Would you like to @GetActionText()?</p>
+
+            <div class="notification-actions">
+                @if (unhappyResponse.HasGifts)
+                {
+                    <button class="btn-primary" @onclick="GiveGift">
+                        🎁 Give a Gift
+                    </button>
+                }
+                else if (unhappyResponse.CanAffordGift)
+                {
+                    <button class="btn-primary" @onclick="GoToGiftShop">
+                        🛒 Buy a Gift (@unhappyResponse.CheapestGiftPrice 🪙)
+                    </button>
+                }
+                else
+                {
+                    <button class="btn-primary" @onclick="GoToGames">
+                        🎮 Play Games to Earn Tokens
+                    </button>
+                }
+                <button class="btn-secondary" @onclick="DismissNotification">
+                    Later
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (showGiftSelection && giftInventory.Any())
+{
+    <div class="mood-notification-overlay" @onclick="() => showGiftSelection = false">
+        <div class="mood-notification gift-selection" @onclick:stopPropagation="true">
+            <button class="notification-close" @onclick="() => showGiftSelection = false">×</button>
+            <h3>Choose a gift to give</h3>
+            <div class="gift-selection-grid">
+                @foreach (var gift in giftInventory)
+                {
+                    <button class="gift-option" @onclick="() => SelectGift(gift.GiftId)" disabled="@isResolving">
+                        @if (!string.IsNullOrEmpty(gift.ImageUrl))
+                        {
+                            <img src="@gift.ImageUrl" alt="@gift.Name" />
+                        }
+                        else
+                        {
+                            <div class="gift-placeholder">🎁</div>
+                        }
+                        <div class="gift-name">@gift.Name</div>
+                        <div class="gift-qty">x@gift.Quantity</div>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool showNotification = false;
+    private bool showGiftSelection = false;
+    private bool isResolving = false;
+    private bool hasCheckedMood = false;
+    private UnhappyAnimalResponse? unhappyResponse;
+    private List<UserGiftInventoryDTO> giftInventory = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.OnAuthStateChanged += OnAuthChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && AuthService.IsAuthenticated && !hasCheckedMood)
+        {
+            hasCheckedMood = true;
+            await RollMood();
+        }
+    }
+
+    private async void OnAuthChanged()
+    {
+        if (AuthService.IsAuthenticated && !hasCheckedMood)
+        {
+            hasCheckedMood = true;
+            await RollMood();
+            StateHasChanged();
+        }
+        else if (!AuthService.IsAuthenticated)
+        {
+            hasCheckedMood = false;
+            showNotification = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task RollMood()
+    {
+        try
+        {
+            var response = await Http.PostAsync("/api/moods/roll", null);
+            if (response.IsSuccessStatusCode)
+            {
+                unhappyResponse = await response.Content.ReadFromJsonAsync<UnhappyAnimalResponse>();
+                if (unhappyResponse?.HasUnhappyAnimal == true)
+                {
+                    showNotification = true;
+                    StateHasChanged();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error rolling mood: {ex.Message}");
+        }
+    }
+
+    private string GetMoodEmoji(string mood) => mood switch
+    {
+        "bored" => "😑",
+        "hungry" => "🍽️",
+        "scared" => "😨",
+        "angry" => "😠",
+        _ => "😊"
+    };
+
+    private string GetActionText()
+    {
+        if (unhappyResponse?.HasGifts == true)
+            return "give them a gift to make them happy?";
+        if (unhappyResponse?.CanAffordGift == true)
+            return "buy a gift to make them happy?";
+        return "play a game to earn tokens and buy a gift?";
+    }
+
+    private async Task GiveGift()
+    {
+        try
+        {
+            giftInventory = await Http.GetFromJsonAsync<List<UserGiftInventoryDTO>>("/api/gifts/inventory") ?? new();
+            if (giftInventory.Any())
+            {
+                showGiftSelection = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading gifts: {ex.Message}");
+        }
+    }
+
+    private async Task SelectGift(int giftId)
+    {
+        if (unhappyResponse?.UnhappyAnimal == null || isResolving) return;
+        
+        isResolving = true;
+        try
+        {
+            var request = new ResolveMoodRequest
+            {
+                MoodId = unhappyResponse.UnhappyAnimal.Id,
+                GiftId = giftId,
+                PlayedGame = false
+            };
+
+            var response = await Http.PostAsJsonAsync("/api/moods/resolve", request);
+            if (response.IsSuccessStatusCode)
+            {
+                showGiftSelection = false;
+                showNotification = false;
+                unhappyResponse = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error resolving mood: {ex.Message}");
+        }
+        finally
+        {
+            isResolving = false;
+        }
+    }
+
+    private void GoToGiftShop()
+    {
+        showNotification = false;
+        Navigation.NavigateTo("/giftshop");
+    }
+
+    private void GoToGames()
+    {
+        showNotification = false;
+        Navigation.NavigateTo("/games");
+    }
+
+    private void DismissNotification()
+    {
+        showNotification = false;
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= OnAuthChanged;
+    }
+}

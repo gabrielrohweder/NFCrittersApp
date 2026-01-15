@@ -1,0 +1,60 @@
+@page "/games"
+@inject HttpClient Http
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Games - Yume Zoo</PageTitle>
+
+<div class="page-container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="auth-required">
+            <div class="lock-icon">🎮</div>
+            <h2>Games are Locked</h2>
+            <p>Create an account to play games and earn tokens!</p>
+            <button class="btn-primary" @onclick="GoToProfile">
+                Login to Play
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="games-content">
+            <h1 class="hero-title">Games</h1>
+            <p class="games-subtitle">Play games to earn tokens and make your animals happy!</p>
+
+            <div class="games-grid">
+                <a href="/puzzle" class="game-card">
+                    <div class="game-icon">🧩</div>
+                    <h3>Puzzle</h3>
+                    <p>Solve puzzles featuring your collected animals</p>
+                    <div class="game-reward">
+                        <span class="token-icon">🪙</span>
+                        <span>Earn tokens!</span>
+                    </div>
+                </a>
+
+                <div class="game-card coming-soon">
+                    <div class="game-icon">🎯</div>
+                    <h3>Memory Match</h3>
+                    <p>Test your memory with animal cards</p>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </div>
+
+                <div class="game-card coming-soon">
+                    <div class="game-icon">🎲</div>
+                    <h3>Animal Quiz</h3>
+                    <p>Test your animal knowledge</p>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private void GoToProfile()
+    {
+        NavigationManager.NavigateTo("/profile");
+    }
+}

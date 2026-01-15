@@ -78,6 +78,10 @@ build_metadata.AdditionalFiles.CssScope = b-9fcorij01j
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRm9yZ290UGFzc3dvcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-ohtv14h8er
 
+[/home/runner/workspace/Client/Pages/Games.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR2FtZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-nwcw640ofk
+
 [/home/runner/workspace/Client/Pages/GiftShop.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR2lmdFNob3AucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-u0scjo8lsb
@@ -93,3 +97,7 @@ build_metadata.AdditionalFiles.CssScope = b-kfeboi4yeu
 [/home/runner/workspace/Client/Pages/ResetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVzZXRQYXNzd29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-0lbygqkvjf
+
+[/home/runner/workspace/Client/Shared/MoodNotification.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01vb2ROb3RpZmljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-g2jmexus9b
