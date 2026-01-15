@@ -59,10 +59,6 @@ body {
 
 .my-gifts {
     margin: 24px 0;
-    padding: 20px;
-    background: var(--card);
-    border-radius: 16px;
-    border: 2px solid var(--card-border);
 }
 
 .my-gifts h2 {
@@ -73,51 +69,57 @@ body {
 
 .gifts-inventory-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 16px;
 }
 
-.gift-inventory-item {
-    background: white;
+.gift-inventory-card {
+    background: var(--card);
+    border: 2px solid var(--card-border);
     border-radius: 12px;
-    padding: 12px 8px;
+    padding: 16px;
     text-align: center;
     position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    min-width: 140px;
+}
+
+.gift-inventory-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .gift-inventory-image {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    height: 80px;
     object-fit: contain;
     border-radius: 8px;
+    margin-bottom: 8px;
 }
 
 .gift-placeholder {
-    font-size: 40px;
-    height: 50px;
+    font-size: 48px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 8px;
 }
 
-.gift-quantity {
-    position: absolute;
-    top: 4px;
-    right: 4px;
+.gift-quantity-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
     background: var(--primary);
     color: white;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 999px;
+    margin-bottom: 8px;
 }
 
 .gift-name {
-    font-size: 11px;
-    color: var(--muted-foreground);
-    margin-top: 4px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--foreground);
+    margin: 0;
 }

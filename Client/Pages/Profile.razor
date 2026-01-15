@@ -173,7 +173,7 @@
                         <div class="gifts-inventory-grid">
                             @foreach (var gift in giftInventory)
                             {
-                                <div class="gift-inventory-item">
+                                <div class="gift-inventory-card">
                                     @if (!string.IsNullOrEmpty(gift.ImageUrl))
                                     {
                                         <img src="@gift.ImageUrl" alt="@gift.Name" class="gift-inventory-image" />
@@ -182,8 +182,8 @@
                                     {
                                         <div class="gift-placeholder">🎁</div>
                                     }
-                                    <div class="gift-quantity">x@(gift.Quantity)</div>
-                                    <div class="gift-name">@gift.Name</div>
+                                    <div class="gift-quantity-badge">x@(gift.Quantity)</div>
+                                    <h3 class="gift-name">@gift.Name</h3>
                                 </div>
                             }
                         </div>
