@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using AnimalCollector.Server.Data;
+using AnimalCollector.Server.Services;
 using Npgsql;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.StaticFiles;
@@ -52,6 +53,9 @@ builder.Services.AddHealthChecks()
         name: "database",
         timeout: TimeSpan.FromSeconds(5),
         tags: new[] { "ready" });
+
+// Register EmailService
+builder.Services.AddSingleton<EmailService>();
 
 // Add CORS
 builder.Services.AddCors(options =>

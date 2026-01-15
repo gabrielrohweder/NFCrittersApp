@@ -15,6 +15,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserAnimal> UserAnimals { get; set; }
     public DbSet<Gift> Gifts { get; set; }
     public DbSet<UserGift> UserGifts { get; set; }
+    public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -109,6 +110,26 @@ public class ApplicationDbContext : DbContext
                 .WithMany(g => g.UserGifts)
                 .HasForeignKey(e => e.GiftId)
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        // Configure PasswordResetToken entity
+        modelBuilder.Entity<PasswordResetToken>(entity =>
+        {
+            entity.ToTable("password_reset_tokens");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.Token).HasColumnName("token");
+            entity.Property(e => e.ExpiresAt).HasColumnName("expires_at");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.Used).HasColumnName("used").HasDefaultValue(false);
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(e => e.Token).IsUnique();
         });
 
         // Seed animal data

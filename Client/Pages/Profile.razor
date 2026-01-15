@@ -200,6 +200,11 @@
                     <button class="btn-primary" @onclick="HandleAuth" data-testid="button-submit-auth">
                         @(isLogin ? "Login" : "Sign Up")
                     </button>
+
+                    @if (isLogin)
+                    {
+                        <a href="/forgot-password" class="forgot-password-link" @onclick="CloseAuthModal">Forgot password?</a>
+                    }
                     
                     @if (availableProviders.Any())
                     {

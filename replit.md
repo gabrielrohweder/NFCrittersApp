@@ -42,6 +42,7 @@ Child safety features include email-only registration with valid email address r
 *   **Token Economy**: A token tracking system is integrated into user accounts, with a `WheelSpin` component for potential future reward mechanics.
 *   **Nickname Privacy**: Users have unique nicknames (3-20 chars, alphanumeric/spaces/underscores/hyphens) for public display, with validation and profanity filtering.
 *   **Mobile-First UX**: Designed primarily for mobile and tablet devices; desktops see a QR code redirect.
+*   **Password Reset**: Email-based password reset flow using Resend for email delivery. Tokens expire after 1 hour and can only be used once.
 
 ## External Dependencies
 
@@ -49,6 +50,7 @@ Child safety features include email-only registration with valid email address r
 
 *   **QR Code Generation**: `qrserver.com` API
 *   **Google Fonts**: `Comic Neue` font family
+*   **Resend**: Transactional email service for password reset emails (via Replit integration)
 
 ### Database
 

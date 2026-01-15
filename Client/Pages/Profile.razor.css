@@ -31,6 +31,20 @@
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+
+.forgot-password-link {
+    display: block;
+    text-align: center;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
 body {
     height: 100%;
     margin: 0;

@@ -7,6 +7,7 @@ using AnimalCollector.Shared.Models;
 using AnimalCollector.Shared.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace AnimalCollector.Server.Controllers;
 
@@ -15,10 +16,12 @@ namespace AnimalCollector.Server.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
+    private readonly EmailService _emailService;
 
-    public AuthController(ApplicationDbContext context)
+    public AuthController(ApplicationDbContext context, EmailService emailService)
     {
         _context = context;
+        _emailService = emailService;
     }
 
     [HttpPost("login")]
@@ -287,5 +290,121 @@ public class AuthController : ControllerBase
             .ToList();
 
         return Ok(providers);
+    }
+
+    [HttpPost("forgot-password")]
+    public async Task<ActionResult<AuthResponse>> ForgotPassword([FromBody] ForgotPasswordRequest request)
+    {
+        var normalizedEmail = request.Email.ToLower();
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Username.ToLower() == normalizedEmail);
+
+        if (user == null)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = true, 
+                Message = "If an account with that email exists, we've sent a password reset link." 
+            });
+        }
+
+        if (user.AuthProvider != "local" || string.IsNullOrEmpty(user.Password))
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "This account uses external login (Google/Apple). Please sign in with that provider." 
+            });
+        }
+
+        var tokenBytes = RandomNumberGenerator.GetBytes(32);
+        var token = Convert.ToBase64String(tokenBytes).Replace("+", "-").Replace("/", "_").TrimEnd('=');
+
+        var resetToken = new PasswordResetToken
+        {
+            UserId = user.Id,
+            Token = token,
+            ExpiresAt = DateTime.UtcNow.AddHours(1),
+            CreatedAt = DateTime.UtcNow,
+            Used = false
+        };
+
+        _context.PasswordResetTokens.Add(resetToken);
+        await _context.SaveChangesAsync();
+
+        var baseUrl = $"{Request.Scheme}://{Request.Host}";
+        var resetLink = $"{baseUrl}/#/reset-password?token={token}";
+
+        var emailSent = await _emailService.SendPasswordResetEmail(user.Username, resetLink);
+
+        if (!emailSent)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Failed to send reset email. Please try again later." 
+            });
+        }
+
+        return Ok(new AuthResponse 
+        { 
+            Success = true, 
+            Message = "If an account with that email exists, we've sent a password reset link." 
+        });
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<ActionResult<AuthResponse>> ResetPassword([FromBody] ResetPasswordRequest request)
+    {
+        var resetToken = await _context.PasswordResetTokens
+            .Include(t => t.User)
+            .FirstOrDefaultAsync(t => t.Token == request.Token);
+
+        if (resetToken == null)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "Invalid or expired reset link." 
+            });
+        }
+
+        if (resetToken.Used)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "This reset link has already been used." 
+            });
+        }
+
+        if (resetToken.ExpiresAt < DateTime.UtcNow)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "This reset link has expired. Please request a new one." 
+            });
+        }
+
+        if (resetToken.User == null)
+        {
+            return Ok(new AuthResponse 
+            { 
+                Success = false, 
+                Message = "User not found." 
+            });
+        }
+
+        resetToken.User.Password = PasswordHelper.HashPassword(request.NewPassword);
+        resetToken.Used = true;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new AuthResponse 
+        { 
+            Success = true, 
+            Message = "Password has been reset successfully. You can now log in with your new password." 
+        });
     }
 }
