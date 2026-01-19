@@ -278,4 +278,16 @@ public class AnimalsController : ControllerBase
 
         return Ok(stats);
     }
+
+    [HttpGet("random")]
+    public async Task<ActionResult<List<string>>> GetRandomAnimalImages([FromQuery] int count = 10)
+    {
+        var animals = await _context.Animals
+            .OrderBy(a => Guid.NewGuid())
+            .Take(count)
+            .Select(a => a.ImageUrl)
+            .ToListAsync();
+
+        return Ok(animals);
+    }
 }

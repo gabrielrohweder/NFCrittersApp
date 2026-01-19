@@ -35,6 +35,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.ExternalId).HasColumnName("external_id");
             entity.Property(e => e.Tokens).HasColumnName("tokens").HasDefaultValue(0);
             entity.Property(e => e.IsAdmin).HasColumnName("is_admin").HasDefaultValue(false);
+            entity.Property(e => e.WheelSpins).HasColumnName("wheel_spins").HasDefaultValue(0);
             entity.HasIndex(e => e.Username).IsUnique();
             entity.HasIndex(e => new { e.AuthProvider, e.ExternalId });
         });

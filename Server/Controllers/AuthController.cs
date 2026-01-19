@@ -51,7 +51,8 @@ public class AuthController : ControllerBase
                 Id = user.Id,
                 Username = user.Username,
                 Nickname = user.Nickname ?? string.Empty,
-                Tokens = user.Tokens
+                Tokens = user.Tokens,
+                WheelSpins = user.WheelSpins
             }
         });
     }
@@ -156,7 +157,8 @@ public class AuthController : ControllerBase
                 Id = user.Id,
                 Username = user.Username,
                 Nickname = user.Nickname ?? string.Empty,
-                Tokens = user.Tokens
+                Tokens = user.Tokens,
+                WheelSpins = user.WheelSpins
             }
         });
     }
@@ -192,7 +194,8 @@ public class AuthController : ControllerBase
             Id = user.Id,
             Username = user.Username,
             Nickname = user.Nickname ?? string.Empty,
-            Tokens = user.Tokens
+            Tokens = user.Tokens,
+            WheelSpins = user.WheelSpins
         });
     }
 

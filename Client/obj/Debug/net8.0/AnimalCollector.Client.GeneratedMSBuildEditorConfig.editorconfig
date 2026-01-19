@@ -62,10 +62,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2Nhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/runner/workspace/Client/Pages/WheelTest.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2hlZWxUZXN0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/runner/workspace/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -94,6 +90,10 @@ build_metadata.AdditionalFiles.CssScope = b-u0scjo8lsb
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-ezlthorunn
 
+[/home/runner/workspace/Client/Pages/MemoryMatch.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWVtb3J5TWF0Y2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-hkajbj0m11
+
 [/home/runner/workspace/Client/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-kfeboi4yeu
@@ -101,6 +101,10 @@ build_metadata.AdditionalFiles.CssScope = b-kfeboi4yeu
 [/home/runner/workspace/Client/Pages/ResetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVzZXRQYXNzd29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-0lbygqkvjf
+
+[/home/runner/workspace/Client/Pages/WheelSpinPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2hlZWxTcGluUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-x42fsevurn
 
 [/home/runner/workspace/Client/Shared/MoodNotification.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01vb2ROb3RpZmljYXRpb24ucmF6b3I=

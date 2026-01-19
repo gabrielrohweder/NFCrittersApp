@@ -24,6 +24,8 @@ public class User
 
     public bool IsAdmin { get; set; } = false;
 
+    public int WheelSpins { get; set; } = 0;
+
     public virtual ICollection<UserAnimal> UserAnimals { get; set; } = new List<UserAnimal>();
     
     public virtual ICollection<UserGift> UserGifts { get; set; } = new List<UserGift>();

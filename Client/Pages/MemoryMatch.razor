@@ -1,0 +1,277 @@
+@page "/memory-match"
+@inject HttpClient Http
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Memory Match - Yume Zoo</PageTitle>
+
+<div class="page-container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="auth-required">
+            <div class="lock-icon">🎯</div>
+            <h2>Game Locked</h2>
+            <p>Create an account to play games and earn tokens!</p>
+            <button class="btn-primary" @onclick="GoToGames">
+                Go to Games
+            </button>
+        </div>
+    }
+    else if (isLoading)
+    {
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading game...</p>
+        </div>
+    }
+    else
+    {
+        <div class="game-content">
+            <div class="game-header">
+                <h1 class="hero-title">Memory Match</h1>
+                <div class="game-stats">
+                    <span class="stat">Moves: @moves</span>
+                    <span class="stat">Matches: @matchedPairs / @(cards.Count / 2)</span>
+                </div>
+            </div>
+
+            <div class="card-grid" style="--columns: @columns;">
+                @foreach (var card in cards)
+                {
+                    <div class="memory-card @(card.IsFlipped ? "flipped" : "") @(card.IsMatched ? "matched" : "")"
+                         @onclick="() => FlipCard(card)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <span>?</span>
+                            </div>
+                            <div class="card-back">
+                                <img src="@card.ImageUrl" alt="Animal" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button class="btn-secondary" @onclick="ResetGame">New Game</button>
+        </div>
+    }
+
+    @if (showGoodJob)
+    {
+        <div class="toast-popup">
+            <span>Good Job! 🎉</span>
+        </div>
+    }
+
+    @if (showWinModal)
+    {
+        <div class="modal-overlay" @onclick:stopPropagation="true">
+            <div class="modal-content celebration-modal">
+                <div class="celebration-icon">🎉</div>
+                <h2>Congratulations!</h2>
+                <p>You matched all the cards in @moves moves!</p>
+                
+                @if (!wheelSpinAwarded)
+                {
+                    <p class="reward-text">You earned a Wheel Spin!</p>
+                    <button class="btn-primary" @onclick="AwardWheelSpin">
+                        Claim Your Spin! 🎡
+                    </button>
+                }
+                else
+                {
+                    <p class="reward-text">Wheel spin added to your account!</p>
+                    <div class="modal-buttons">
+                        <button class="btn-primary" @onclick="GoToWheelSpin">
+                            Spin Now! 🎡
+                        </button>
+                        <button class="btn-secondary" @onclick="PlayAgain">
+                            Play Again
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private int rows = 5;
+    private int columns = 4;
+    private List<MemoryCard> cards = new();
+    private bool isLoading = true;
+    private int moves = 0;
+    private int matchedPairs = 0;
+    private MemoryCard? firstFlippedCard = null;
+    private MemoryCard? secondFlippedCard = null;
+    private bool isProcessing = false;
+    private bool showGoodJob = false;
+    private bool showWinModal = false;
+    private bool wheelSpinAwarded = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthService.IsAuthenticated)
+        {
+            await LoadGame();
+        }
+        else
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task LoadGame()
+    {
+        isLoading = true;
+        try
+        {
+            int pairsNeeded = (rows * columns) / 2;
+            var images = await Http.GetFromJsonAsync<List<string>>($"/api/animals/random?count={pairsNeeded}");
+            
+            if (images == null || images.Count < pairsNeeded)
+            {
+                Console.WriteLine("Not enough animal images available");
+                isLoading = false;
+                return;
+            }
+
+            cards.Clear();
+            int cardId = 0;
+            foreach (var imageUrl in images)
+            {
+                cards.Add(new MemoryCard { Id = cardId++, ImageUrl = imageUrl, PairId = cardId / 2 });
+                cards.Add(new MemoryCard { Id = cardId++, ImageUrl = imageUrl, PairId = cardId / 2 });
+            }
+
+            ShuffleCards();
+            moves = 0;
+            matchedPairs = 0;
+            firstFlippedCard = null;
+            secondFlippedCard = null;
+            wheelSpinAwarded = false;
+            showWinModal = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading game: {ex.Message}");
+        }
+        isLoading = false;
+    }
+
+    private void ShuffleCards()
+    {
+        var rng = new Random();
+        int n = cards.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            (cards[k], cards[n]) = (cards[n], cards[k]);
+        }
+    }
+
+    private async Task FlipCard(MemoryCard card)
+    {
+        if (isProcessing || card.IsFlipped || card.IsMatched)
+            return;
+
+        card.IsFlipped = true;
+        StateHasChanged();
+
+        if (firstFlippedCard == null)
+        {
+            firstFlippedCard = card;
+        }
+        else if (secondFlippedCard == null)
+        {
+            secondFlippedCard = card;
+            moves++;
+            isProcessing = true;
+            StateHasChanged();
+
+            await Task.Delay(600);
+
+            if (firstFlippedCard.ImageUrl == secondFlippedCard.ImageUrl)
+            {
+                firstFlippedCard.IsMatched = true;
+                secondFlippedCard.IsMatched = true;
+                matchedPairs++;
+
+                await ShowGoodJobToast();
+
+                if (matchedPairs == cards.Count / 2)
+                {
+                    showWinModal = true;
+                }
+            }
+            else
+            {
+                firstFlippedCard.IsFlipped = false;
+                secondFlippedCard.IsFlipped = false;
+            }
+
+            firstFlippedCard = null;
+            secondFlippedCard = null;
+            isProcessing = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ShowGoodJobToast()
+    {
+        showGoodJob = true;
+        StateHasChanged();
+        await Task.Delay(1000);
+        showGoodJob = false;
+        StateHasChanged();
+    }
+
+    private async Task ResetGame()
+    {
+        await LoadGame();
+    }
+
+    private async Task AwardWheelSpin()
+    {
+        try
+        {
+            var response = await Http.PostAsync("/api/games/award-wheelspin", null);
+            if (response.IsSuccessStatusCode)
+            {
+                wheelSpinAwarded = true;
+                await AuthService.RefreshUserAsync();
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error awarding wheel spin: {ex.Message}");
+        }
+    }
+
+    private void GoToWheelSpin()
+    {
+        NavigationManager.NavigateTo("/wheelspin");
+    }
+
+    private void GoToGames()
+    {
+        NavigationManager.NavigateTo("/games");
+    }
+
+    private async Task PlayAgain()
+    {
+        showWinModal = false;
+        await LoadGame();
+    }
+
+    private class MemoryCard
+    {
+        public int Id { get; set; }
+        public string ImageUrl { get; set; } = "";
+        public int PairId { get; set; }
+        public bool IsFlipped { get; set; } = false;
+        public bool IsMatched { get; set; } = false;
+    }
+}

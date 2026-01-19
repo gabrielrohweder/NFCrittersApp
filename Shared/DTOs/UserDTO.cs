@@ -6,6 +6,7 @@ public class UserDTO
     public string Username { get; set; } = string.Empty;
     public string Nickname { get; set; } = string.Empty;
     public int Tokens { get; set; } = 0;
+    public int WheelSpins { get; set; } = 0;
 }
 
 public class LoginRequest

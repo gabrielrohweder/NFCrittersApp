@@ -1,0 +1,135 @@
+@page "/wheelspin"
+@inject HttpClient Http
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Wheel Spin - Yume Zoo</PageTitle>
+
+<div class="page-container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="auth-required">
+            <div class="lock-icon">🎡</div>
+            <h2>Login Required</h2>
+            <p>Create an account to spin the wheel and earn tokens!</p>
+            <button class="btn-primary" @onclick="GoToGames">
+                Go to Games
+            </button>
+        </div>
+    }
+    else if (isLoading)
+    {
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    }
+    else
+    {
+        <div class="wheel-content">
+            <h1 class="hero-title">Spin to Win!</h1>
+            
+            <div class="spins-available">
+                <span class="spin-icon">🎡</span>
+                <span class="spin-count">@wheelSpins</span>
+                <span class="spin-label">Spins Available</span>
+            </div>
+
+            @if (wheelSpins > 0)
+            {
+                <div class="wheel-container">
+                    <WheelSpin 
+                        Values="@tokenValues" 
+                        Colors="@tokenColors"
+                        OnSpinComplete="@HandleSpinComplete" />
+                </div>
+            }
+            else
+            {
+                <div class="no-spins">
+                    <p>You don't have any spins available!</p>
+                    <p class="hint">Play games to earn more wheel spins.</p>
+                    <button class="btn-primary" @onclick="GoToGames">
+                        Play Games 🎮
+                    </button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(lastResult))
+            {
+                <div class="result-display">
+                    <h3>You won:</h3>
+                    <div class="tokens-won">
+                        <span class="token-icon">🪙</span>
+                        <span class="token-amount">@lastResult</span>
+                        <span class="token-label">Tokens!</span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private int[] tokenValues = new int[] { 1, 5, 10, 25, 50, 75, 100 };
+    private string[] tokenColors = new string[] { "#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#06b6d4" };
+    
+    private int wheelSpins = 0;
+    private bool isLoading = true;
+    private string lastResult = string.Empty;
+    private bool isSpinning = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthService.IsAuthenticated)
+        {
+            await LoadWheelSpins();
+        }
+        isLoading = false;
+    }
+
+    private async Task LoadWheelSpins()
+    {
+        try
+        {
+            var response = await Http.GetFromJsonAsync<WheelSpinResponse>("/api/games/wheelspin-count");
+            wheelSpins = response?.WheelSpins ?? 0;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading wheel spins: {ex.Message}");
+        }
+    }
+
+    private async Task HandleSpinComplete(string result)
+    {
+        if (int.TryParse(result, out int tokensWon))
+        {
+            try
+            {
+                var response = await Http.PostAsJsonAsync("/api/games/use-wheelspin", new { tokensWon });
+                if (response.IsSuccessStatusCode)
+                {
+                    lastResult = result;
+                    wheelSpins = Math.Max(0, wheelSpins - 1);
+                    await AuthService.RefreshUserAsync();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error using wheel spin: {ex.Message}");
+            }
+        }
+    }
+
+    private void GoToGames()
+    {
+        NavigationManager.NavigateTo("/games");
+    }
+
+    private class WheelSpinResponse
+    {
+        public int WheelSpins { get; set; }
+    }
+}

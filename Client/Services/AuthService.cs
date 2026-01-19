@@ -67,4 +67,17 @@ public class AuthService
         _currentUser = null;
         OnAuthStateChanged?.Invoke();
     }
+
+    public async Task RefreshUserAsync()
+    {
+        try
+        {
+            _currentUser = await _httpClient.GetFromJsonAsync<UserDTO>("api/auth/me");
+            OnAuthStateChanged?.Invoke();
+        }
+        catch
+        {
+            // Ignore refresh errors
+        }
+    }
 }
