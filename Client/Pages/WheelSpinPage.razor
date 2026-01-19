@@ -103,23 +103,22 @@
 
     private async Task HandleSpinComplete(string result)
     {
-        if (int.TryParse(result, out int tokensWon))
+        try
         {
-            try
+            // Server determines the actual tokens won (ignores client value for security)
+            var response = await Http.PostAsync("/api/games/use-wheelspin", null);
+            if (response.IsSuccessStatusCode)
             {
-                var response = await Http.PostAsJsonAsync("/api/games/use-wheelspin", new { tokensWon });
-                if (response.IsSuccessStatusCode)
-                {
-                    lastResult = result;
-                    wheelSpins = Math.Max(0, wheelSpins - 1);
-                    await AuthService.RefreshUserAsync();
-                    StateHasChanged();
-                }
+                var spinResult = await response.Content.ReadFromJsonAsync<SpinResultResponse>();
+                lastResult = spinResult?.TokensWon.ToString() ?? result;
+                wheelSpins = spinResult?.WheelSpins ?? Math.Max(0, wheelSpins - 1);
+                await AuthService.RefreshUserAsync();
+                StateHasChanged();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error using wheel spin: {ex.Message}");
-            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error using wheel spin: {ex.Message}");
         }
     }
 
@@ -131,5 +130,12 @@
     private class WheelSpinResponse
     {
         public int WheelSpins { get; set; }
+    }
+
+    private class SpinResultResponse
+    {
+        public int WheelSpins { get; set; }
+        public int Tokens { get; set; }
+        public int TokensWon { get; set; }
     }
 }
