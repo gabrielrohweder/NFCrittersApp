@@ -57,6 +57,9 @@ builder.Services.AddHealthChecks()
 // Register EmailService
 builder.Services.AddSingleton<EmailService>();
 
+// Register CritterAuthService for NFC tag verification
+builder.Services.AddSingleton<CritterAuthService>();
+
 // Add CORS
 builder.Services.AddCors(options =>
 {

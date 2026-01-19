@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AnimalCollector.Server.Data;
+using AnimalCollector.Server.Services;
 using AnimalCollector.Shared.DTOs;
 using AnimalCollector.Shared.Models;
 using System.Text.Json;
@@ -12,10 +13,12 @@ namespace AnimalCollector.Server.Controllers;
 public class AnimalsController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
+    private readonly CritterAuthService _critterAuthService;
 
-    public AnimalsController(ApplicationDbContext context)
+    public AnimalsController(ApplicationDbContext context, CritterAuthService critterAuthService)
     {
         _context = context;
+        _critterAuthService = critterAuthService;
     }
 
     [HttpGet]
@@ -92,22 +95,41 @@ public class AnimalsController : ControllerBase
         return Ok(animalDTO);
     }
 
-    [HttpGet("token/{token}")]
-    public async Task<ActionResult<AnimalDTO>> GetAnimalByToken(string token)
+
+    [HttpGet("verify")]
+    public async Task<ActionResult<AnimalDTO>> VerifyAndGetAnimal([FromQuery] string token, [FromQuery] string? uid, [FromQuery] string hash)
     {
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(hash))
+        {
+            return BadRequest(new { message = "Token and hash are required", authentic = false });
+        }
+
+        if (!_critterAuthService.VerifyHash(token, uid, hash))
+        {
+            return Unauthorized(new { message = "This critter is not authentic", authentic = false });
+        }
+
         var userId = HttpContext.Session.GetString("UserId");
         var animal = await _context.Animals.FirstOrDefaultAsync(a => a.Token == token);
 
         if (animal == null)
         {
-            return NotFound(new { message = "Animal not found" });
+            return NotFound(new { message = "Animal not found", authentic = true });
         }
 
         bool isCollected = false;
+        string mood = "Happy";
         if (!string.IsNullOrEmpty(userId))
         {
             isCollected = await _context.UserAnimals
                 .AnyAsync(ua => ua.UserId == userId && ua.AnimalId == animal.Id);
+            
+            var animalMood = await _context.AnimalMoods
+                .FirstOrDefaultAsync(m => m.UserId == userId && m.AnimalId == animal.Id && m.IsActive);
+            if (animalMood != null)
+            {
+                mood = animalMood.MoodState;
+            }
         }
 
         var animalDTO = new AnimalDTO
@@ -121,10 +143,11 @@ public class AnimalsController : ControllerBase
             Facts = string.IsNullOrEmpty(animal.Facts)
                 ? new List<string>()
                 : JsonSerializer.Deserialize<List<string>>(animal.Facts) ?? new List<string>(),
-            Collected = isCollected
+            Collected = isCollected,
+            Mood = mood
         };
 
-        return Ok(animalDTO);
+        return Ok(new { animal = animalDTO, authentic = true });
     }
 
     [HttpPost("{id}/collect")]

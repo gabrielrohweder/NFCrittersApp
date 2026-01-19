@@ -16,7 +16,17 @@
         {
             <div class="loading">
                 <div class="spinner"></div>
-                <p>Loading animal...</p>
+                <p>Verifying critter...</p>
+            </div>
+        }
+        else if (!isAuthentic)
+        {
+            <div class="inauthentic-container">
+                <div class="inauthentic-icon">🚫</div>
+                <h2>Uh Oh! This Critter Isn't Real</h2>
+                <p>We couldn't verify this critter. It might be a copy or not from our official collection.</p>
+                <p class="inauthentic-tip">Only critters from official Yume Zoo toys can be collected!</p>
+                <button class="btn-primary" @onclick="GoHome" data-testid="button-go-home">Go Home</button>
             </div>
         }
         else if (errorMessage != null)
@@ -167,6 +177,7 @@ OnClose="@OnCelebrationClose" />
     private AnimalDTO? animal;
     private bool isLoading = true;
     private bool isCollecting = false;
+    private bool isAuthentic = true;
     private string? errorMessage;
     private bool showAuthModal = false;
     private bool isLogin = true;
@@ -180,7 +191,7 @@ OnClose="@OnCelebrationClose" />
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadAnimal();
+        await VerifyAndLoadAnimal();
         await LoadAvailableProviders();
     }
 
@@ -196,21 +207,42 @@ OnClose="@OnCelebrationClose" />
         }
     }
 
-    private async Task LoadAnimal()
+    private async Task VerifyAndLoadAnimal()
     {
         try
         {
             isLoading = true;
             errorMessage = null;
+            isAuthentic = true;
 
-            var response = await Http.GetAsync($"api/animals/token/{Token}");
+            var uid = string.IsNullOrEmpty(Uid) ? "" : Uid;
+            var response = await Http.GetAsync($"api/animals/verify?token={Uri.EscapeDataString(Token)}&uid={Uri.EscapeDataString(uid)}&hash={Uri.EscapeDataString(Hash)}");
+            
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                isAuthentic = false;
+                return;
+            }
+            
             if (response.IsSuccessStatusCode)
             {
-                animal = await response.Content.ReadFromJsonAsync<AnimalDTO>();
+                var result = await response.Content.ReadFromJsonAsync<VerifyResponse>();
+                if (result != null && result.Authentic)
+                {
+                    animal = result.Animal;
+                }
+                else
+                {
+                    isAuthentic = false;
+                }
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                errorMessage = "Animal not found. This token doesn't exist in our collection.";
             }
             else
             {
-                errorMessage = "Animal not found. Please check the token and try again.";
+                errorMessage = "Failed to verify critter. Please try again.";
             }
         }
         catch (Exception ex)
@@ -222,6 +254,12 @@ OnClose="@OnCelebrationClose" />
         {
             isLoading = false;
         }
+    }
+
+    private class VerifyResponse
+    {
+        public AnimalDTO? Animal { get; set; }
+        public bool Authentic { get; set; }
     }
 
     private async Task AddToCollection()
@@ -365,7 +403,7 @@ OnClose="@OnCelebrationClose" />
                 username = "";
                 password = "";
                 nickname = "";
-                await LoadAnimal();
+                await VerifyAndLoadAnimal();
             }
             else
             {

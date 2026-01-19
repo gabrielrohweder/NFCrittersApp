@@ -833,6 +833,39 @@ body {
     margin-bottom: 24px;
 }
 
+.inauthentic-container {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--card);
+    border-radius: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.inauthentic-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.inauthentic-container h2 {
+    color: #ef4444;
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.inauthentic-container p {
+    color: var(--muted-foreground);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.inauthentic-tip {
+    font-size: 14px;
+    color: var(--muted-foreground);
+    font-style: italic;
+    margin-bottom: 24px !important;
+}
+
 .loading {
     text-align: center;
     padding: 60px 24px;
@@ -1279,4 +1312,211 @@ code {
         transform: scale(1.2) rotate(180deg);
         opacity: 0.8;
     }
+}
+
+/* Admin Page Styles */
+.admin-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: var(--card);
+    color: var(--foreground);
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.admin-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.section-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-table th {
+    background: rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.admin-table tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.actions-cell {
+    white-space: nowrap;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.btn-edit {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-save {
+    background: #22c55e;
+    color: white;
+}
+
+.btn-cancel {
+    background: #6b7280;
+    color: white;
+}
+
+.edit-input {
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 150px;
+}
+
+.edit-input.small {
+    max-width: 80px;
+}
+
+.admin-modal {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.import-instructions {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.import-instructions code {
+    display: block;
+    background: var(--card);
+    padding: 8px;
+    border-radius: 4px;
+    margin: 8px 0;
+    font-size: 12px;
+}
+
+.import-instructions .note {
+    font-size: 12px;
+    color: var(--muted-foreground);
+    font-style: italic;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--muted-foreground);
+    padding: 40px;
+}
+
+.success {
+    color: #22c55e;
+    font-weight: 600;
 }

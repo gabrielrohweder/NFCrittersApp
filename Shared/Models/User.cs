@@ -22,6 +22,8 @@ public class User
 
     public int Tokens { get; set; } = 0;
 
+    public bool IsAdmin { get; set; } = false;
+
     public virtual ICollection<UserAnimal> UserAnimals { get; set; } = new List<UserAnimal>();
     
     public virtual ICollection<UserGift> UserGifts { get; set; } = new List<UserGift>();
