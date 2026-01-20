@@ -829,21 +829,25 @@
     }
 }
 
-.auth-required[b-hkajbj0m11] {
+.auth-required[b-hkajbj0m11],
+.error-state[b-hkajbj0m11] {
     text-align: center;
     padding: 60px 20px;
 }
 
-.lock-icon[b-hkajbj0m11] {
+.lock-icon[b-hkajbj0m11],
+.error-icon[b-hkajbj0m11] {
     font-size: 64px;
     margin-bottom: 16px;
 }
 
-.auth-required h2[b-hkajbj0m11] {
+.auth-required h2[b-hkajbj0m11],
+.error-state h2[b-hkajbj0m11] {
     margin: 0 0 12px 0;
 }
 
-.auth-required p[b-hkajbj0m11] {
+.auth-required p[b-hkajbj0m11],
+.error-state p[b-hkajbj0m11] {
     color: var(--muted-foreground);
     margin: 0 0 24px 0;
 }

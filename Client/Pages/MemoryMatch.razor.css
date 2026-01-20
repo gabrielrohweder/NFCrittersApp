@@ -245,21 +245,25 @@
     }
 }
 
-.auth-required {
+.auth-required,
+.error-state {
     text-align: center;
     padding: 60px 20px;
 }
 
-.lock-icon {
+.lock-icon,
+.error-icon {
     font-size: 64px;
     margin-bottom: 16px;
 }
 
-.auth-required h2 {
+.auth-required h2,
+.error-state h2 {
     margin: 0 0 12px 0;
 }
 
-.auth-required p {
+.auth-required p,
+.error-state p {
     color: var(--muted-foreground);
     margin: 0 0 24px 0;
 }

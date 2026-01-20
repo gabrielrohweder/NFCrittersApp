@@ -24,6 +24,15 @@
             <p>Loading game...</p>
         </div>
     }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="error-state">
+            <div class="error-icon">😿</div>
+            <h2>Oops!</h2>
+            <p>@errorMessage</p>
+            <button class="btn-primary" @onclick="ResetGame">Try Again</button>
+        </div>
+    }
     else
     {
         <div class="game-content">
@@ -96,7 +105,7 @@
 </div>
 
 @code {
-    private int rows = 5;
+    private int rows = 3;
     private int columns = 4;
     private List<MemoryCard> cards = new();
     private bool isLoading = true;
@@ -108,6 +117,7 @@
     private bool showGoodJob = false;
     private bool showWinModal = false;
     private bool wheelSpinAwarded = false;
+    private string? errorMessage = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -133,10 +143,11 @@
             
             if (images == null || images.Count < pairsNeeded)
             {
-                Console.WriteLine("Not enough animal images available");
+                errorMessage = $"Not enough animals in database. Need {pairsNeeded}, found {images?.Count ?? 0}.";
                 isLoading = false;
                 return;
             }
+            errorMessage = null;
 
             cards.Clear();
             int cardId = 0;
