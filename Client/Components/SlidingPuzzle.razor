@@ -49,6 +49,7 @@
     [Parameter] public string ImageUrl { get; set; } = "/images/your-picture.jpg";
     [Parameter] public int ShuffleMovesPerTile { get; set; } = 240;        // shuffle intensity
     [Parameter] public bool ShowNumbers { get; set; } = true;
+    [Parameter] public EventCallback<(int Moves, string Time)> OnWin { get; set; }
 
     // --------------------------
     // State
@@ -218,7 +219,20 @@
         ToastText = $"Solved in {Moves} moves, {ElapsedText} ⏱️";
         ShowToast = true;
         StateHasChanged();
+        
+        // Notify parent of win
+        await OnWin.InvokeAsync((Moves, ElapsedText));
+        
         await Task.Delay(2200);
+        ShowToast = false;
+        StateHasChanged();
+    }
+
+    public void ResetPuzzle()
+    {
+        ShuffleBoard(steps: Math.Max(1, ShuffleMovesPerTile) * N);
+        Moves = 0;
+        Stopwatch.Restart();
         ShowToast = false;
         StateHasChanged();
     }

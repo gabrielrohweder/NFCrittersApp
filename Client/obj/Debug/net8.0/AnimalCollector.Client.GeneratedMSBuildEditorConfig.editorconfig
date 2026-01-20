@@ -54,10 +54,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29sbGVjdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/runner/workspace/Client/Pages/Puzzle.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHV6emxlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/runner/workspace/Client/Pages/Scan.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2Nhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -97,6 +93,10 @@ build_metadata.AdditionalFiles.CssScope = b-hkajbj0m11
 [/home/runner/workspace/Client/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-kfeboi4yeu
+
+[/home/runner/workspace/Client/Pages/Puzzle.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHV6emxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-5wtecymjn3
 
 [/home/runner/workspace/Client/Pages/ResetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVzZXRQYXNzd29yZC5yYXpvcg==
