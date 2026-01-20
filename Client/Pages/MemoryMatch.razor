@@ -124,6 +124,8 @@
     private async Task LoadGame()
     {
         isLoading = true;
+        StateHasChanged();
+        await Task.Delay(10); // Allow UI to update before loading
         try
         {
             int pairsNeeded = (rows * columns) / 2;
