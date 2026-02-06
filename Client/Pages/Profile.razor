@@ -33,7 +33,7 @@
                 </div>
                 @if ((AuthService.CurrentUser?.WheelSpins ?? 0) > 0)
                 {
-                    <a href="/wheelspin" class="wheelspin-button">
+                    <a href="/wheelspinpage" class="wheelspin-button">
                         <span class="wheel-icon">🎡</span>
                         <span class="wheel-count">@(AuthService.CurrentUser?.WheelSpins) Spins Available!</span>
                     </a>
